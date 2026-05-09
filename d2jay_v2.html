@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D2Jay — Music Video Director & Wedding Filmmaker | DC, Maryland, Virginia</title>
+<meta name="description" content="Looking for a music video director or wedding videographer in DC, Maryland, or Virginia? D2Jay brings cinematic production directly to you. No studio. No overhead. Just great work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  --black:     #050505;
+  --deep:      #090909;
+  --surf:      #0f0f0f;
+  --surf2:     #141414;
+  --surf3:     #1c1c1c;
+  --b0:        rgba(255,255,255,0.05);
+  --b1:        rgba(255,255,255,0.09);
+  --b2:        rgba(255,255,255,0.15);
+  --gold:      #c8a86b;
+  --gold-lt:   #e0c98e;
+  --gold-dk:   #a0813e;
+  --gold-a12:  rgba(200,168,107,0.12);
+  --gold-a06:  rgba(200,168,107,0.06);
+  --w100:      #f5f1e8;
+  --w60:       rgba(245,241,232,0.60);
+  --w30:       rgba(245,241,232,0.30);
+  --w15:       rgba(245,241,232,0.15);
+  --fd:        'Bebas Neue', sans-serif;
+  --fs:        'Playfair Display', serif;
+  --fb:        'DM Sans', sans-serif;
+  --ease:      cubic-bezier(0.16,1,0.3,1);
+  --ease2:     cubic-bezier(0.65,0,0.35,1);
+  --gutter:    clamp(20px,5vw,80px);
+  --vpad:      clamp(80px,10vw,140px);
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--black);color:var(--w100);font-family:var(--fb);font-weight:300;line-height:1.7;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;background:none;border:none;font:inherit;color:inherit}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+/* ============================================================
+   PROGRESS BAR
+   ============================================================ */
+#prog{position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:500;width:0;transition:width .1s linear}
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================ */
+.disp{font-family:var(--fd);letter-spacing:.03em;line-height:.9}
+.serif{font-family:var(--fs)}
+.label{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.muted{color:var(--w60)}
+.faint{color:var(--w30)}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+#nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:26px var(--gutter);
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .4s,padding .3s,border-color .3s;
+  border-bottom:1px solid transparent;
+}
+#nav.scrolled{
+  background:rgba(5,5,5,0.94);
+  backdrop-filter:blur(24px);
+  -webkit-backdrop-filter:blur(24px);
+  padding-top:14px;padding-bottom:14px;
+  border-color:var(--b0);
+}
+.nav-logo{font-family:var(--fd);font-size:26px;letter-spacing:.1em}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--w60);transition:color .2s}
+.nav-links a:hover{color:var(--w100)}
+.nav-cta{
+  padding:9px 20px;border:1px solid var(--gold);
+  color:var(--gold)!important;
+  transition:background .2s,color .2s!important;
+}
+.nav-cta:hover{background:var(--gold);color:var(--black)!important}
+.nav-hamburger{display:none;flex-direction:column;gap:5px;padding:4px}
+.nav-hamburger span{display:block;width:22px;height:1.5px;background:var(--w100);transition:all .3s}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 30px;border:1px solid;
+  font-family:var(--fb);font-size:12px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;
+  transition:all .35s var(--ease);position:relative;overflow:hidden;
+}
+.btn::before{
+  content:'';position:absolute;inset:0;
+  transform:translateX(-101%);transition:transform .4s var(--ease);
+}
+.btn:hover::before{transform:translateX(0)}
+.btn-inner{position:relative;z-index:1;display:flex;align-items:center;gap:10px}
+.btn-gold{border-color:var(--gold);color:var(--gold)}
+.btn-gold::before{background:var(--gold)}
+.btn-gold:hover .btn-inner{color:var(--black)}
+.btn-ghost{border-color:var(--b2);color:var(--w60)}
+.btn-ghost::before{background:var(--b0)}
+.btn-ghost:hover .btn-inner{color:var(--w100)}
+.arrow-svg{transition:transform .3s var(--ease)}
+.btn:hover .arrow-svg{transform:translate(3px,-3px)}
+
+/* ============================================================
+   REVEAL ANIMATION
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* ============================================================
+   SECTION SHELL
+   ============================================================ */
+.section{padding:var(--vpad) var(--gutter)}
+.sec-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.sec-rule{width:32px;height:1px;background:var(--gold);opacity:.5}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#hero{
+  position:relative;height:100vh;min-height:680px;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 var(--gutter) clamp(56px,7vw,96px);
+  overflow:hidden;
+}
+#hero-media{
+  position:absolute;inset:0;
+  will-change:transform;transform-origin:center center;
+}
+#hero-media::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(5,5,5,.25) 0%,rgba(5,5,5,.05) 35%,rgba(5,5,5,.65) 72%,rgba(5,5,5,1) 100%);
+}
+#hero-media iframe{
+  position:absolute;top:50%;left:50%;
+  width:177.78vh;height:100vh;
+  min-width:100%;min-height:56.25vw;
+  transform:translate(-50%,-50%);
+  pointer-events:none;border:0;
+}
+.hero-inner{position:relative;z-index:2;max-width:960px}
+
+/* staggered entrance */
+.h-e1{opacity:0;transform:translateY(18px);animation:hup .7s .2s var(--ease) forwards}
+.h-e2{opacity:0;transform:translateY(22px);animation:hup .8s .42s var(--ease) forwards}
+.h-e3{opacity:0;transform:translateY(18px);animation:hup .7s .62s var(--ease) forwards}
+.h-e4{opacity:0;transform:translateY(14px);animation:hup .7s .82s var(--ease) forwards}
+@keyframes hup{to{opacity:1;transform:none}}
+
+.hero-tag{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:22px}
+.hero-h1{
+  font-family:var(--fd);
+  font-size:clamp(68px,12vw,156px);
+  line-height:.88;letter-spacing:.02em;
+}
+.hero-h1 em{
+  font-style:italic;font-family:var(--fs);
+  font-size:.62em;color:var(--gold);
+  vertical-align:middle;display:inline-block;transform:translateY(-.08em);
+}
+.hero-sub{
+  margin-top:26px;max-width:460px;
+  font-size:clamp(15px,1.5vw,18px);color:var(--w60);font-weight:300;line-height:1.65;
+}
+.hero-actions{margin-top:40px;display:flex;gap:14px;flex-wrap:wrap}
+
+/* scroll cue */
+.hero-scroll{
+  position:absolute;bottom:clamp(28px,4vw,48px);right:var(--gutter);
+  z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:0;animation:hup .8s 1.4s var(--ease) forwards;
+}
+.hero-scroll .sc-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--w30);writing-mode:vertical-lr}
+.scroll-line{width:1px;height:52px;background:var(--gold);transform-origin:top;animation:sline 2.2s 1.8s ease-in-out infinite}
+@keyframes sline{0%{transform:scaleY(0);opacity:1}55%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0;transform-origin:bottom}}
+
+/* ============================================================
+   TICKER
+   ============================================================ */
+.ticker{
+  overflow:hidden;border-top:1px solid var(--b1);border-bottom:1px solid var(--b1);
+  padding:15px 0;background:var(--deep);
+}
+.ticker-track{display:flex;white-space:nowrap;animation:tick 30s linear infinite}
+.ticker-item{
+  display:inline-flex;align-items:center;gap:18px;padding:0 26px;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--w30);
+}
+.ticker-dot{width:3px;height:3px;border-radius:50%;background:var(--gold);flex-shrink:0}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ============================================================
+   WHAT I DO BEST — 3D CARD GRID
+   ============================================================ */
+#services{background:var(--deep);padding:var(--vpad) var(--gutter)}
+.services-intro{max-width:540px;margin-bottom:clamp(48px,6vw,80px)}
+.services-intro h2{font-family:var(--fd);font-size:clamp(44px,6.5vw,88px);line-height:.9;margin-bottom:20px}
+
+.svc-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:2px;
+}
+.svc-card{
+  position:relative;overflow:hidden;
+  padding:48px 40px 44px;
+  background:var(--surf);
+  border:1px solid var(--b0);
+  transition:border-color .4s,background .4s;
+  transform-style:preserve-3d;
+  cursor:default;
+}
+.svc-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at var(--mx,50%) var(--my,50%), var(--gold-a12) 0%, transparent 65%);
+  opacity:0;transition:opacity .4s;
+}
+.svc-card:hover::before{opacity:1}
+.svc-card:hover{border-color:var(--b2);background:var(--surf2)}
+.svc-card-num{
+  font-family:var(--fd);font-size:72px;line-height:1;
+  color:var(--b1);margin-bottom:32px;
+  transition:color .4s;
+}
+.svc-card:hover .svc-card-num{color:var(--gold-a12)}
+.svc-card-title{
+  font-family:var(--fd);font-size:clamp(30px,3vw,42px);
+  letter-spacing:.04em;margin-bottom:14px;
+  transition:color .3s;
+}
+.svc-card:hover .svc-card-title{color:var(--gold)}
+.svc-card-desc{font-size:14px;color:var(--w60);line-height:1.7;max-width:340px}
+.svc-card-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.svc-tag{
+  padding:4px 11px;border:1px solid var(--b1);
+  font-size:10px;letter-spacing:.1em;color:var(--w30);text-transform:uppercase;
+  transition:border-color .2s,color .2s;
+}
+.svc-card:hover .svc-tag{border-color:var(--b2);color:var(--w60)}
+.svc-card-accent{
+  position:absolute;top:0;right:0;
+  width:3px;height:0;background:var(--gold);
+  transition:height .5s var(--ease);
+}
+.svc-card:hover .svc-card-accent{height:100%}
+
+/* ============================================================
+   PORTFOLIO
+   ============================================================ */
+#portfolio{background:var(--black);padding:var(--vpad) var(--gutter)}
+.port-header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;margin-bottom:clamp(40px,5vw,64px)}
+.port-header h2{font-family:var(--fd);font-size:clamp(44px,6.5vw,88px);line-height:.9}
+
+.port-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+.pi{position:relative;overflow:hidden;background:var(--surf)}
+.pi:nth-child(1){grid-column:span 7;height:500px}
+.pi:nth-child(2){grid-column:span 5;height:243px}
+.pi:nth-child(3){grid-column:span 5;height:243px}
+.pi:nth-child(4){grid-column:span 5;height:310px}
+.pi:nth-child(5){grid-column:span 7;height:310px}
+.pi img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease),filter .5s;filter:brightness(.72) saturate(.8)}
+.pi:hover img{transform:scale(1.07);filter:brightness(.55) saturate(1)}
+.pi-cap{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(5,5,5,.88) 0%,transparent 55%);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:22px;
+  opacity:0;transition:opacity .4s;
+}
+.pi:hover .pi-cap{opacity:1}
+.pi-cat{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.pi-title{font-family:var(--fd);font-size:20px;letter-spacing:.04em}
+.pi-badge{
+  position:absolute;top:14px;left:14px;
+  padding:3px 10px;background:rgba(5,5,5,.55);
+  border:1px solid var(--b1);backdrop-filter:blur(6px);
+  font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);
+}
+
+/* ============================================================
+   GOLD MARQUEE DIVIDER
+   ============================================================ */
+.marquee-bar{overflow:hidden;background:var(--gold);padding:18px 0}
+.marquee-track{display:flex;white-space:nowrap;animation:tick 18s linear infinite}
+.mq-item{
+  display:inline-flex;align-items:center;gap:18px;padding:0 22px;
+  font-family:var(--fd);font-size:17px;letter-spacing:.1em;color:var(--black);
+}
+.mq-star{font-size:10px}
+
+/* ============================================================
+   ABOUT
+   ============================================================ */
+#about{
+  background:var(--surf);
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(40px,6vw,100px);
+  align-items:center;
+  padding:var(--vpad) var(--gutter);
+}
+.about-photo-wrap{position:relative;overflow:hidden}
+.about-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;filter:grayscale(10%);transition:transform .8s var(--ease)}
+.about-photo-wrap:hover img{transform:scale(1.03)}
+.about-frame{position:absolute;inset:18px;border:1px solid rgba(200,168,107,.25);pointer-events:none}
+.about-badge{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:14px 20px;background:var(--gold);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.about-badge span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--black);font-weight:500}
+.about-text-col{}
+.about-pull{
+  font-family:var(--fs);font-style:italic;
+  font-size:clamp(19px,2.2vw,26px);line-height:1.5;
+  color:var(--w100);margin-bottom:28px;
+  border-left:2px solid var(--gold);padding-left:22px;
+}
+.about-body{font-size:15px;color:var(--w60);margin-bottom:16px;line-height:1.75}
+.about-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  margin-top:40px;padding-top:36px;border-top:1px solid var(--b1);
+}
+.stat-n{font-family:var(--fd);font-size:48px;color:var(--gold);line-height:1}
+.stat-l{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--w30);margin-top:4px}
+.about-ctas{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+
+/* ============================================================
+   REVIEWS
+   ============================================================ */
+#reviews{background:var(--deep);padding:var(--vpad) var(--gutter)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.rev-card{
+  padding:32px;border:1px solid var(--b0);background:var(--surf);
+  position:relative;transition:border-color .3s,transform .4s var(--ease);
+}
+.rev-card:hover{border-color:var(--b2);transform:translateY(-5px)}
+.rev-src{position:absolute;top:18px;right:18px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--w15)}
+.rev-stars{color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:18px}
+.rev-q{font-size:28px;font-family:var(--fs);color:var(--gold);opacity:.35;line-height:0;vertical-align:-8px;margin-right:3px}
+.rev-text{font-size:14px;color:var(--w60);line-height:1.75;margin-bottom:22px;font-style:italic}
+.rev-author{display:flex;align-items:center;gap:12px}
+.rev-av{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--gold-a12);border:1px solid var(--gold);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:500;color:var(--gold);flex-shrink:0;
+}
+.rev-name{font-size:13px;font-weight:500}
+.rev-role{font-size:11px;color:var(--w30);letter-spacing:.04em}
+
+/* ============================================================
+   EXPERIENCE / CV
+   ============================================================ */
+#experience{background:var(--black);padding:var(--vpad) var(--gutter)}
+.exp-cols{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+.exp-col-label{font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:32px}
+.exp-item{padding:24px 0;border-bottom:1px solid var(--b0);display:grid;grid-template-columns:108px 1fr;gap:20px}
+.exp-yr{font-size:12px;color:var(--w30);padding-top:3px}
+.exp-role{font-size:16px;font-weight:400;margin-bottom:3px}
+.exp-org{font-size:12px;color:var(--gold);margin-bottom:6px;letter-spacing:.04em}
+.exp-detail{font-size:13px;color:var(--w30);line-height:1.65}
+
+/* ============================================================
+   MY PROJECTS (Blog preview)
+   ============================================================ */
+#projects{background:var(--surf);padding:var(--vpad) var(--gutter)}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:clamp(40px,5vw,64px)}
+.proj-card{
+  position:relative;overflow:hidden;background:var(--surf2);
+  border:1px solid var(--b0);transition:border-color .3s,transform .4s var(--ease);
+}
+.proj-card:hover{border-color:var(--b2);transform:translateY(-4px)}
+.proj-thumb{height:200px;overflow:hidden}
+.proj-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease),filter .5s;filter:brightness(.75)}
+.proj-card:hover .proj-thumb img{transform:scale(1.06);filter:brightness(.6)}
+.proj-body{padding:22px 24px}
+.proj-cat{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.proj-title{font-size:17px;font-weight:400;margin-bottom:10px;line-height:1.4}
+.proj-snippet{font-size:13px;color:var(--w60);line-height:1.65}
+.proj-footer{padding:0 24px 22px;display:flex;justify-content:space-between;align-items:center}
+.proj-date{font-size:11px;color:var(--w30)}
+.proj-link{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);transition:opacity .2s}
+.proj-link:hover{opacity:.7}
+.proj-cta-wrap{margin-top:40px;text-align:center}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+#faq{background:var(--deep);padding:var(--vpad) var(--gutter)}
+.faq-layout{display:grid;grid-template-columns:1fr 2fr;gap:80px}
+.faq-sticky{position:sticky;top:110px;height:fit-content}
+.faq-sticky h2{font-family:var(--fd);font-size:clamp(40px,5vw,66px);line-height:.9;margin:14px 0 22px}
+.faq-sticky p{font-size:14px;color:var(--w60);margin-bottom:28px}
+.faq-item{border-bottom:1px solid var(--b0);overflow:hidden}
+.faq-q{
+  padding:22px 0;display:flex;justify-content:space-between;align-items:center;
+  font-size:16px;font-weight:400;cursor:pointer;gap:16px;
+  transition:color .2s;
+}
+.faq-q:hover{color:var(--gold)}
+.faq-icon{
+  width:26px;height:26px;flex-shrink:0;
+  border:1px solid var(--b2);display:flex;align-items:center;justify-content:center;
+  transition:all .3s;
+}
+.faq-icon svg{transition:transform .3s;stroke:var(--w60)}
+.faq-item.open .faq-icon{border-color:var(--gold);background:var(--gold-a12)}
+.faq-item.open .faq-icon svg{transform:rotate(45deg);stroke:var(--gold)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .5s var(--ease)}
+.faq-item.open .faq-a{max-height:500px}
+.faq-a-inner{padding-bottom:24px;font-size:14px;color:var(--w60);line-height:1.8}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+#contact{background:var(--surf);padding:var(--vpad) var(--gutter)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.contact-h{font-family:var(--fd);font-size:clamp(48px,7vw,100px);line-height:.88;letter-spacing:.02em;margin-bottom:24px}
+.contact-h span{color:var(--gold)}
+.contact-sub{font-size:15px;color:var(--w60);margin-bottom:36px;max-width:360px}
+.contact-methods{display:flex;flex-direction:column;gap:20px}
+.cmethod{display:flex;align-items:center;gap:14px}
+.cmethod-icon{
+  width:42px;height:42px;border:1px solid var(--b2);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.cmethod-icon svg{stroke:var(--gold);fill:none;stroke-width:1.5}
+.cmethod-lbl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--w30)}
+.cmethod-val{font-size:15px;color:var(--w100);transition:color .2s}
+.cmethod-val:hover{color:var(--gold)}
+.form{display:flex;flex-direction:column;gap:18px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fg{display:flex;flex-direction:column;gap:8px}
+.flabel{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--w30)}
+.finput,.fselect,.ftextarea{
+  background:var(--surf2);border:1px solid var(--b1);
+  color:var(--w100);font-family:var(--fb);font-size:15px;
+  padding:13px 15px;width:100%;outline:none;
+  transition:border-color .2s;appearance:none;
+}
+.finput::placeholder,.ftextarea::placeholder{color:var(--w15)}
+.finput:focus,.fselect:focus,.ftextarea:focus{border-color:var(--gold)}
+.ftextarea{resize:none;height:116px}
+.fselect option{background:var(--surf2)}
+.form-submit{
+  padding:15px 28px;border:1px solid var(--gold);
+  background:none;color:var(--gold);
+  font-family:var(--fb);font-size:12px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+  transition:background .3s,color .3s;width:100%;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+}
+.form-submit:hover{background:var(--gold);color:var(--black)}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{
+  background:var(--black);padding:56px var(--gutter) 36px;
+  border-top:1px solid var(--b0);
+}
+.ft-top{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;margin-bottom:48px}
+.ft-logo{font-family:var(--fd);font-size:30px;letter-spacing:.08em}
+.ft-logo span{color:var(--gold)}
+.ft-tagline{font-size:11px;color:var(--w30);margin-top:4px;letter-spacing:.06em}
+.ft-nav{display:flex;gap:28px;flex-wrap:wrap}
+.ft-nav a{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--w60);transition:color .2s}
+.ft-nav a:hover{color:var(--gold)}
+.ft-social{display:flex;gap:12px}
+.ft-social a{
+  width:38px;height:38px;border:1px solid var(--b1);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--w60);transition:all .2s;
+}
+.ft-social a:hover{border-color:var(--gold);color:var(--gold)}
+.ft-social svg{stroke:currentColor;fill:none;stroke-width:1.5;width:16px;height:16px}
+.ft-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding-top:22px;border-top:1px solid var(--b0)}
+.ft-copy{font-size:11px;color:var(--w30)}
+.ft-loc{font-size:11px;color:var(--w30);display:flex;align-items:center;gap:8px}
+.ft-pulse{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media(max-width:960px){
+  .svc-grid{grid-template-columns:1fr}
+  .rev-grid{grid-template-columns:1fr}
+  .exp-cols{grid-template-columns:1fr;gap:48px}
+  .proj-grid{grid-template-columns:1fr 1fr}
+  .faq-layout{grid-template-columns:1fr}
+  .faq-sticky{position:static}
+  #about{grid-template-columns:1fr;gap:48px}
+  .contact-grid{grid-template-columns:1fr;gap:48px}
+  .port-grid{grid-template-columns:1fr 1fr}
+  .pi:nth-child(1){grid-column:span 2;height:360px}
+  .pi:nth-child(n+2){grid-column:span 1;height:220px}
+  .ft-top{flex-direction:column}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  .hero-h1{font-size:60px}
+  .proj-grid{grid-template-columns:1fr}
+  .port-grid{grid-template-columns:1fr}
+  .pi{grid-column:span 1!important;height:260px!important}
+  .about-stats{gap:16px}
+  .frow{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">D2<span>JAY</span></a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#portfolio">Work</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact" class="nav-cta">Let's Talk</a>
+  </div>
+  <button class="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section id="hero">
+  <div id="hero-media">
+    <iframe
+      src="https://www.youtube.com/embed/CJobQovl4KQ?autoplay=1&mute=1&loop=1&playlist=CJobQovl4KQ&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+      title="D2Jay reel"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <div class="hero-inner">
+    <p class="hero-tag h-e1">Music Videos &nbsp;·&nbsp; Wedding Films &nbsp;·&nbsp; Brand Content &nbsp;·&nbsp; Photography</p>
+    <h1 class="hero-h1 h-e2">
+      YOUR VISION.<br>
+      MY <em>lens.</em><br>
+      DELIVERED.
+    </h1>
+    <p class="hero-sub h-e3">
+      You've got a sound. A date. A story worth telling.
+      I bring the camera, the craft, and the creative direction —
+      wherever you are in DC, Maryland, or Virginia.
+    </p>
+    <div class="hero-actions h-e4">
+      <a href="#contact" class="btn btn-gold">
+        <span class="btn-inner">
+          Book a Conversation
+          <svg class="arrow-svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </span>
+      </a>
+      <a href="#portfolio" class="btn btn-ghost">
+        <span class="btn-inner">See the Work</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span class="sc-label">Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TICKER
+     ============================================================ -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="ticker-dot"></span>Music Video Director</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Wedding Filmmaker</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Event Photographer</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Real Estate Video</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Brand Content</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Audio Engineering</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>DJ Services</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Washington DC</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Maryland</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Virginia</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Music Video Director</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Wedding Filmmaker</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Event Photographer</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Real Estate Video</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Brand Content</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Audio Engineering</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>DJ Services</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Washington DC</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Maryland</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Virginia</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     WHAT I DO BEST
+     ============================================================ -->
+<section id="services">
+  <div class="services-intro">
+    <div class="sec-eyebrow reveal">
+      <div class="sec-rule"></div>
+      <span class="label">What I Do Best</span>
+    </div>
+    <h2 class="disp reveal d1">WHAT<br>I DO<br>BEST</h2>
+    <p class="reveal d2" style="font-size:15px;color:var(--w60);line-height:1.75;margin-top:16px;">
+      Whether you're an artist ready to drop a video, a couple planning your day, or a business that needs to show up on screen — I handle the creative, the gear, and the execution. You just show up.
+    </p>
+  </div>
+
+  <div class="svc-grid">
+    <div class="svc-card reveal">
+      <div class="svc-card-accent"></div>
+      <div class="svc-card-num">01</div>
+      <h3 class="svc-card-title">Video Production</h3>
+      <p class="svc-card-desc">Music videos that actually look like music videos. Wedding films that hold up twenty years from now. Real estate walkthroughs that sell listings. Brand videos that stop the scroll.</p>
+      <div class="svc-card-tags">
+        <span class="svc-tag">Music Videos</span>
+        <span class="svc-tag">Wedding Films</span>
+        <span class="svc-tag">Drone Footage</span>
+        <span class="svc-tag">Brand Video</span>
+        <span class="svc-tag">DMV Videographer</span>
+      </div>
+    </div>
+
+    <div class="svc-card reveal d1">
+      <div class="svc-card-accent"></div>
+      <div class="svc-card-num">02</div>
+      <h3 class="svc-card-title">Photography</h3>
+      <p class="svc-card-desc">Portraits, events, proms, weddings, real estate stills, and brand photography. Fast, clean, and delivered. The kind of images that actually get used.</p>
+      <div class="svc-card-tags">
+        <span class="svc-tag">Portraits</span>
+        <span class="svc-tag">Wedding Photography</span>
+        <span class="svc-tag">Events</span>
+        <span class="svc-tag">Real Estate</span>
+        <span class="svc-tag">DC Photographer</span>
+      </div>
+    </div>
+
+    <div class="svc-card reveal d2">
+      <div class="svc-card-accent"></div>
+      <div class="svc-card-num">03</div>
+      <h3 class="svc-card-title">Music & Engineering</h3>
+      <p class="svc-card-desc">Beat production, mixing, and mastering for independent artists. Your track deserves to sound like a release — not a SoundCloud demo. Let's give it that.</p>
+      <div class="svc-card-tags">
+        <span class="svc-tag">Beat Production</span>
+        <span class="svc-tag">Mixing</span>
+        <span class="svc-tag">Mastering</span>
+        <span class="svc-tag">Recording</span>
+      </div>
+    </div>
+
+    <div class="svc-card reveal d3">
+      <div class="svc-card-accent"></div>
+      <div class="svc-card-num">04</div>
+      <h3 class="svc-card-title">Event DJ</h3>
+      <p class="svc-card-desc">Weddings, corporate events, private gatherings. Reading the room and keeping the energy exactly where it needs to be — from the first song to the last dance.</p>
+      <div class="svc-card-tags">
+        <span class="svc-tag">Wedding DJ</span>
+        <span class="svc-tag">Corporate Events</span>
+        <span class="svc-tag">Maryland DJ</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PORTFOLIO
+     ============================================================ -->
+<section id="portfolio">
+  <div class="port-header">
+    <div>
+      <div class="sec-eyebrow reveal">
+        <div class="sec-rule"></div>
+        <span class="label">Selected Work</span>
+      </div>
+      <h2 class="disp reveal d1">SELECTED<br>WORK</h2>
+    </div>
+    <a href="https://www.youtube.com/channel/UCmoQsbFhpj2xjlwM_Al9acg" target="_blank" rel="noopener" class="btn btn-ghost reveal d2">
+      <span class="btn-inner">
+        Full Portfolio
+        <svg class="arrow-svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </span>
+    </a>
+  </div>
+
+  <div class="port-grid reveal">
+    <div class="pi">
+      <span class="pi-badge">Music Video</span>
+      <img src="https://images.squarespace-cdn.com/content/v1/64d82788dbd64931b322e8b9/9e9096fe-f81f-4973-b0a0-edbb938e7763/summer_in_december-35.jpg" alt="Music video production by D2Jay, DMV" loading="lazy">
+      <div class="pi-cap"><div class="pi-cat">Video Production</div><div class="pi-title">Summer in December</div></div>
+    </div>
+    <div class="pi">
+      <span class="pi-badge">Photography</span>
+      <img src="https://images.squarespace-cdn.com/content/v1/64d82788dbd64931b322e8b9/f8632a08-484d-4977-a0ef-05a4eeb04b1a/interview-4.jpeg" alt="Portrait photography by D2Jay" loading="lazy">
+      <div class="pi-cap"><div class="pi-cat">Photography</div><div class="pi-title">Portrait Session</div></div>
+    </div>
+    <div class="pi">
+      <span class="pi-badge">Event</span>
+      <img src="https://images.squarespace-cdn.com/content/v1/64d82788dbd64931b322e8b9/79e31d94-066a-42a2-b405-bfd2dda9c9d1/IMG_4693.jpeg" alt="Event photography by D2Jay" loading="lazy">
+      <div class="pi-cap"><div class="pi-cat">Event Coverage</div><div class="pi-title">Live Coverage</div></div>
+    </div>
+    <div class="pi">
+      <span class="pi-badge">Production</span>
+      <img src="https://images.squarespace-cdn.com/content/v1/64d82788dbd64931b322e8b9/31637e6f-77f5-42da-98a9-2c88c933497a/DC_MUSICVIDEO-37-min.jpg" alt="DC music video by D2Jay videographer" loading="lazy">
+      <div class="pi-cap"><div class="pi-cat">Music Video</div><div class="pi-title">DC Session</div></div>
+    </div>
+    <div class="pi">
+      <span class="pi-badge">On Set</span>
+      <img src="https://images.squarespace-cdn.com/content/v1/64d82788dbd64931b322e8b9/b2dbe4d4-f40d-4a98-865e-0d8d4ff2531f/IMG_3039.jpg" alt="D2Jay behind the camera on set" loading="lazy">
+      <div class="pi-cap"><div class="pi-cat">Behind the Lens</div><div class="pi-title">On Location</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MARQUEE DIVIDER
+     ============================================================ -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <div class="mq-item"><span class="mq-star">✦</span> MUSIC VIDEO DIRECTOR</div>
+    <div class="mq-item"><span class="mq-star">✦</span> WEDDING FILMMAKER</div>
+    <div class="mq-item"><span class="mq-star">✦</span> WASHINGTON DC</div>
+    <div class="mq-item"><span class="mq-star">✦</span> MARYLAND</div>
+    <div class="mq-item"><span class="mq-star">✦</span> VIRGINIA</div>
+    <div class="mq-item"><span class="mq-star">✦</span> PHOTOGRAPHER</div>
+    <div class="mq-item"><span class="mq-star">✦</span> AUDIO ENGINEER</div>
+    <div class="mq-item"><span class="mq-star">✦</span> CREATIVE DIRECTOR</div>
+    <div class="mq-item"><span class="mq-star">✦</span> MUSIC VIDEO DIRECTOR</div>
+    <div class="mq-item"><span class="mq-star">✦</span> WEDDING FILMMAKER</div>
+    <div class="mq-item"><span class="mq-star">✦</span> WASHINGTON DC</div>
+    <div class="mq-item"><span class="mq-star">✦</span> MARYLAND</div>
+    <div class="mq-item"><span class="mq-star">✦</span> VIRGINIA</div>
+    <div class="mq-item"><span class="mq-star">✦</span> PHOTOGRAPHER</div>
+    <div class="mq-item"><span class="mq-star">✦</span> AUDIO ENGINEER</div>
+    <div class="mq-item"><span class="mq-star">✦</span> CREATIVE DIRECTOR</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
+<section id="about">
+  <div class="about-photo-wrap reveal">
+    <img src="/mnt/user-data/uploads/IMG_7958.jpg" alt="Jeremiah Adams — D2Jay, videographer and photographer in Maryland" loading="lazy">
+    <div class="about-frame"></div>
+    <div class="about-badge">
+      <span>Jeremiah Adams</span>
+      <span>Creative Director &amp; Filmmaker</span>
+    </div>
+  </div>
+
+  <div class="about-text-col reveal d2">
+    <div class="sec-eyebrow" style="margin-bottom:18px">
+      <div class="sec-rule"></div>
+      <span class="label">About Me</span>
+    </div>
+    <h2 class="disp" style="font-size:clamp(40px,5vw,72px);margin-bottom:28px">WHO<br>I AM</h2>
+
+    <blockquote class="about-pull">
+      "I grew up obsessed with light. Now I get paid to control it."
+    </blockquote>
+
+    <p class="about-body">I'm Jeremiah — a filmmaker, photographer, and creative director based in the DC/Maryland/Virginia area. I've been shooting since my teens, when I turned my parents' garage into a production space and started charging local artists for music videos and recording sessions.</p>
+    <p class="about-body">I studied film and television at SCAD — one of the country's top art and design schools — and I've been working in the DMV and Atlanta markets ever since. Whether it's a music video concept that needs to live up to a single you spent months on, a wedding day that only happens once, or a listing that needs to move fast — I treat every project like it's the most important one on my schedule. Because to my clients, it usually is.</p>
+    <p class="about-body">I don't have a studio. That's intentional. Your music video belongs in the locations that match your sound. Your wedding belongs in your venue. I bring the gear. You bring the vision. We make something real.</p>
+
+    <div class="about-stats">
+      <div><div class="stat-n">7+</div><div class="stat-l">Years Active</div></div>
+      <div><div class="stat-n">50+</div><div class="stat-l">Projects Done</div></div>
+      <div><div class="stat-n">4K</div><div class="stat-l">Cinema Quality</div></div>
+    </div>
+
+    <div class="about-ctas">
+      <a href="#contact" class="btn btn-gold"><span class="btn-inner">Work With Me</span></a>
+      <a href="https://instagram.com/d2jayproductions" target="_blank" rel="noopener" class="btn btn-ghost"><span class="btn-inner">@d2jayproductions</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     REVIEWS
+     ============================================================ -->
+<section id="reviews">
+  <div class="sec-eyebrow reveal" style="margin-bottom:16px">
+    <div class="sec-rule"></div>
+    <span class="label">Client Stories</span>
+  </div>
+  <h2 class="disp reveal d1" style="font-size:clamp(44px,6.5vw,88px);line-height:.9;margin-bottom:clamp(40px,5vw,64px)">WHAT<br>CLIENTS SAY</h2>
+
+  <div class="rev-grid">
+    <div class="rev-card reveal">
+      <span class="rev-src">Event</span>
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text"><span class="rev-q">"</span>Jeremiah showed up fully prepared, captured everything we needed in under two hours, and delivered beautifully edited photos the same week. Total professional — booking him for every event going forward.</p>
+      <div class="rev-author">
+        <div class="rev-av">TM</div>
+        <div><div class="rev-name">Tanya M.</div><div class="rev-role">Event Coordinator, DMV</div></div>
+      </div>
+    </div>
+
+    <div class="rev-card reveal d1">
+      <span class="rev-src">Music Video</span>
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text"><span class="rev-q">"</span>Jay understands the culture. He doesn't just point a camera — he builds the whole visual story around the track. My video looked like a label budget on an indie timeline.</p>
+      <div class="rev-author">
+        <div class="rev-av">DK</div>
+        <div><div class="rev-name">DK Waves</div><div class="rev-role">Independent Artist, DC</div></div>
+      </div>
+    </div>
+
+    <div class="rev-card reveal d2">
+      <span class="rev-src">Wedding</span>
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text"><span class="rev-q">"</span>From our engagement session to the final wedding film, Jeremiah was calm, creative, and completely present. The film made us cry the first time we watched it. That's all we needed.</p>
+      <div class="rev-author">
+        <div class="rev-av">SK</div>
+        <div><div class="rev-name">Simone &amp; Kevin R.</div><div class="rev-role">Bride &amp; Groom, Upper Marlboro, MD</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     EXPERIENCE / CV
+     ============================================================ -->
+<section id="experience">
+  <div class="sec-eyebrow reveal" style="margin-bottom:16px">
+    <div class="sec-rule"></div>
+    <span class="label">Experience</span>
+  </div>
+  <h2 class="disp reveal d1" style="font-size:clamp(44px,6.5vw,88px);line-height:.9;margin-bottom:clamp(48px,6vw,72px)">BACKGROUND<br>&amp; CV</h2>
+
+  <div class="exp-cols">
+    <div>
+      <div class="exp-col-label reveal">Education</div>
+      <div class="exp-item reveal d1">
+        <div class="exp-yr">2018 – 2022</div>
+        <div>
+          <div class="exp-role">BFA — Film &amp; Television</div>
+          <div class="exp-org">Savannah College of Art &amp; Design</div>
+          <div class="exp-detail">Graduated cum laude. One of the nation's most respected programs for film and visual storytelling.</div>
+        </div>
+      </div>
+      <div class="exp-item reveal d2">
+        <div class="exp-yr">2012 – 2018</div>
+        <div>
+          <div class="exp-role">Self-Taught Producer &amp; Director</div>
+          <div class="exp-org">Home Studio, DMV Area</div>
+          <div class="exp-detail">Built a production space in the family garage as a teenager. Booked local artists, shot music videos, and ran recording sessions before finishing high school.</div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="exp-col-label reveal">Experience</div>
+      <div class="exp-item reveal d1">
+        <div class="exp-yr">2018 – Present</div>
+        <div>
+          <div class="exp-role">Founder &amp; Creative Director</div>
+          <div class="exp-org">D2Jay Productions, LLC</div>
+          <div class="exp-detail">Video production, photography, audio engineering, and DJ services. Clients include independent artists, wedding couples, real estate agents, and brands across DC, Maryland, Virginia, and Atlanta.</div>
+        </div>
+      </div>
+      <div class="exp-item reveal d2">
+        <div class="exp-yr">2022 – 2024</div>
+        <div>
+          <div class="exp-role">Independent Creative</div>
+          <div class="exp-org">Atlanta, GA</div>
+          <div class="exp-detail">Music videos and event coverage in Atlanta's independent artist scene. Collaborated with artists across hip-hop, R&amp;B, and gospel.</div>
+        </div>
+      </div>
+      <div class="exp-item reveal d3">
+        <div class="exp-yr">2023 – Present</div>
+        <div>
+          <div class="exp-role">Founder</div>
+          <div class="exp-org">Solitude Lighting</div>
+          <div class="exp-detail">Residential and commercial lighting design and installation across the DMV. Kitchen, living room, and exterior lighting for homes and businesses.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MY PROJECTS (Blog)
+     ============================================================ -->
+<section id="projects">
+  <div class="sec-eyebrow reveal" style="margin-bottom:16px">
+    <div class="sec-rule"></div>
+    <span class="label">My Projects</span>
+  </div>
+  <h2 class="disp reveal d1" style="font-size:clamp(44px,6.5vw,88px);line-height:.9;margin-bottom:12px">BEHIND THE<br>WORK</h2>
+  <p class="reveal d2" style="font-size:15px;color:var(--w60);max-width:480px;margin-bottom:0">A look at what went into making some of these projects — the concept, the day, and what came out of it.</p>
+
+  <div class="proj-grid">
+    <div class="proj-card reveal">
+      <div class="proj-thumb">
+        <img src="https://images.squarespace-cdn.com/content/v1/64d82788dbd64931b322e8b9/9e9096fe-f81f-4973-b0a0-edbb938e7763/summer_in_december-35.jpg" alt="Summer in December music video shoot" loading="lazy">
+      </div>
+      <div class="proj-body">
+        <div class="proj-cat">Music Video</div>
+        <div class="proj-title">Summer in December — How We Built the Visual</div>
+        <p class="proj-snippet">One location, four hours, and a concept that started as a voice memo. Here's how we turned it into a full music video on an indie budget.</p>
+      </div>
+      <div class="proj-footer">
+        <span class="proj-date">March 2024</span>
+        <a href="#" class="proj-link">Read More</a>
+      </div>
+    </div>
+
+    <div class="proj-card reveal d1">
+      <div class="proj-thumb">
+        <img src="https://images.squarespace-cdn.com/content/v1/64d82788dbd64931b322e8b9/79e31d94-066a-42a2-b405-bfd2dda9c9d1/IMG_4693.jpeg" alt="Wedding coverage blog post" loading="lazy">
+      </div>
+      <div class="proj-body">
+        <div class="proj-cat">Wedding Film</div>
+        <div class="proj-title">What a Wedding Day Actually Looks Like When I'm There</div>
+        <p class="proj-snippet">From getting-ready shots at 10am to the last dance at midnight — a behind-the-scenes look at how I cover a full wedding day, solo.</p>
+      </div>
+      <div class="proj-footer">
+        <span class="proj-date">January 2024</span>
+        <a href="#" class="proj-link">Read More</a>
+      </div>
+    </div>
+
+    <div class="proj-card reveal d2">
+      <div class="proj-thumb">
+        <img src="https://images.squarespace-cdn.com/content/v1/64d82788dbd64931b322e8b9/31637e6f-77f5-42da-98a9-2c88c933497a/DC_MUSICVIDEO-37-min.jpg" alt="Real estate drone video Maryland" loading="lazy">
+      </div>
+      <div class="proj-body">
+        <div class="proj-cat">Real Estate</div>
+        <div class="proj-title">Drone + Walkthrough: How to Make a Listing Stand Out</div>
+        <p class="proj-snippet">A Prince George's County realtor needed a listing to move fast. We shot drone + interior walkthrough in three hours. The listing sold in a week.</p>
+      </div>
+      <div class="proj-footer">
+        <span class="proj-date">November 2023</span>
+        <a href="#" class="proj-link">Read More</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="proj-cta-wrap reveal">
+    <a href="#" class="btn btn-ghost"><span class="btn-inner">View All Posts</span></a>
+  </div>
+</section>
+
+<!-- ============================================================
+     FAQ
+     ============================================================ -->
+<section id="faq">
+  <div class="faq-layout">
+    <div class="faq-sticky reveal">
+      <div class="sec-eyebrow" style="margin-bottom:14px">
+        <div class="sec-rule"></div>
+        <span class="label">FAQ</span>
+      </div>
+      <h2>COMMON<br>QUESTIONS</h2>
+      <p>Still have something specific? Reach out and I'll get back to you same day.</p>
+      <a href="#contact" class="btn btn-gold"><span class="btn-inner">Ask Me Directly</span></a>
+    </div>
+
+    <div class="reveal d2">
+      <div class="faq-item">
+        <div class="faq-q">
+          How much does a music video cost?
+          <div class="faq-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Music video packages start at $750 for a performance-based, single-location shoot. A standard story-driven production is $1,500. A full cinematic multi-location production runs $2,500 to $3,500. Drone, extra shoot days, and color grading upgrades are available as add-ons. I'll always give you a clear quote before anything is agreed to.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          I have a low budget. Is there still something we can do?
+          <div class="faq-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Yes. The $750 starter package exists specifically for independent artists who want a real video without a label budget. I've seen what can be done with one location and a focused concept. Reach out, tell me what you're working with, and we'll build something that fits.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          What does wedding coverage include?
+          <div class="faq-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Photo-only starts at $2,200. Video-only starts at $2,400. A combined photo and film package starts at $3,800. All packages include full-day coverage, a complete digital gallery, a cinematic highlight film, and all commercial usage rights. Engagement sessions, drone footage, and a same-day reel are available as upgrades. I cover the whole day — getting ready through last dance — so you're not coordinating multiple vendors.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          How do I know the quality will be there?
+          <div class="faq-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Watch the work. Every project in the portfolio is something I shot and edited. I shoot in 4K cinema quality, color grade every project by hand, and don't deliver until I'm satisfied with it. I also send you a preview before final delivery so you have input on the final cut.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          Do you work outside the DC/Maryland/Virginia area?
+          <div class="faq-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Yes. I'm based in the DMV but I travel for the right projects. I have strong ties to Atlanta and work there regularly. For projects outside the DMV, travel costs are added to the package. Message me with your location and what you need and we'll figure out if it makes sense.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          How far in advance do I need to book?
+          <div class="faq-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Wedding dates book 6 to 12 months out, especially for May through October. Music video and photography shoots can often happen within 2 to 4 weeks. If your date is soon, still reach out — if I'm available, I'll make it work. A deposit secures the date.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          What do I need to bring to a shoot?
+          <div class="faq-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Just yourself and your ideas. I bring all camera equipment, lighting, audio, drone gear, and stabilizers. For music videos, we'll work through a creative treatment together before the shoot day so we arrive with a shot list and a plan. You focus on performing — I'll handle the rest.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          How long does it take to get my finished video or photos?
+          <div class="faq-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Photography galleries are typically delivered within 5 to 7 business days. Music video edits run 1 to 2 weeks depending on scope. Wedding films take 4 to 6 weeks. Rush turnaround is available on request. I'll give you a specific timeline when we confirm the booking.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="sec-eyebrow" style="margin-bottom:18px">
+        <div class="sec-rule"></div>
+        <span class="label">Get In Touch</span>
+      </div>
+      <h2 class="contact-h">LET'S<br><span>TALK.</span></h2>
+      <p class="contact-sub">Tell me what you're working on. Artist with a drop coming up. Couple with a date to lock in. Brand that needs to show up differently. Start here.</p>
+      <div class="contact-methods">
+        <div class="cmethod">
+          <div class="cmethod-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M3 5h18v14H3V5zm0 0l9 8 9-8"/></svg>
+          </div>
+          <div>
+            <div class="cmethod-lbl">Email</div>
+            <a href="mailto:business@d2jay.com" class="cmethod-val">business@d2jay.com</a>
+          </div>
+        </div>
+        <div class="cmethod">
+          <div class="cmethod-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 6.18a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.91 11.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="cmethod-lbl">Phone</div>
+            <a href="tel:+12026568115" class="cmethod-val">(202) 656-8115</a>
+          </div>
+        </div>
+        <div class="cmethod">
+          <div class="cmethod-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg>
+          </div>
+          <div>
+            <div class="cmethod-lbl">Instagram</div>
+            <a href="https://instagram.com/d2jayproductions" target="_blank" rel="noopener" class="cmethod-val">@d2jayproductions</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal d2">
+      <div class="form">
+        <div class="frow">
+          <div class="fg"><label class="flabel">First Name</label><input class="finput" type="text" placeholder="First name"></div>
+          <div class="fg"><label class="flabel">Last Name</label><input class="finput" type="text" placeholder="Last name"></div>
+        </div>
+        <div class="fg"><label class="flabel">Email</label><input class="finput" type="email" placeholder="your@email.com"></div>
+        <div class="fg">
+          <label class="flabel">What Do You Need?</label>
+          <select class="fselect finput">
+            <option value="">Select a service...</option>
+            <option>Music Video Production</option>
+            <option>Wedding Videography</option>
+            <option>Wedding Photography</option>
+            <option>Photo + Video Package</option>
+            <option>Real Estate / Brand Video</option>
+            <option>Event Photography</option>
+            <option>Audio Engineering</option>
+            <option>Event DJ</option>
+            <option>Something Else</option>
+          </select>
+        </div>
+        <div class="fg"><label class="flabel">Tell Me About Your Project</label><textarea class="ftextarea" placeholder="Date, location, vision, budget range — share whatever you've got"></textarea></div>
+        <button class="form-submit">
+          Send Message
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="ft-top">
+    <div>
+      <div class="ft-logo">D2<span>JAY</span></div>
+      <div class="ft-tagline">Visual Storytelling for Artists &amp; Brands &nbsp;·&nbsp; DC, Maryland, Virginia</div>
+    </div>
+    <nav class="ft-nav">
+      <a href="#services">Services</a>
+      <a href="#portfolio">Work</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="ft-social">
+      <a href="https://instagram.com/d2jayproductions" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg>
+      </a>
+      <a href="https://www.youtube.com/channel/UCmoQsbFhpj2xjlwM_Al9acg" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 001.95-1.97A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75,15.02 15.5,12 9.75,8.98"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <div class="ft-copy">© 2025 D2Jay Productions, LLC</div>
+    <div class="ft-loc"><span class="ft-pulse"></span> Upper Marlboro, MD</div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script>
+// Progress bar
+const prog = document.getElementById('prog');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  prog.style.width = pct + '%';
+}, { passive: true });
+
+// Nav scroll state
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+// Hero parallax
+const heroMedia = document.getElementById('hero-media');
+window.addEventListener('scroll', () => {
+  if (window.scrollY < window.innerHeight * 1.2) {
+    heroMedia.style.transform = 'translateY(' + (window.scrollY * 0.32) + 'px)';
+  }
+}, { passive: true });
+
+// Reveal on scroll
+const revealEls = document.querySelectorAll('.reveal');
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); }});
+}, { threshold: 0.1 });
+revealEls.forEach(el => ro.observe(el));
+
+// Service card — radial glow follows mouse
+document.querySelectorAll('.svc-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%';
+    const y = ((e.clientY - r.top)  / r.height * 100).toFixed(1) + '%';
+    card.style.setProperty('--mx', x);
+    card.style.setProperty('--my', y);
+  });
+});
+
+// Portfolio image — mouse parallax
+document.querySelectorAll('.pi').forEach(item => {
+  const img = item.querySelector('img');
+  item.addEventListener('mousemove', e => {
+    const r = item.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top)  / r.height - 0.5;
+    img.style.transform = 'scale(1.07) translate(' + (x * 7) + 'px,' + (y * 7) + 'px)';
+  });
+  item.addEventListener('mouseleave', () => { img.style.transform = ''; });
+});
+
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>
