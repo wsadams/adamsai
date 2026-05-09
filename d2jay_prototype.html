@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>D2Jay — Visual Storytelling for Artists & Brands | DMV Videographer & Photographer</title>
+<meta name="description" content="SCAD-trained videographer, photographer & creative director serving DC, Maryland & Virginia. Music videos, wedding films, real estate, brand content. I bring the vision, gear, and expertise to you.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+  /* ===================== DESIGN SYSTEM ===================== */
+  :root {
+    --black: #050505;
+    --deep: #0a0a0a;
+    --surface: #111111;
+    --surface2: #161616;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --gold: #c9a96e;
+    --gold-light: #e8c98a;
+    --gold-dim: rgba(201,169,110,0.15);
+    --white: #f4f0e8;
+    --white-dim: rgba(244,240,232,0.6);
+    --white-faint: rgba(244,240,232,0.25);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-serif: 'DM Serif Display', serif;
+    --font-body: 'DM Sans', sans-serif;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    --section-pad: clamp(80px, 10vw, 140px);
+    --gutter: clamp(24px, 5vw, 80px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* ===================== CUSTOM CURSOR ===================== */
+  #cursor {
+    position: fixed; top: 0; left: 0; z-index: 9999;
+    pointer-events: none;
+  }
+  #cursor-dot {
+    position: absolute; width: 8px; height: 8px;
+    background: var(--gold); border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, opacity 0.2s;
+  }
+  #cursor-ring {
+    position: absolute; width: 36px; height: 36px;
+    border: 1px solid rgba(201,169,110,0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s var(--ease-out), height 0.4s var(--ease-out), border-color 0.3s;
+  }
+  body.hovering #cursor-ring { width: 52px; height: 52px; border-color: var(--gold); }
+  body.hovering #cursor-dot { opacity: 0; }
+
+  /* ===================== SCROLLBAR ===================== */
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+  /* ===================== GLOBAL TYPOGRAPHY ===================== */
+  .display { font-family: var(--font-display); letter-spacing: 0.02em; line-height: 0.92; }
+  .serif { font-family: var(--font-serif); }
+  .label {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold); opacity: 0.8;
+  }
+  .body-large { font-size: clamp(16px, 1.8vw, 20px); line-height: 1.65; font-weight: 300; }
+
+  /* ===================== BUTTONS ===================== */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 32px; border: 1px solid;
+    font-family: var(--font-body); font-size: 13px;
+    font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; cursor: none; transition: all 0.35s var(--ease-out);
+    position: relative; overflow: hidden;
+  }
+  .btn::before {
+    content: ''; position: absolute; inset: 0;
+    transform: translateX(-101%); transition: transform 0.4s var(--ease-out);
+  }
+  .btn:hover::before { transform: translateX(0); }
+  .btn span { position: relative; z-index: 1; }
+  .btn-gold {
+    border-color: var(--gold); color: var(--gold);
+  }
+  .btn-gold::before { background: var(--gold); }
+  .btn-gold:hover { color: var(--black); }
+  .btn-ghost {
+    border-color: var(--border2); color: var(--white-dim);
+  }
+  .btn-ghost::before { background: rgba(255,255,255,0.05); }
+  .btn-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.25); }
+  .btn svg { position: relative; z-index: 1; transition: transform 0.3s var(--ease-out); }
+  .btn:hover svg { transform: translate(3px, -3px); }
+
+  /* ===================== NAV ===================== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 28px var(--gutter);
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background 0.4s, padding 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(5,5,5,0.92);
+    backdrop-filter: blur(20px);
+    padding-top: 16px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--font-display); font-size: 28px;
+    letter-spacing: 0.08em; color: var(--white); text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 36px; align-items: center; }
+  .nav-links a {
+    font-size: 12px; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--white-dim);
+    text-decoration: none; transition: color 0.2s;
+    cursor: none;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    padding: 10px 22px; border: 1px solid var(--gold);
+    color: var(--gold) !important; transition: background 0.2s, color 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--black) !important; }
+
+  /* ===================== HERO ===================== */
+  #hero {
+    position: relative; height: 100vh; min-height: 700px;
+    display: flex; align-items: flex-end;
+    padding: 0 var(--gutter) clamp(60px, 8vw, 100px);
+    overflow: hidden;
+  }
+  #hero-video-wrap {
+    position: absolute; inset: 0;
+    transform-origin: center; will-change: transform;
+  }
+  #hero-video-wrap::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(5,5,5,0.3) 0%,
+      rgba(5,5,5,0.15) 40%,
+      rgba(5,5,5,0.7) 75%,
+      rgba(5,5,5,1) 100%
+    );
+  }
+  #hero-video-wrap iframe {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 177.78vh; height: 100vh;
+    min-width: 100%; min-height: 56.25vw;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+  .hero-eyebrow {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 24px;
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp 0.8s 0.3s var(--ease-out) forwards;
+  }
+  .hero-eyebrow-line { width: 40px; height: 1px; background: var(--gold); }
+  .hero-h1 {
+    font-family: var(--font-display);
+    font-size: clamp(72px, 12vw, 160px);
+    line-height: 0.88; letter-spacing: 0.02em;
+    opacity: 0; transform: translateY(30px);
+    animation: fadeUp 0.9s 0.5s var(--ease-out) forwards;
+  }
+  .hero-h1 em {
+    font-style: italic; font-family: var(--font-serif);
+    font-size: 0.65em; color: var(--gold);
+    vertical-align: middle; display: inline-block;
+    transform: translateY(-0.1em);
+  }
+  .hero-sub {
+    margin-top: 28px; max-width: 480px;
+    font-size: clamp(15px, 1.6vw, 18px); color: var(--white-dim); font-weight: 300;
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp 0.8s 0.7s var(--ease-out) forwards;
+  }
+  .hero-actions {
+    margin-top: 44px; display: flex; gap: 16px; flex-wrap: wrap;
+    opacity: 0; transform: translateY(20px);
+    animation: fadeUp 0.8s 0.9s var(--ease-out) forwards;
+  }
+  .hero-scroll {
+    position: absolute; bottom: clamp(30px, 4vw, 50px); right: var(--gutter);
+    z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 10px;
+    opacity: 0; animation: fadeIn 1s 1.4s forwards;
+  }
+  .hero-scroll span { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white-faint); writing-mode: vertical-lr; }
+  .hero-scroll-line { width: 1px; height: 60px; background: var(--gold); transform-origin: top; animation: scrollLine 2s 1.8s ease-in-out infinite; }
+  @keyframes scrollLine {
+    0% { transform: scaleY(0); opacity: 1; }
+    50% { transform: scaleY(1); opacity: 1; }
+    100% { transform: scaleY(1); opacity: 0; transform-origin: bottom; }
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  /* ===================== TICKER ===================== */
+  .ticker {
+    overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 16px 0; background: var(--deep);
+  }
+  .ticker-inner {
+    display: flex; white-space: nowrap;
+    animation: ticker 28s linear infinite;
+  }
+  .ticker-item {
+    display: inline-flex; align-items: center; gap: 20px;
+    padding: 0 28px; font-size: 12px; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--white-dim);
+  }
+  .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ===================== SECTIONS ===================== */
+  section { padding: var(--section-pad) var(--gutter); }
+  .section-header { margin-bottom: clamp(48px, 6vw, 80px); }
+  .section-num { font-size: 11px; letter-spacing: 0.2em; color: var(--gold); opacity: 0.5; margin-bottom: 12px; }
+
+  /* ===================== REVEAL ANIMATIONS ===================== */
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ===================== WHAT I DO BEST ===================== */
+  #services { background: var(--deep); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .service-item {
+    display: grid; grid-template-columns: 80px 1fr auto;
+    align-items: start; gap: 32px;
+    padding: 40px 0; border-bottom: 1px solid var(--border);
+    cursor: none; transition: all 0.4s var(--ease-out);
+    position: relative; overflow: hidden;
+  }
+  .service-item::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0;
+    background: var(--gold-dim); transition: width 0.4s var(--ease-out);
+  }
+  .service-item:hover::before { width: 3px; }
+  .service-item:hover .service-title { color: var(--gold); }
+  .service-num { font-family: var(--font-display); font-size: 48px; color: var(--border2); line-height: 1; padding-top: 4px; }
+  .service-body { }
+  .service-title {
+    font-family: var(--font-display); font-size: clamp(28px, 3vw, 40px);
+    letter-spacing: 0.04em; margin-bottom: 10px;
+    transition: color 0.3s;
+  }
+  .service-desc { color: var(--white-dim); font-size: 15px; max-width: 520px; }
+  .service-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .service-tag {
+    padding: 4px 12px; border: 1px solid var(--border2);
+    font-size: 11px; letter-spacing: 0.1em; color: var(--white-faint);
+    text-transform: uppercase;
+  }
+  .service-arrow {
+    width: 44px; height: 44px; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s; margin-top: 8px;
+  }
+  .service-item:hover .service-arrow { border-color: var(--gold); background: var(--gold-dim); }
+  .service-item:hover .service-arrow svg { stroke: var(--gold); }
+
+  /* ===================== PORTFOLIO ===================== */
+  #portfolio { background: var(--black); }
+  .portfolio-grid {
+    display: grid; grid-template-columns: repeat(12, 1fr);
+    gap: 16px;
+  }
+  .port-item {
+    position: relative; overflow: hidden; cursor: none;
+    background: var(--surface);
+  }
+  .port-item:nth-child(1) { grid-column: span 7; grid-row: span 2; aspect-ratio: unset; height: 520px; }
+  .port-item:nth-child(2) { grid-column: span 5; height: 252px; }
+  .port-item:nth-child(3) { grid-column: span 5; height: 252px; }
+  .port-item:nth-child(4) { grid-column: span 5; height: 320px; }
+  .port-item:nth-child(5) { grid-column: span 7; height: 320px; }
+  .port-img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.8s var(--ease-out), filter 0.5s;
+    filter: brightness(0.75) saturate(0.85);
+    display: block;
+  }
+  .port-item:hover .port-img { transform: scale(1.06); filter: brightness(0.6) saturate(1); }
+  .port-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(5,5,5,0.85) 0%, transparent 60%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 24px; opacity: 0; transition: opacity 0.4s;
+  }
+  .port-item:hover .port-overlay { opacity: 1; }
+  .port-cat { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+  .port-title { font-family: var(--font-display); font-size: 22px; letter-spacing: 0.04em; }
+  .port-label-always {
+    position: absolute; top: 16px; left: 16px;
+    padding: 4px 10px; background: rgba(5,5,5,0.6);
+    border: 1px solid var(--border); backdrop-filter: blur(8px);
+    font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold);
+  }
+
+  /* ===================== ABOUT ===================== */
+  #about {
+    background: var(--surface);
+    display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 100px);
+    align-items: center;
+  }
+  .about-img-wrap {
+    position: relative; aspect-ratio: 3/4; overflow: hidden;
+  }
+  .about-img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(20%);
+    transition: transform 0.8s var(--ease-out);
+  }
+  .about-img-wrap:hover .about-img { transform: scale(1.04); }
+  .about-img-frame {
+    position: absolute; inset: 20px;
+    border: 1px solid rgba(201,169,110,0.3);
+    pointer-events: none;
+  }
+  .about-img-label {
+    position: absolute; bottom: -1px; left: -1px; right: -1px;
+    padding: 14px 20px;
+    background: var(--gold);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .about-img-label span { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--black); font-weight: 500; }
+  .about-quote {
+    font-family: var(--font-serif); font-style: italic;
+    font-size: clamp(20px, 2.5vw, 28px); line-height: 1.5;
+    color: var(--white); margin-bottom: 28px;
+    padding-left: 24px; border-left: 2px solid var(--gold);
+  }
+  .about-text { color: var(--white-dim); margin-bottom: 20px; font-size: 15px; }
+  .about-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    margin-top: 40px; padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+  .stat-num { font-family: var(--font-display); font-size: 44px; color: var(--gold); line-height: 1; }
+  .stat-label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-dim); margin-top: 4px; }
+
+  /* ===================== REVIEWS ===================== */
+  #reviews { background: var(--deep); }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .review-card {
+    padding: 32px; border: 1px solid var(--border);
+    background: var(--surface); position: relative;
+    transition: border-color 0.3s, transform 0.4s var(--ease-out);
+  }
+  .review-card:hover { border-color: var(--border2); transform: translateY(-4px); }
+  .review-stars { display: flex; gap: 4px; margin-bottom: 20px; }
+  .review-star { color: var(--gold); font-size: 14px; }
+  .review-text { font-size: 15px; color: var(--white-dim); line-height: 1.7; margin-bottom: 24px; font-style: italic; }
+  .review-text::before { content: '\201C'; font-family: var(--font-serif); font-size: 40px; color: var(--gold); opacity: 0.4; line-height: 0; vertical-align: -12px; margin-right: 4px; }
+  .review-author { display: flex; align-items: center; gap: 12px; }
+  .review-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--gold-dim); border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 500; color: var(--gold); }
+  .review-name { font-size: 14px; font-weight: 500; }
+  .review-role { font-size: 12px; color: var(--white-faint); letter-spacing: 0.05em; }
+  .review-source { position: absolute; top: 20px; right: 20px; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-faint); }
+
+  /* ===================== EXPERIENCE / CV ===================== */
+  #experience { background: var(--black); }
+  .exp-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+  .exp-col-title { font-family: var(--font-display); font-size: 14px; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 32px; text-transform: uppercase; }
+  .exp-item { padding: 28px 0; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 120px 1fr; gap: 24px; }
+  .exp-year { font-size: 13px; color: var(--white-faint); letter-spacing: 0.05em; padding-top: 3px; }
+  .exp-role { font-size: 17px; font-weight: 400; margin-bottom: 4px; }
+  .exp-org { font-size: 13px; color: var(--gold); margin-bottom: 6px; }
+  .exp-detail { font-size: 13px; color: var(--white-faint); line-height: 1.6; }
+
+  /* ===================== FAQ ===================== */
+  #faq { background: var(--surface); }
+  .faq-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; }
+  .faq-sticky { position: sticky; top: 120px; height: fit-content; }
+  .faq-list { }
+  .faq-item { border-bottom: 1px solid var(--border); overflow: hidden; }
+  .faq-q {
+    padding: 24px 0; display: flex; justify-content: space-between; align-items: center;
+    cursor: none; font-size: 17px; font-weight: 400;
+    transition: color 0.2s;
+  }
+  .faq-q:hover { color: var(--gold); }
+  .faq-icon { width: 24px; height: 24px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border2); transition: all 0.3s; }
+  .faq-icon svg { transition: transform 0.3s; }
+  .faq-item.open .faq-icon { border-color: var(--gold); background: var(--gold-dim); }
+  .faq-item.open .faq-icon svg { transform: rotate(45deg); stroke: var(--gold); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.5s var(--ease-out); }
+  .faq-item.open .faq-a { max-height: 400px; }
+  .faq-a-inner { padding-bottom: 24px; color: var(--white-dim); font-size: 15px; line-height: 1.75; }
+
+  /* ===================== CONTACT ===================== */
+  #contact { background: var(--deep); }
+  .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+  .contact-heading { font-family: var(--font-display); font-size: clamp(48px, 7vw, 96px); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 28px; }
+  .contact-heading span { color: var(--gold); }
+  .contact-subtext { color: var(--white-dim); margin-bottom: 40px; font-size: 15px; }
+  .contact-methods { display: flex; flex-direction: column; gap: 20px; }
+  .contact-method { display: flex; align-items: center; gap: 16px; }
+  .contact-method-icon {
+    width: 44px; height: 44px; border: 1px solid var(--border2);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .contact-method-info a { color: var(--white); text-decoration: none; font-size: 15px; display: block; transition: color 0.2s; cursor: none; }
+  .contact-method-info a:hover { color: var(--gold); }
+  .contact-method-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-faint); }
+  .contact-form { display: flex; flex-direction: column; gap: 20px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-faint); }
+  .form-input, .form-select, .form-textarea {
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--white); font-family: var(--font-body); font-size: 15px;
+    padding: 14px 16px; width: 100%;
+    transition: border-color 0.2s; outline: none; appearance: none;
+  }
+  .form-input::placeholder, .form-textarea::placeholder { color: var(--white-faint); }
+  .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--gold); }
+  .form-textarea { resize: none; height: 120px; }
+  .form-select option { background: var(--surface); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  /* ===================== FOOTER ===================== */
+  footer {
+    background: var(--black); padding: 60px var(--gutter) 40px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 48px; }
+  .footer-logo { font-family: var(--font-display); font-size: 32px; letter-spacing: 0.08em; }
+  .footer-logo span { color: var(--gold); }
+  .footer-tagline { font-size: 12px; color: var(--white-faint); margin-top: 6px; letter-spacing: 0.1em; }
+  .footer-links { display: flex; gap: 32px; }
+  .footer-links a { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; cursor: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-social { display: flex; gap: 16px; }
+  .footer-social a {
+    width: 40px; height: 40px; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--white-dim); text-decoration: none; cursor: none;
+    transition: all 0.2s;
+  }
+  .footer-social a:hover { border-color: var(--gold); color: var(--gold); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; border-top: 1px solid var(--border); }
+  .footer-copy { font-size: 12px; color: var(--white-faint); }
+  .footer-location { font-size: 12px; color: var(--white-faint); display: flex; align-items: center; gap: 8px; }
+  .footer-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); display: inline-block; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* ===================== PARALLAX LAYERS ===================== */
+  .parallax-section { position: relative; overflow: hidden; }
+  .parallax-bg {
+    position: absolute; inset: -20%; background-size: cover; background-position: center;
+    will-change: transform;
+  }
+  .parallax-overlay {
+    position: absolute; inset: 0;
+    background: rgba(5,5,5,0.75);
+  }
+  .parallax-content { position: relative; z-index: 1; }
+
+  /* ===================== MARQUEE DIVIDER ===================== */
+  .marquee-divider {
+    padding: 20px 0; background: var(--gold); overflow: hidden;
+  }
+  .marquee-inner {
+    display: flex; white-space: nowrap;
+    animation: ticker 18s linear infinite;
+  }
+  .marquee-item {
+    display: inline-flex; align-items: center; gap: 20px;
+    padding: 0 24px; font-family: var(--font-display);
+    font-size: 18px; letter-spacing: 0.1em; color: var(--black);
+  }
+  .marquee-bullet { font-size: 8px; }
+
+  /* ===================== PROGRESS BAR ===================== */
+  #progress-bar {
+    position: fixed; top: 0; left: 0; height: 2px;
+    background: var(--gold); z-index: 200; width: 0%;
+    transition: width 0.1s linear;
+  }
+
+  /* ===================== RESPONSIVE ===================== */
+  @media (max-width: 900px) {
+    #about { grid-template-columns: 1fr; }
+    .about-img-wrap { aspect-ratio: 4/3; max-height: 400px; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .exp-layout { grid-template-columns: 1fr; gap: 40px; }
+    .faq-layout { grid-template-columns: 1fr; }
+    .contact-layout { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; }
+    .port-item:nth-child(1) { grid-column: span 2; height: 360px; }
+    .port-item:nth-child(n+2) { grid-column: span 1; height: 220px; }
+    .service-item { grid-template-columns: 60px 1fr; }
+    .service-arrow { display: none; }
+    .footer-top { flex-direction: column; gap: 32px; }
+    .footer-links { flex-wrap: wrap; gap: 20px; }
+  }
+  @media (max-width: 600px) {
+    .hero-h1 { font-size: 64px; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .port-item { grid-column: span 1 !important; }
+    .port-item:nth-child(1) { height: 320px; }
+    .about-stats { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<div id="cursor">
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+</div>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a href="#hero" class="nav-logo">D2<span>JAY</span></a>
+  <div class="nav-links">
+    <a href="#services">Work</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#about">About</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact" class="nav-cta">Let's Work</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div id="hero-video-wrap">
+    <iframe
+      src="https://www.youtube.com/embed/CJobQovl4KQ?autoplay=1&mute=1&loop=1&playlist=CJobQovl4KQ&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
+      title="D2Jay showreel"
+      frameborder="0"
+      allow="autoplay; fullscreen"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="label">SCAD Graduate · DMV · Available Nationwide</span>
+    </div>
+    <h1 class="hero-h1">
+      VISUAL<br>
+      STORY<em>&</em><br>
+      TELLING
+    </h1>
+    <p class="hero-sub">
+      Music videos, wedding films, brand content, and photography — crafted with SCAD-trained precision and delivered to you.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-gold">
+        <span>Start a Project</span>
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+      <a href="#portfolio" class="btn btn-ghost">
+        <span>View Work</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <div class="ticker-item"><span class="ticker-dot"></span> Music Videos</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> Wedding Films</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> Brand Content</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> Photography</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> Real Estate</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> Audio Engineering</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> Event DJ</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> DC · Maryland · Virginia</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> Music Videos</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> Wedding Films</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> Brand Content</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> Photography</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> Real Estate</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> Audio Engineering</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> Event DJ</div>
+    <div class="ticker-item"><span class="ticker-dot"></span> DC · Maryland · Virginia</div>
+  </div>
+</div>
+
+<!-- WHAT I DO BEST -->
+<section id="services">
+  <div class="section-header">
+    <div class="section-num reveal">/ 01</div>
+    <h2 class="display reveal reveal-delay-1" style="font-size: clamp(40px, 6vw, 80px);">WHAT I DO<br>BEST</h2>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-item reveal">
+      <div class="service-num">01</div>
+      <div class="service-body">
+        <h3 class="service-title">Video Production</h3>
+        <p class="service-desc">Music videos for independent artists, cinematic wedding films, real estate drone footage, and brand promo content. Every frame is intentional — every cut, purposeful.</p>
+        <div class="service-tags">
+          <span class="service-tag">Music Videos</span>
+          <span class="service-tag">Wedding Films</span>
+          <span class="service-tag">Drone</span>
+          <span class="service-tag">Brand Video</span>
+          <span class="service-tag">DMV Videographer</span>
+        </div>
+      </div>
+      <div class="service-arrow">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+    </div>
+
+    <div class="service-item reveal reveal-delay-1">
+      <div class="service-num">02</div>
+      <div class="service-body">
+        <h3 class="service-title">Photography</h3>
+        <p class="service-desc">Portraits, events, weddings, proms, and real estate stills. Quick, effortless, and beautifully composed — brought to wherever you are in the DMV.</p>
+        <div class="service-tags">
+          <span class="service-tag">Portraits</span>
+          <span class="service-tag">Wedding Photography</span>
+          <span class="service-tag">Event Photography</span>
+          <span class="service-tag">Real Estate</span>
+        </div>
+      </div>
+      <div class="service-arrow">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+    </div>
+
+    <div class="service-item reveal reveal-delay-2">
+      <div class="service-num">03</div>
+      <div class="service-body">
+        <h3 class="service-title">Music & Engineering</h3>
+        <p class="service-desc">Beat production, mixing, and mastering for independent artists. Clean, impactful sound that gives your release the sonic signature it deserves.</p>
+        <div class="service-tags">
+          <span class="service-tag">Beat Production</span>
+          <span class="service-tag">Mixing</span>
+          <span class="service-tag">Mastering</span>
+          <span class="service-tag">Recording</span>
+        </div>
+      </div>
+      <div class="service-arrow">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+    </div>
+
+    <div class="service-item reveal reveal-delay-3">
+      <div class="service-num">04</div>
+      <div class="service-body">
+        <h3 class="service-title">Event DJ</h3>
+        <p class="service-desc">Weddings, corporate events, and private gatherings. Setting the right energy for every moment — from the ceremony to the last dance.</p>
+        <div class="service-tags">
+          <span class="service-tag">Wedding DJ</span>
+          <span class="service-tag">Corporate Events</span>
+          <span class="service-tag">Maryland DJ</span>
+        </div>
+      </div>
+      <div class="service-arrow">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-header">
+    <div class="section-num reveal">/ 02</div>
+    <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px;">
+      <h2 class="display reveal reveal-delay-1" style="font-size: clamp(40px, 6vw, 80px);">SELECTED<br>WORK</h2>
+      <a href="https://www.youtube.com/channel/UCmoQsbFhpj2xjlwM_Al9acg" class="btn btn-ghost reveal reveal-delay-2" target="_blank" rel="noopener">
+        <span>Full Portfolio</span>
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="portfolio-grid reveal">
+    <div class="port-item">
+      <span class="port-label-always">Music Video</span>
+      <img class="port-img" src="https://images.squarespace-cdn.com/content/v1/64d82788dbd64931b322e8b9/9e9096fe-f81f-4973-b0a0-edbb938e7763/summer_in_december-35.jpg" alt="Music video production by D2Jay" loading="lazy">
+      <div class="port-overlay">
+        <div class="port-cat">Video Production</div>
+        <div class="port-title">Summer in December</div>
+      </div>
+    </div>
+    <div class="port-item">
+      <span class="port-label-always">Photography</span>
+      <img class="port-img" src="https://images.squarespace-cdn.com/content/v1/64d82788dbd64931b322e8b9/f8632a08-484d-4977-a0ef-05a4eeb04b1a/interview-4.jpeg" alt="Photography by D2Jay" loading="lazy">
+      <div class="port-overlay">
+        <div class="port-cat">Photography</div>
+        <div class="port-title">Interview Series</div>
+      </div>
+    </div>
+    <div class="port-item">
+      <span class="port-label-always">Event</span>
+      <img class="port-img" src="https://images.squarespace-cdn.com/content/v1/64d82788dbd64931b322e8b9/79e31d94-066a-42a2-b405-bfd2dda9c9d1/IMG_4693.jpeg" alt="Event photography by D2Jay" loading="lazy">
+      <div class="port-overlay">
+        <div class="port-cat">Event Coverage</div>
+        <div class="port-title">Live Event Capture</div>
+      </div>
+    </div>
+    <div class="port-item">
+      <span class="port-label-always">Production</span>
+      <img class="port-img" src="https://images.squarespace-cdn.com/content/v1/64d82788dbd64931b322e8b9/31637e6f-77f5-42da-98a9-2c88c933497a/DC_MUSICVIDEO-37-min.jpg" alt="DC Music video by D2Jay" loading="lazy">
+      <div class="port-overlay">
+        <div class="port-cat">Music Video</div>
+        <div class="port-title">DC Session</div>
+      </div>
+    </div>
+    <div class="port-item">
+      <span class="port-label-always">Behind the Lens</span>
+      <img class="port-img" src="https://images.squarespace-cdn.com/content/v1/64d82788dbd64931b322e8b9/b2dbe4d4-f40d-4a98-865e-0d8d4ff2531f/IMG_3039.jpg" alt="D2Jay behind the camera" loading="lazy">
+      <div class="port-overlay">
+        <div class="port-cat">On Set</div>
+        <div class="port-title">The Setup</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE DIVIDER -->
+<div class="marquee-divider">
+  <div class="marquee-inner">
+    <div class="marquee-item"><span class="marquee-bullet">✦</span> SCAD GRADUATE</div>
+    <div class="marquee-item"><span class="marquee-bullet">✦</span> DMV VIDEOGRAPHER</div>
+    <div class="marquee-item"><span class="marquee-bullet">✦</span> MUSIC VIDEO DIRECTOR</div>
+    <div class="marquee-item"><span class="marquee-bullet">✦</span> WEDDING FILMMAKER</div>
+    <div class="marquee-item"><span class="marquee-bullet">✦</span> WASHINGTON DC</div>
+    <div class="marquee-item"><span class="marquee-bullet">✦</span> MARYLAND</div>
+    <div class="marquee-item"><span class="marquee-bullet">✦</span> AVAILABLE NATIONWIDE</div>
+    <div class="marquee-item"><span class="marquee-bullet">✦</span> SCAD GRADUATE</div>
+    <div class="marquee-item"><span class="marquee-bullet">✦</span> DMV VIDEOGRAPHER</div>
+    <div class="marquee-item"><span class="marquee-bullet">✦</span> MUSIC VIDEO DIRECTOR</div>
+    <div class="marquee-item"><span class="marquee-bullet">✦</span> WEDDING FILMMAKER</div>
+    <div class="marquee-item"><span class="marquee-bullet">✦</span> WASHINGTON DC</div>
+    <div class="marquee-item"><span class="marquee-bullet">✦</span> MARYLAND</div>
+    <div class="marquee-item"><span class="marquee-bullet">✦</span> AVAILABLE NATIONWIDE</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-img-wrap reveal">
+    <img class="about-img" src="https://images.squarespace-cdn.com/content/v1/64d82788dbd64931b322e8b9/f8632a08-484d-4977-a0ef-05a4eeb04b1a/interview-4.jpeg" alt="Jeremiah Adams — D2Jay" loading="lazy">
+    <div class="about-img-frame"></div>
+    <div class="about-img-label">
+      <span>Jeremiah Adams</span>
+      <span>Creative Director</span>
+    </div>
+  </div>
+  <div class="reveal reveal-delay-2">
+    <div class="section-num">/ 03</div>
+    <h2 class="display" style="font-size: clamp(40px, 5vw, 72px); margin: 12px 0 32px;">ABOUT<br>ME</h2>
+
+    <blockquote class="about-quote">
+      "I bring the vision, the gear, and the expertise — to you."
+    </blockquote>
+
+    <p class="about-text">I'm Jeremiah Adams — a SCAD-trained creative director, music video filmmaker, photographer, audio engineer, and DJ operating out of the DC, Maryland & Virginia area.</p>
+    <p class="about-text">I grew up obsessed with light, sound, and story. That obsession became a SCAD degree — graduating cum laude from one of the most prestigious art and design schools in the country. Since then, I've turned that passion into work that actually moves people.</p>
+    <p class="about-text">I don't work out of a studio. I bring professional-grade equipment and creative direction directly to your project — whether that's a music video shoot, your wedding day, or a brand film for your business. My work travels as far as the vision does.</p>
+
+    <div class="about-stats">
+      <div>
+        <div class="stat-num">7+</div>
+        <div class="stat-label">Years Active</div>
+      </div>
+      <div>
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Projects Delivered</div>
+      </div>
+      <div>
+        <div class="stat-num">4K</div>
+        <div class="stat-label">Cinema Quality</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap;">
+      <a href="#contact" class="btn btn-gold"><span>Work With Me</span></a>
+      <a href="https://www.instagram.com/d2jayproductions" target="_blank" rel="noopener" class="btn btn-ghost"><span>@d2jayproductions</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="section-header">
+    <div class="section-num reveal">/ 04</div>
+    <h2 class="display reveal reveal-delay-1" style="font-size: clamp(40px, 6vw, 80px);">WHAT CLIENTS<br>SAY</h2>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="review-source">Google Review</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">Jeremiah showed up fully prepared, captured everything we needed in under two hours, and delivered beautifully edited photos the same week. Total professional — we'll be booking him for every event going forward.</p>
+      <div class="review-author">
+        <div class="review-avatar">TM</div>
+        <div>
+          <div class="review-name">Tanya M.</div>
+          <div class="review-role">Event Coordinator, DMV</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card reveal reveal-delay-1">
+      <div class="review-source">Instagram DM</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">I've worked with a lot of videographers. Jay understands the culture — he doesn't just point a camera, he builds the whole visual story around the track. My video looked like a label budget on an indie timeline.</p>
+      <div class="review-author">
+        <div class="review-avatar">DK</div>
+        <div>
+          <div class="review-name">DK Waves</div>
+          <div class="review-role">Independent Artist, DC</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card reveal reveal-delay-2">
+      <div class="review-source">Wedding Wire</div>
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">From our engagement session to the final wedding film, Jeremiah was calm, creative, and completely present. The final video made us cry the first time we watched it. That's the only standard that matters.</p>
+      <div class="review-author">
+        <div class="review-avatar">SK</div>
+        <div>
+          <div class="review-name">Simone & Kevin R.</div>
+          <div class="review-role">Bride & Groom, Upper Marlboro</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE / CV -->
+<section id="experience">
+  <div class="section-header">
+    <div class="section-num reveal">/ 05</div>
+    <h2 class="display reveal reveal-delay-1" style="font-size: clamp(40px, 6vw, 80px);">EXPERIENCE<br>& CV</h2>
+  </div>
+  <div class="exp-layout">
+    <div>
+      <div class="exp-col-title reveal">Education</div>
+      <div class="exp-item reveal">
+        <div class="exp-year">2018–2022</div>
+        <div>
+          <div class="exp-role">Bachelor of Fine Arts — Film & TV</div>
+          <div class="exp-org">Savannah College of Art & Design (SCAD)</div>
+          <div class="exp-detail">Graduated cum laude. One of the nation's most prestigious art and design institutions.</div>
+        </div>
+      </div>
+      <div class="exp-item reveal reveal-delay-1">
+        <div class="exp-year">2009–2018</div>
+        <div>
+          <div class="exp-role">Self-Directed Creative Education</div>
+          <div class="exp-org">Home Studio, DMV Area</div>
+          <div class="exp-detail">Built a recording and production studio in the family garage. Charged local artists and teens for music video shoots, photography, and recording sessions.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="exp-col-title reveal">Experience</div>
+      <div class="exp-item reveal">
+        <div class="exp-year">2018–Present</div>
+        <div>
+          <div class="exp-role">Founder & Creative Director</div>
+          <div class="exp-org">D2Jay Productions, LLC</div>
+          <div class="exp-detail">Video production, photography, audio engineering, and DJ services for artists, couples, and brands across the DMV and Atlanta markets.</div>
+        </div>
+      </div>
+      <div class="exp-item reveal reveal-delay-1">
+        <div class="exp-year">2022–2024</div>
+        <div>
+          <div class="exp-role">Creative Freelancer</div>
+          <div class="exp-org">Atlanta, GA</div>
+          <div class="exp-detail">Music videos, event coverage, and collaborative creative projects in Atlanta's independent artist scene.</div>
+        </div>
+      </div>
+      <div class="exp-item reveal reveal-delay-2">
+        <div class="exp-year">2023–Present</div>
+        <div>
+          <div class="exp-role">Founder</div>
+          <div class="exp-org">Solitude Lighting</div>
+          <div class="exp-detail">Residential and commercial lighting design and installation. Interior, exterior, and event lighting for homes across the DMV.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-layout">
+    <div class="faq-sticky reveal">
+      <div class="section-num">/ 06</div>
+      <h2 class="display" style="font-size: clamp(40px, 5vw, 64px); margin: 12px 0 24px;">FREQUENTLY<br>ASKED</h2>
+      <p style="color: var(--white-dim); font-size: 15px; margin-bottom: 32px;">Everything you need to know before reaching out. Still have questions?</p>
+      <a href="#contact" class="btn btn-gold"><span>Ask Anything</span></a>
+    </div>
+    <div class="faq-list reveal reveal-delay-2">
+      <div class="faq-item">
+        <div class="faq-q">
+          How much does a music video cost?
+          <div class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Music video packages start at $750 for a performance-based single-location shoot, $1,500 for a standard story-concept production, and $2,500–$3,500 for a cinematic multi-location production. Drone add-ons, extra shoot days, and VFX are available. Let's talk about your vision and build the right package.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          Do you have a studio or physical location?
+          <div class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">No — and that's intentional. I bring professional cinema-grade equipment and full creative direction directly to your location. Whether that's a rooftop in DC, a venue in Maryland, or a destination out of state, the production comes to you. This means no studio booking fees passed to you and locations that actually match your vision.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          What does wedding video/photo coverage look like?
+          <div class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Wedding packages include photo only ($2,200+), video only ($2,400+), or a combined photo + film package starting at $3,800. Coverage includes getting-ready, ceremony, reception, and after-party. All packages include a full digital gallery, a cinematic highlight film, and all commercial usage rights. Engagement sessions and drone footage are available as add-ons.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          Do you work outside the DMV area?
+          <div class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Yes. I'm based in the DC, Maryland, and Virginia area and serve the greater DMV market locally. I'm also available for travel bookings nationwide — including Atlanta, where I've worked extensively in the independent music scene. Travel rates apply for locations outside the DMV.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          How far out do you book?
+          <div class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Wedding dates typically book 6–12 months in advance. Music video and brand shoots can often be scheduled within 2–4 weeks depending on availability. A deposit secures your date. Reach out as early as possible for peak season (May–October for weddings).</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          What do I need to bring to a shoot?
+          <div class="faq-icon"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+        </div>
+        <div class="faq-a"><div class="faq-a-inner">Just yourself and your vision. I bring all camera and audio equipment, lighting, stabilizers, and drone gear. For music videos, I'll work with you on a creative treatment beforehand so we arrive on set with a clear shot list. The less you have to think about the gear, the more you can focus on the performance.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-layout">
+    <div class="reveal">
+      <div class="section-num">/ 07</div>
+      <h2 class="contact-heading">LET'S<br><span>WORK</span><br>TOGETHER</h2>
+      <p class="contact-subtext">Tell me about your project. Whether it's a music video concept, a wedding date to secure, or a brand shoot — I'd love to hear it.</p>
+      <div class="contact-methods">
+        <div class="contact-method">
+          <div class="contact-method-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 5h18v14H3V5zm0 0l9 8 9-8"/></svg>
+          </div>
+          <div class="contact-method-info">
+            <div class="contact-method-label">Email</div>
+            <a href="mailto:business@d2jay.com">business@d2jay.com</a>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="contact-method-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013 6.18a2 2 0 012-2.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L9.91 11.91a16 16 0 006.29 6.29l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div class="contact-method-info">
+            <div class="contact-method-label">Phone</div>
+            <a href="tel:+12026568115">(202) 656-8115</a>
+          </div>
+        </div>
+        <div class="contact-method">
+          <div class="contact-method-icon">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg>
+          </div>
+          <div class="contact-method-info">
+            <div class="contact-method-label">Instagram</div>
+            <a href="https://instagram.com/d2jayproductions" target="_blank" rel="noopener">@d2jayproductions</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-2">
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input class="form-input" type="text" placeholder="Jeremiah">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input class="form-input" type="text" placeholder="Adams">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" placeholder="you@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">I'm Looking For</label>
+          <select class="form-select form-input">
+            <option value="">Select a service...</option>
+            <option>Music Video Production</option>
+            <option>Wedding Videography</option>
+            <option>Wedding Photography</option>
+            <option>Photo + Video Bundle</option>
+            <option>Real Estate / Brand Video</option>
+            <option>Event Photography</option>
+            <option>Audio Engineering</option>
+            <option>Event DJ</option>
+            <option>Something Else</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tell Me About Your Project</label>
+          <textarea class="form-textarea" placeholder="Date, location, vision, budget — share whatever you've got..."></textarea>
+        </div>
+        <button class="btn btn-gold" style="width:100%; justify-content:center;">
+          <span>Send Message</span>
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">D2<span>JAY</span></div>
+      <div class="footer-tagline">Visual Storytelling for Artists & Brands · DMV</div>
+    </div>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#about">About</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://instagram.com/d2jayproductions" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"/></svg>
+      </a>
+      <a href="https://www.youtube.com/channel/UCmoQsbFhpj2xjlwM_Al9acg" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.45A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.45a2.78 2.78 0 001.95-1.97A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75,15.02 15.5,12 9.75,8.98 9.75,15.02"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/jeremiah-adams-6ba0931a3/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 D2Jay Productions, LLC · All Rights Reserved</div>
+    <div class="footer-location">
+      <span class="footer-dot"></span>
+      Upper Marlboro, MD · Available Nationwide
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const dot = document.getElementById('cursor-dot');
+  const ring = document.getElementById('cursor-ring');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    dot.style.left = mouseX + 'px';
+    dot.style.top = mouseY + 'px';
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button, .service-item, .port-item, .faq-q').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+  });
+
+  // Progress bar
+  const progressBar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    progressBar.style.width = pct + '%';
+  });
+
+  // Nav scroll
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Hero parallax
+  const heroWrap = document.getElementById('hero-video-wrap');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY < window.innerHeight) {
+      heroWrap.style.transform = `translateY(${window.scrollY * 0.35}px)`;
+    }
+  }, { passive: true });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => revealObserver.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Parallax on portfolio images
+  document.querySelectorAll('.port-img').forEach(img => {
+    const item = img.closest('.port-item');
+    item.addEventListener('mousemove', e => {
+      const rect = item.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      img.style.transform = `scale(1.06) translate(${x * 8}px, ${y * 8}px)`;
+    });
+    item.addEventListener('mouseleave', () => {
+      img.style.transform = '';
+    });
+  });
+</script>
+
+</body>
+</html>
