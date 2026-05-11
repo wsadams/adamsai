@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solitude Lighting — Project Files</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@200;300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --obsidian: #080808;
+    --charcoal: #111111;
+    --ink: #1a1a1a;
+    --gold: #c9963a;
+    --gold-warm: #e8b560;
+    --gold-lt: #f5d08a;
+    --gold-glow: rgba(201,150,58,0.12);
+    --gold-trace: rgba(201,150,58,0.07);
+    --text: #f2ede4;
+    --text-dim: rgba(242,237,228,0.55);
+    --text-muted: rgba(242,237,228,0.3);
+    --border: rgba(201,150,58,0.12);
+    --display: 'Bebas Neue', sans-serif;
+    --serif: 'Cormorant Garamond', serif;
+    --sans: 'Outfit', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--obsidian);
+    color: var(--text);
+    font-family: var(--sans);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Subtle grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,150,58,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,150,58,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrap {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 780px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  .header .eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.45em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .header .eyebrow::before,
+  .header .eyebrow::after {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .header h1 {
+    font-family: var(--display);
+    font-size: clamp(42px, 7vw, 72px);
+    letter-spacing: 0.06em;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .header p {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text-dim);
+    letter-spacing: 0.02em;
+  }
+
+  /* Section labels */
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    margin-top: 40px;
+    padding-left: 2px;
+    opacity: 0.8;
+  }
+
+  .section-label:first-child {
+    margin-top: 0;
+  }
+
+  /* File list */
+  .file-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+
+  .file-link {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: var(--charcoal);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 24px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .file-link::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.3s ease;
+  }
+
+  .file-link:hover {
+    background: var(--ink);
+    border-color: rgba(201,150,58,0.35);
+    transform: translateX(4px);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,150,58,0.08);
+  }
+
+  .file-link:hover::before {
+    transform: scaleY(1);
+  }
+
+  .file-icon { display: none; }
+
+  .file-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .file-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: 0.02em;
+    margin-bottom: 3px;
+    transition: color 0.25s ease;
+  }
+
+  .file-link:hover .file-name {
+    color: var(--gold-warm);
+  }
+
+  .file-type {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .file-arrow {
+    color: var(--text-muted);
+    font-size: 16px;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .file-link:hover .file-arrow {
+    color: var(--gold);
+    transform: translateX(3px);
+  }
+
+  /* Divider */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 44px 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer p {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.15em;
+    line-height: 1.8;
+  }
+
+  .footer .brand {
+    font-family: var(--display);
+    font-size: 18px;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="header">
+    <p class="eyebrow">Project Files</p>
+    <h1>Jeremiah Adams<br>Business Files</h1>
+    <p>by Adams AI Consulting</p>
+  </div>
+
+  <!-- SOLITUDE LIGHTING -->
+  <p class="section-label">Solitude Lighting</p>
+  <div class="file-list">
+
+    <a href="solitude_lighting_playbook_v5.html" class="file-link">
+      <div class="file-icon">📋</div>
+      <div class="file-text">
+        <div class="file-name">The Solitude Lighting Playbook</div>
+        <div class="file-type">HTML · Marketing Strategy</div>
+      </div>
+      <span class="file-arrow">→</span>
+    </a>
+
+    <a href="solitude_gtm.html" class="file-link">
+      <div class="file-icon">📊</div>
+      <div class="file-text">
+        <div class="file-name">Solitude Lighting Market Research</div>
+        <div class="file-type">HTML · Go-to-Market Strategy</div>
+      </div>
+      <span class="file-arrow">→</span>
+    </a>
+
+    <a href="Solitude Lighting Go-to-Market Strategy_ Targeting Affluent Black Homeowners in the DMV.pdf" class="file-link">
+      <div class="file-icon">📄</div>
+      <div class="file-text">
+        <div class="file-name">Solitude Lighting Research Raw Data</div>
+        <div class="file-type">PDF · Affluent Black Homeowners · DMV</div>
+      </div>
+      <span class="file-arrow">→</span>
+    </a>
+
+    <a href="solitude_lighting_website.html" class="file-link">
+      <div class="file-icon">🌐</div>
+      <div class="file-text">
+        <div class="file-name">Solitude Lighting Prototype Website</div>
+        <div class="file-type">HTML · Website Mockup</div>
+      </div>
+      <span class="file-arrow">→</span>
+    </a>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- D2JAY -->
+  <p class="section-label">D2Jay Productions</p>
+  <div class="file-list">
+
+    <a href="D2Jay_Strategic_Brief.html" class="file-link">
+      <div class="file-icon">⚡</div>
+      <div class="file-text">
+        <div class="file-name">D2Jay Rebrand Playbook</div>
+        <div class="file-type">HTML · Strategic Brief · 12 Sections</div>
+      </div>
+      <span class="file-arrow">→</span>
+    </a>
+
+    <a href="D2Jay Creative_ DMV and Atlanta Market Positioning Strategy.pdf" class="file-link">
+      <div class="file-icon">📄</div>
+      <div class="file-text">
+        <div class="file-name">D2Jay Deep Research</div>
+        <div class="file-type">PDF · DMV & Atlanta Market Positioning</div>
+      </div>
+      <span class="file-arrow">→</span>
+    </a>
+
+    <a href="d2jay_v2.html" class="file-link">
+      <div class="file-icon">🎬</div>
+      <div class="file-text">
+        <div class="file-name">D2Jay Sample Website</div>
+        <div class="file-type">HTML · Website Mockup</div>
+      </div>
+      <span class="file-arrow">→</span>
+    </a>
+
+  </div>
+
+  <div class="footer">
+    <div class="brand">Adams AI Consulting</div>
+    <p>DC · Maryland · Virginia &nbsp;·&nbsp; contact@solitudelighting.com &nbsp;·&nbsp; (202) 656-8115</p>
+  </div>
+
+</div>
+
+</body>
+</html>

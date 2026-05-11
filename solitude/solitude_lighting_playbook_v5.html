@@ -1,0 +1,2168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solitude Lighting — Marketing Playbook v5.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --gold:#C9A84C;--gl:#E8C97A;--gd:rgba(201,168,76,.12);--gb:rgba(201,168,76,.24);
+  --dk:#09090B;--d2:#0F0F12;--d3:#141418;--d4:#1A1A1F;
+  --br:rgba(255,255,255,.07);--brl:rgba(255,255,255,.14);
+  --tx:#F0EDE8;--t2:rgba(240,237,232,.58);--t3:rgba(240,237,232,.33);
+  --teal:#4ECDC4;--coral:#E8836A;--grn:#72B87A;--pur:#9B8DE8;
+  --g1:#4CAF77;--g2:#3A9E6A;--g3:#2A8A5A; /* cost greens */
+  --r:14px;--rs:8px;--tr:all .22s ease;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--dk);color:var(--tx);overflow-x:hidden;line-height:1.6;}
+/* user-select on task text so they can highlight without triggering checkbox */
+.ttxt{user-select:text;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes ringPulse{0%{box-shadow:0 0 0 0 rgba(201,168,76,.38)}70%{box-shadow:0 0 0 14px rgba(201,168,76,0)}100%{box-shadow:0 0 0 0 rgba(201,168,76,0)}}
+@keyframes arrowB{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+@keyframes glowTap{0%{box-shadow:0 0 0 0 rgba(78,205,196,.5)}100%{box-shadow:0 0 0 8px rgba(78,205,196,0)}}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;height:54px;
+  background:rgba(9,9,11,.94);backdrop-filter:blur(24px);border-bottom:1px solid var(--br);
+  display:flex;align-items:center;gap:0;padding:0 20px;}
+.nav-logo{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--gold);
+  text-decoration:none;white-space:nowrap;flex-shrink:0;letter-spacing:.01em;margin-right:16px;}
+.nav-tabs{display:flex;gap:1px;list-style:none;overflow-x:auto;scrollbar-width:none;flex:1;}
+.nav-tabs::-webkit-scrollbar{display:none;}
+.nav-tabs li button{background:none;border:none;cursor:pointer;font-family:'Inter',sans-serif;
+  font-size:11px;font-weight:500;color:var(--t3);padding:6px 10px;border-radius:7px;
+  transition:var(--tr);white-space:nowrap;position:relative;}
+.nav-tabs li button::after{content:'';position:absolute;bottom:2px;left:50%;right:50%;
+  height:1px;background:var(--gold);transition:var(--tr);opacity:0;}
+.nav-tabs li button:hover{color:var(--tx);background:rgba(255,255,255,.05);
+  text-shadow:0 0 14px rgba(201,168,76,.3);}
+.nav-tabs li button.active{color:var(--gold);background:var(--gd);}
+.nav-tabs li button.active::after{left:12%;right:12%;opacity:1;}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;padding:100px 28px 80px;overflow:hidden;}
+.hero-par{position:absolute;inset:0;z-index:0;
+  background-image:url('https://images.squarespace-cdn.com/content/v1/699c73cfefb6a43f8ab932ab/95b74972-8eda-48a2-ad15-b1d4426caa26/Full+Kitchen.jpg');
+  background-size:cover;background-position:center;
+  filter:brightness(.2) saturate(.6);transform:scale(1.1);will-change:transform;}
+.hero-ov{position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(9,9,11,.5) 0%,rgba(9,9,11,.05) 40%,rgba(9,9,11,.9) 100%),
+             radial-gradient(ellipse 65% 45% at 50% 28%,rgba(201,168,76,.08) 0%,transparent 70%);}
+.hero-c{position:relative;z-index:2;text-align:center;max-width:740px;}
+.h-badge{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);border:1px solid var(--gb);background:var(--gd);
+  padding:5px 14px;border-radius:20px;margin-bottom:28px;animation:fadeUp .5s ease both;}
+.h-title{font-family:'Syne',sans-serif;font-size:clamp(36px,7vw,70px);font-weight:800;
+  line-height:1.04;margin-bottom:16px;
+  background:linear-gradient(135deg,#F0EDE8 20%,var(--gl) 55%,#F0EDE8 85%);
+  background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmer 5s linear infinite,fadeUp .7s ease .1s both;}
+.h-sub{font-size:clamp(13px,2vw,17px);color:var(--t2);margin-bottom:40px;font-weight:300;
+  line-height:1.82;max-width:540px;margin-left:auto;margin-right:auto;animation:fadeUp .7s ease .2s both;}
+.ns{background:rgba(9,9,11,.72);border:1px solid var(--gb);border-radius:var(--r);
+  padding:24px 36px;display:inline-block;animation:fadeUp .7s ease .3s both,ringPulse 3.5s ease 1.2s infinite;}
+.ns-l{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.ns-v{font-family:'Syne',sans-serif;font-size:clamp(15px,2.6vw,22px);font-weight:700;color:var(--tx);line-height:1.3;}
+.ns-n{font-size:12px;color:var(--t2);margin-top:6px;}
+.h-scroll{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:5px;animation:arrowB 2s ease-in-out infinite;}
+.h-scroll span{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--t3);}
+.scroll-l{width:1px;height:24px;background:linear-gradient(to bottom,var(--gold),transparent);}
+
+/* PAGE */
+.pw{max-width:920px;margin:0 auto;padding:0 22px 120px;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;animation:fadeUp .28s ease both;}
+.gap{height:48px;}
+.sh{margin-bottom:22px;}
+.sh-eye{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.sh-eye::before{content:'';display:block;width:16px;height:1px;background:var(--gold);}
+.sh-title{font-family:'Syne',sans-serif;font-size:clamp(20px,3.5vw,30px);font-weight:700;color:var(--tx);margin-bottom:10px;line-height:1.2;}
+.sh-desc{font-size:14px;color:var(--t2);line-height:1.78;max-width:660px;}
+
+/* CARDS */
+.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:13px;margin-bottom:16px;}
+.card{background:var(--d3);border:1px solid var(--br);border-radius:var(--r);padding:18px;
+  transition:var(--tr);position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:.22s;}
+.card:hover{border-color:var(--brl);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.3);}
+.card:hover::before{opacity:1;}
+.ac-g::before{background:var(--gold);}.ac-t::before{background:var(--teal);}
+.ac-c::before{background:var(--coral);}.ac-p::before{background:var(--pur);}
+.ac-gr::before{background:var(--grn);}
+.ci{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+.ci svg{width:16px;height:16px;}
+.ci-g{background:var(--gd);color:var(--gold);}.ci-t{background:rgba(78,205,196,.11);color:var(--teal);}
+.ci-c{background:rgba(232,131,106,.11);color:var(--coral);}.ci-p{background:rgba(155,141,232,.11);color:var(--pur);}
+.ci-gr{background:rgba(114,184,122,.11);color:var(--grn);}
+.ct{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--tx);margin-bottom:6px;}
+.cb{font-size:13px;color:var(--t2);line-height:1.68;}
+
+/* TAGS */
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;align-items:center;}
+.tag{font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;}
+.t-fr{background:rgba(114,184,122,.11);color:var(--grn);}
+/* Cost greens — different shades */
+.t-lo{background:rgba(76,175,119,.15);color:#6dcc99;border:1px solid rgba(76,175,119,.25);}
+.t-me{background:rgba(58,158,106,.15);color:#59c48c;border:1px solid rgba(58,158,106,.25);}
+.t-hi{background:rgba(42,138,90,.15);color:#3eb07a;border:1px solid rgba(42,138,90,.25);}
+.t-ti{background:rgba(255,255,255,.06);color:var(--t2);}
+.t-wt{background:rgba(255,255,255,.04);color:var(--t3);}
+/* Awareness / Sales badges — never "Both" */
+.ba{background:rgba(78,205,196,.13);color:var(--teal);font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:20px;}
+.bs{background:rgba(232,131,106,.13);color:var(--coral);font-size:9px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:20px;}
+
+/* INSIGHT */
+.ins{border-left:3px solid var(--gold);background:var(--d3);border-radius:0 var(--rs) var(--rs) 0;padding:15px 20px;margin:16px 0;}
+.ins.it{border-left-color:var(--teal);}.ins.ic{border-left-color:var(--coral);}
+.ins.ip{border-left-color:var(--pur);}.ins.ig{border-left-color:var(--grn);}
+.ins p{font-size:13px;color:var(--t2);line-height:1.72;}
+.ins strong{color:var(--tx);font-weight:600;}
+.ins-l{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+.ins.it .ins-l{color:var(--teal);}.ins.ic .ins-l{color:var(--coral);}
+.ins.ip .ins-l{color:var(--pur);}.ins.ig .ins-l{color:var(--grn);}
+
+/* HOOKS */
+.hooks{display:flex;flex-direction:column;gap:6px;margin:12px 0;}
+.hk{background:var(--d4);border:1px solid var(--br);border-radius:var(--rs);padding:12px 15px;transition:border-color .2s;}
+.hk:hover{border-color:var(--gb);}
+.hk-t{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.hk-v{font-size:13px;color:var(--tx);font-style:italic;}
+
+/* PLATFORMS */
+.plg{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:12px 0;}
+.plc{background:var(--d4);border:1px solid var(--br);border-radius:var(--rs);padding:12px 14px;transition:var(--tr);}
+.plc:hover{border-color:var(--brl);}
+.pl-n{font-size:12.5px;font-weight:600;color:var(--tx);margin-bottom:2px;display:flex;align-items:center;gap:7px;}
+.pl-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.pl-r{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:5px;}
+.pl-b{font-size:11.5px;color:var(--t3);line-height:1.55;}
+
+/* PSYCH */
+.pg{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:10px;}
+.pc{background:var(--d4);border:1px solid var(--br);border-radius:var(--rs);padding:15px;transition:var(--tr);}
+.pc:hover{border-color:rgba(155,141,232,.26);background:rgba(155,141,232,.04);}
+.pn{font-size:13px;font-weight:700;color:var(--pur);margin-bottom:6px;}
+.pb2{font-size:12px;color:var(--t2);line-height:1.62;}
+.pa{font-size:11px;color:var(--t3);margin-top:7px;padding-top:7px;border-top:1px solid var(--br);font-style:italic;}
+
+/* FLYWHEEL */
+.fw{background:linear-gradient(135deg,rgba(78,205,196,.05),rgba(201,168,76,.05));
+  border:1px solid rgba(201,168,76,.2);border-radius:var(--r);padding:22px 26px;margin:18px 0;}
+.fw-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--gold);margin-bottom:12px;}
+.fw-row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+.fw-node{background:var(--d3);border:1px solid var(--br);border-radius:9px;padding:10px 14px;min-width:110px;text-align:center;}
+.fw-lbl{font-size:12px;font-weight:700;color:var(--gold);}
+.fw-sub{font-size:10.5px;color:var(--t3);margin-top:2px;line-height:1.4;}
+.fw-arrow{font-size:16px;color:rgba(201,168,76,.35);}
+.fw-body{font-size:13px;color:var(--t2);line-height:1.72;max-width:580px;margin:0 auto;}
+
+/* ═══════════ SCHEDULE ═══════════ */
+.sch-wrap{display:flex;gap:0;min-height:500px;}
+.sch-sidebar{width:155px;flex-shrink:0;border-right:1px solid var(--br);padding-right:0;
+  position:sticky;top:68px;align-self:flex-start;max-height:calc(100vh - 80px);overflow-y:auto;}
+.sch-sidebar::-webkit-scrollbar{display:none;}
+.phase-btn{
+  display:flex;align-items:center;gap:8px;width:100%;background:none;border:none;
+  padding:9px 13px;cursor:pointer;font-family:'Inter',sans-serif;font-size:11.5px;font-weight:500;
+  color:var(--t3);border-right:2px solid transparent;transition:var(--tr);text-align:left;}
+.phase-btn:hover{color:var(--tx);background:rgba(255,255,255,.03);}
+.phase-btn.active{color:var(--gold);border-right-color:var(--gold);background:var(--gd);}
+.phase-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.sch-content{flex:1;padding-left:22px;min-width:0;}
+.phase-panel{display:none;animation:fadeUp .28s ease both;}
+.phase-panel.active{display:block;}
+
+/* Phase header */
+.ph-hdr{margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--br);}
+.ph-eye{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.ph-title{font-family:'Syne',sans-serif;font-size:21px;font-weight:700;color:var(--tx);margin-bottom:5px;}
+.ph-desc{font-size:13px;color:var(--t2);line-height:1.7;}
+.ph-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;}
+
+/* Phase progress bar */
+.ph-prog{height:3px;background:var(--d4);border-radius:2px;margin:8px 0 16px;overflow:hidden;}
+.ph-fill{height:100%;background:var(--gold);border-radius:2px;transition:width .4s ease;}
+
+/* Overall progress */
+.op-block{background:var(--d3);border:1px solid var(--br);border-radius:var(--r);padding:14px 18px;margin-bottom:18px;}
+.op-lbl{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--t3);margin-bottom:10px;}
+.op-row{display:flex;align-items:center;gap:9px;margin-bottom:6px;}
+.op-name{font-size:11px;font-weight:500;color:var(--t2);width:76px;flex-shrink:0;}
+.op-bar{flex:1;height:3px;background:var(--d4);border-radius:2px;overflow:hidden;}
+.op-fill{height:100%;border-radius:2px;transition:width .4s;}
+.op-pct{font-size:10.5px;color:var(--t3);width:32px;text-align:right;flex-shrink:0;}
+
+/* DAY GROUP — clear toggle */
+.dg{border:1px solid var(--br);border-radius:var(--r);margin-bottom:8px;overflow:hidden;}
+.dg-toggle{
+  width:100%;background:var(--d3);border:none;padding:13px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+  cursor:pointer;transition:background .18s;gap:10px;user-select:none;}
+.dg-toggle:hover{background:var(--d4);}
+.dg-toggle-left{display:flex;align-items:center;gap:10px;flex:1;text-align:left;}
+.dg-badge{font-family:'Syne',sans-serif;font-size:11.5px;font-weight:700;
+  padding:3px 9px;border-radius:6px;flex-shrink:0;white-space:nowrap;}
+.dg-title{font-size:13px;font-weight:600;color:var(--tx);}
+.dg-right{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.dg-prog{font-size:11px;font-weight:600;padding:2px 8px;border-radius:20px;
+  background:var(--d4);color:var(--t3);border:1px solid var(--br);white-space:nowrap;}
+.dg-prog.done{background:rgba(114,184,122,.1);color:var(--grn);border-color:rgba(114,184,122,.2);}
+/* Explicit toggle hint */
+.dg-hint{font-size:10px;color:var(--t3);white-space:nowrap;}
+.dg-ch{width:15px;height:15px;color:var(--t3);transition:transform .25s;flex-shrink:0;}
+.dg-body{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.4,0,.2,1);}
+.dg-body.open{max-height:5000px;}
+.dg-inner{padding:4px 16px 16px;border-top:1px solid var(--br);}
+
+/* TASKS — checkbox is the only click target for completion */
+.tl{display:flex;flex-direction:column;gap:3px;margin-top:8px;}
+.ti{display:flex;align-items:flex-start;gap:10px;padding:9px 8px;border-radius:7px;
+  transition:background .15s;}
+.ti:hover{background:rgba(255,255,255,.018);}
+.ti.done{opacity:.38;}
+/* Checkbox — ONLY thing that triggers done */
+.tcb{
+  width:17px;height:17px;border:1.5px solid rgba(255,255,255,.22);border-radius:4px;
+  flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;
+  background:transparent;transition:var(--tr);cursor:pointer;flex-shrink:0;
+}
+.tcb:hover{border-color:var(--gold);animation:glowTap .4s ease;}
+.ti.done .tcb{background:var(--gold);border-color:var(--gold);}
+.tcb svg{display:none;width:9px;height:7px;}
+.ti.done .tcb svg{display:block;}
+.ttxt{font-size:12.5px;color:var(--t2);line-height:1.6;flex:1;cursor:default;}
+.ttxt strong{color:var(--tx);font-weight:600;}
+.ti.done .ttxt{text-decoration:line-through;text-decoration-color:rgba(255,255,255,.2);}
+.task-meta{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px;align-items:center;}
+/* Copy task text button */
+.task-copy{
+  background:none;border:1px solid rgba(255,255,255,.1);border-radius:5px;
+  padding:2px 7px;font-size:10px;font-weight:600;color:var(--t3);cursor:pointer;
+  transition:var(--tr);display:inline-flex;align-items:center;gap:3px;margin-left:auto;flex-shrink:0;}
+.task-copy:hover{border-color:var(--gb);color:var(--gold);}
+.task-copy svg{width:10px;height:10px;}
+.task-copy.copied{color:var(--grn);border-color:rgba(114,184,122,.3);}
+
+/* INLINE PROMPT */
+.tp-toggle{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;
+  color:rgba(78,205,196,.75);border:1px solid rgba(78,205,196,.14);background:rgba(78,205,196,.06);
+  border-radius:5px;padding:3px 8px;cursor:pointer;transition:var(--tr);margin-top:5px;}
+.tp-toggle:hover{background:rgba(78,205,196,.12);color:var(--teal);}
+.tp-toggle svg{width:11px;height:11px;transition:transform .22s;}
+.tp-toggle.open svg{transform:rotate(180deg);}
+.tp-body{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.tp-body.open{max-height:1600px;}
+.tp-inner{background:rgba(0,0,0,.44);border:1px solid rgba(78,205,196,.12);
+  border-left:2px solid var(--teal);border-radius:0 var(--rs) var(--rs) 0;
+  padding:12px 14px;margin-top:6px;position:relative;}
+.tp-chip{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--teal);margin-bottom:5px;}
+.tp-skill{font-size:10px;color:rgba(78,205,196,.6);margin-bottom:7px;font-style:italic;}
+.tp-text{font-family:'Inter',monospace;font-size:11.5px;color:var(--teal);line-height:1.62;white-space:pre-wrap;word-break:break-word;}
+.tp-text strong{color:#a8e8e4;}
+.copy-btn{position:absolute;top:8px;right:8px;
+  background:rgba(78,205,196,.1);border:1px solid rgba(78,205,196,.18);border-radius:6px;
+  padding:3px 9px;font-size:11px;font-weight:600;color:var(--teal);cursor:pointer;transition:var(--tr);}
+.copy-btn:hover{background:rgba(78,205,196,.2);}
+.copy-btn.copied{color:var(--grn);border-color:rgba(114,184,122,.3);background:rgba(114,184,122,.08);}
+/* SYNC STATUS PILL */
+.sync-pill{
+  display:flex;align-items:center;gap:5px;flex-shrink:0;margin-left:10px;
+  padding:4px 10px;border-radius:20px;border:1px solid;transition:all .3s ease;
+  font-size:10px;font-weight:700;letter-spacing:.05em;white-space:nowrap;
+}
+.sync-dot{
+  width:6px;height:6px;border-radius:50%;flex-shrink:0;transition:background .3s;
+}
+/* states */
+.sync-idle{background:rgba(114,184,122,.08);border-color:rgba(114,184,122,.18);color:var(--grn);}
+.sync-idle .sync-dot{background:var(--grn);}
+.sync-saving{background:rgba(201,168,76,.08);border-color:rgba(201,168,76,.2);color:var(--gold);}
+.sync-saving .sync-dot{background:var(--gold);animation:syncPulse .8s ease-in-out infinite;}
+.sync-error{background:rgba(232,131,106,.08);border-color:rgba(232,131,106,.2);color:var(--coral);}
+.sync-error .sync-dot{background:var(--coral);}
+@keyframes syncPulse{0%,100%{opacity:.4;transform:scale(.85)}50%{opacity:1;transform:scale(1.15)}}
+
+
+/* Day notes */
+.dn-l{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin:12px 0 5px;}
+.dn{width:100%;background:var(--d4);border:1px solid var(--br);border-radius:var(--rs);
+  padding:9px 12px;font-family:'Inter',sans-serif;font-size:12.5px;color:var(--tx);
+  resize:vertical;min-height:52px;outline:none;transition:border-color .2s;line-height:1.6;}
+.dn:focus{border-color:var(--gb);}
+.dn::placeholder{color:var(--t3);}
+
+/* STANDALONE PROMPT (Coach tab) */
+.sp-toggle{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;
+  color:var(--teal);border:1px solid rgba(78,205,196,.18);background:rgba(78,205,196,.07);
+  border-radius:7px;padding:6px 14px;cursor:pointer;transition:var(--tr);margin-top:9px;}
+.sp-toggle:hover{background:rgba(78,205,196,.14);}
+.sp-toggle svg{width:12px;height:12px;transition:transform .22s;}
+.sp-toggle.open svg{transform:rotate(180deg);}
+.sp-body{max-height:0;overflow:hidden;transition:max-height .4s ease;}
+.sp-body.open{max-height:2400px;}
+.sp-inner{background:rgba(0,0,0,.44);border:1px solid rgba(78,205,196,.13);
+  border-left:3px solid var(--teal);border-radius:0 var(--rs) var(--rs) 0;
+  padding:13px 15px;margin-top:8px;position:relative;}
+.sp-text{font-family:'Inter',monospace;font-size:12px;color:var(--teal);line-height:1.63;white-space:pre-wrap;word-break:break-word;}
+.sp-text strong{color:#a8e8e4;}
+
+/* BTNS */
+.br{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px;align-items:center;}
+.btn{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;
+  padding:7px 14px;border-radius:7px;cursor:pointer;transition:var(--tr);font-family:'Inter',sans-serif;}
+.btn svg{width:12px;height:12px;}
+.bg{background:var(--gd);color:var(--gold);border:1px solid var(--gb);}
+.bg:hover{background:rgba(201,168,76,.2);}
+.bgh{background:transparent;color:var(--t2);border:1px solid var(--br);}
+.bgh:hover{color:var(--tx);border-color:var(--brl);}
+.bdis{opacity:.36;cursor:not-allowed;}
+
+/* AI BOX (reference tabs) */
+.ai-box{background:linear-gradient(135deg,rgba(78,205,196,.04),rgba(155,141,232,.04));
+  border:1px solid rgba(78,205,196,.16);border-radius:var(--r);padding:17px 21px;margin:13px 0;}
+.ai-hdr{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;}
+.ai-chip{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  background:rgba(78,205,196,.1);color:var(--teal);padding:2px 8px;border-radius:20px;border:1px solid rgba(78,205,196,.18);}
+.ai-tool{font-size:12px;font-weight:600;color:var(--teal);}
+.ai-box p{font-size:13px;color:var(--t2);line-height:1.7;margin-bottom:7px;}
+
+/* Overview phases */
+.op-phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-top:16px;}
+.opc{background:var(--d4);border:1px solid var(--br);border-radius:var(--rs);padding:11px 13px;}
+.opc-n{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.opc-t{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--tx);margin-bottom:2px;}
+.opc-d{font-size:11px;color:var(--t3);line-height:1.5;}
+/* Cost legend */
+.cl{display:grid;grid-template-columns:repeat(auto-fit,minmax(105px,1fr));gap:5px;margin-bottom:26px;}
+.cli{background:var(--d3);border:1px solid var(--br);border-radius:var(--rs);padding:7px 11px;}
+.clb{font-size:11px;font-weight:700;display:block;margin-bottom:1px;}
+.cld{font-size:11px;color:var(--t3);}
+/* Coach hero */
+.coach-hero{background:linear-gradient(135deg,rgba(155,141,232,.07),rgba(201,168,76,.04));
+  border:1px solid rgba(155,141,232,.2);border-radius:var(--r);padding:22px 26px;margin-bottom:18px;}
+.coach-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--pur);margin-bottom:7px;}
+/* Global notes */
+.gn{width:100%;min-height:160px;background:var(--d3);border:1px solid var(--br);border-radius:var(--r);
+  padding:13px;font-family:'Inter',sans-serif;font-size:13px;color:var(--tx);
+  resize:vertical;outline:none;line-height:1.7;transition:border-color .2s;}
+.gn:focus{border-color:var(--gb);}
+.gn::placeholder{color:var(--t3);}
+.div{height:1px;background:var(--br);margin:18px 0;}
+.fc{background:var(--d3);border:1px dashed rgba(255,255,255,.09);border-radius:var(--r);padding:16px;opacity:.6;margin-top:18px;}
+.fc-l{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);margin-bottom:5px;}
+
+@media(max-width:680px){.sch-sidebar{display:none;}.sch-content{padding-left:0;}.cg{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="#" class="nav-logo">Solitude Lighting</a>
+  <ul class="nav-tabs">
+    <li><button onclick="openTab('overview')" id="tab-overview" class="active">Overview</button></li>
+    <li><button onclick="openTab('coach')" id="tab-coach">Coach</button></li>
+    <li><button onclick="openTab('foundation')" id="tab-foundation">Foundation</button></li>
+    <li><button onclick="openTab('proof')" id="tab-proof">Proof</button></li>
+    <li><button onclick="openTab('content')" id="tab-content">Content</button></li>
+    <li><button onclick="openTab('outreach')" id="tab-outreach">Outreach</button></li>
+    <li><button onclick="openTab('seo')" id="tab-seo">SEO</button></li>
+    <li><button onclick="openTab('mindset')" id="tab-mindset">Mindset</button></li>
+    <li><button onclick="openTab('schedule')" id="tab-schedule">Schedule</button></li>
+    <li><button onclick="openTab('notes')" id="tab-notes">Notes</button></li>
+  </ul>
+  <div id="sync-pill" class="sync-pill sync-idle">
+    <span class="sync-dot"></span>
+    <span id="sync-label">Saved</span>
+  </div>
+</nav>
+
+<div id="hero-wrap">
+<section class="hero">
+  <div class="hero-par" id="hero-par"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-c">
+    <div class="h-badge">Solitude Lighting Marketing Playbook — v5.0</div>
+    <h1 class="h-title">Your Playbook.<br>Your Business.<br>Your Way Out.</h1>
+    <p class="h-sub">Every task is in the Schedule tab. AI does the repetitive work. You make the calls that require a human. Check things off as you go. Export your progress anytime.</p>
+    <div class="ns">
+      <p class="ns-l">Your North Star</p>
+      <p class="ns-v">1 paid install per month — then 3 — then $10K</p>
+      <p class="ns-n">Awareness feeds Sales. Sales funds more Awareness. Both together.</p>
+    </div>
+  </div>
+  <div class="h-scroll"><span>Scroll</span><div class="scroll-l"></div></div>
+</section>
+</div>
+
+<div class="pw">
+
+<!-- ════ OVERVIEW ════ -->
+<div class="tab-panel active" id="panel-overview">
+<div class="gap"></div>
+<div class="sh">
+  <p class="sh-eye">What this is</p>
+  <h2 class="sh-title">Welcome to your Marketing Playbook, Jay.</h2>
+  <p class="sh-desc">The <strong>Schedule tab</strong> is your single task hub — every action, every phase, every day, with checkboxes and AI prompts built inside each task. Every other tab is your reference library. Read them to understand the why. Go to Schedule to do the work. Start with the Coach tab on Day 1 — everything else flows from there.</p>
+</div>
+<div class="ins">
+  <p class="ins-l">The philosophy that builds millions</p>
+  <p>A multi-millionaire once shared the single key to his wealth: <strong>Awareness and Sales — they feed each other in a loop.</strong> Put resources into awareness, you get more sales. Take those sales and reinvest into more awareness. Most people do one or the other. You are going to do both, deliberately, every week. Every task in this playbook is tagged <span class="ba">Awareness</span> or <span class="bs">Sales</span> (or both) so you always know which side of the loop you are feeding.</p>
+</div>
+<div class="cl">
+  <div class="cli"><span class="clb" style="color:var(--grn)">FREE</span><span class="cld">No money needed</span></div>
+  <div class="cli"><span class="clb" style="color:#6dcc99">$ LOW</span><span class="cld">Under $50</span></div>
+  <div class="cli"><span class="clb" style="color:#59c48c">$$ MED</span><span class="cld">$50 to $250</span></div>
+  <div class="cli"><span class="clb" style="color:#3eb07a">$$$ HIGH</span><span class="cld">$250 and up</span></div>
+  <div class="cli"><span class="clb" style="color:var(--teal)">TIME</span><span class="cld">Real effort required</span></div>
+  <div class="cli"><span class="clb" style="color:var(--t3)">WAIT</span><span class="cld">Do after client 1</span></div>
+</div>
+<div class="op-phases">
+  <div class="opc"><div class="opc-n">Day 1</div><div class="opc-t">Coach</div><div class="opc-d">Your AI Business Coach. Do this before everything else.</div></div>
+  <div class="opc"><div class="opc-n">Phase 0</div><div class="opc-t">Foundation</div><div class="opc-d">LLC, EIN, bank, phone, social accounts. The legal birth.</div></div>
+  <div class="opc"><div class="opc-n">Phase 1</div><div class="opc-t">Proof</div><div class="opc-d">Testimonials, portfolio, Google Business. Proof that sells.</div></div>
+  <div class="opc"><div class="opc-n">Phase 2</div><div class="opc-t">Content</div><div class="opc-d">Reels, TikTok, Threads, groups. AI writes it. You post it.</div></div>
+  <div class="opc"><div class="opc-n">Phase 3</div><div class="opc-t">Outreach</div><div class="opc-d">Realtors, electricians, contractors. Claude tracks follow-ups.</div></div>
+  <div class="opc"><div class="opc-n">Phase 4</div><div class="opc-t">SEO</div><div class="opc-d">Google finds you forever. Builds slowly. Never stops working.</div></div>
+</div>
+</div>
+
+<!-- ════ COACH ════ -->
+<div class="tab-panel" id="panel-coach">
+<div class="gap"></div>
+<div class="sh">
+  <p class="sh-eye">Day 1 — First Thing</p>
+  <h2 class="sh-title">Create your AI Business Coach</h2>
+  <p class="sh-desc">Your coach is built around you specifically — your chart, your business, your challenges, your goals. It already knows you are the owner of Solitude Lighting. You do not re-introduce yourself. You just talk. It opens every session by asking what you got done since you last spoke.</p>
+</div>
+<div class="coach-hero">
+  <div class="coach-title">Why this is Day 1</div>
+  <p style="font-size:13.5px;color:var(--t2);line-height:1.78;">Your Aries Moon was built for bold, fast action — when you move quickly, things happen. Your Leo Rising with Mercury and Venus in the 1st house means your natural voice and presence are literally your brand. Your North Node in Leo in the 1st house is your life's calling toward visibility and leadership. Your Cancer Sun in the 12th house means you process privately and deeply — your coach knows to give you time for that before pushing for action. Every session with your coach takes all of this into account. You are not starting from scratch with every conversation. Your coach <em>knows you</em>.</p>
+</div>
+<div style="background:linear-gradient(135deg,rgba(201,168,76,.07),rgba(201,168,76,.02));border:1px solid rgba(201,168,76,.25);border-radius:var(--r);padding:20px 24px;margin-bottom:18px;">
+  <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">Step 0 — Before You Create Anything</div>
+  <p style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--tx);margin-bottom:10px;line-height:1.3;">"If you KNOW what you WANT, you can HAVE IT."</p>
+  <p style="font-size:13px;color:var(--t2);line-height:1.78;margin-bottom:10px;">A short book called <em>It Works</em> by R.H. Jarrett — only 5 pages — describes a method so simple it is easy to dismiss. Write down everything you want, in order of importance, with specifics. Read the list three times a day. Think about it constantly. Tell no one except the power within you.</p>
+  <p style="font-size:13px;color:var(--t2);line-height:1.78;margin-bottom:10px;">For you, right now, that list starts with these questions: <strong>What do you make at Marriott after taxes, per month? That is your floor.</strong> At $1,000 per install, how many jobs per month matches that? At $3,000? When exactly do you want to leave — name a month and a year. What has to be true before that move feels safe? How much savings do you need as runway?</p>
+  <p style="font-size:13.5px;color:var(--tx);font-style:italic;line-height:1.7;">"You can never realize your desires if you do not know positively and in detail what you want and when you want it. If you cannot decide this, you are not in earnest."</p>
+  <p style="font-size:12px;color:var(--t3);margin-top:10px;">The Schedule tab has a dedicated Step 0 task to walk you through writing the list. Do that before you do anything else. Then bring the list to your Business Coach in your very first session.</p>
+</div>
+
+<div class="ins ip">
+  <p class="ins-l">Where to create it</p>
+  <p>Create this as a <strong>Claude Project on claude.ai</strong> — not Code. A Project saves context between sessions. Your coach remembers what you worked on last time. You can access it on web and on your phone during your commute. Name the project something like "My Business Coach" and let the coach name itself in your first conversation.</p>
+</div>
+<div class="ins it">
+  <p class="ins-l">Also set up a Claude Code project for automation tasks</p>
+  <p>Open <strong>Claude Code</strong> in your terminal. Initialize a new project folder for Solitude Lighting: <code style="background:rgba(78,205,196,.1);padding:2px 6px;border-radius:4px;font-size:12px;">mkdir solitude-automation && cd solitude-automation && claude</code>. This is where you will build your keyword monitoring agent, your LinkedIn tracker, your content scheduling scripts, and any other automation. Think of Claude Code as your back-office that runs things so you don't have to.</p>
+</div>
+<button class="sp-toggle" onclick="toggleSP(this)">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+  Show Full Coach Prompt — Paste into Claude Project Instructions
+</button>
+<div class="sp-body">
+  <div class="sp-inner">
+    <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+    <div class="sp-text"><strong>You are an expert Business Coach, Marketing Strategist, and Entrepreneur Mentor.</strong> Your client is Jeremiah (Jay) Adams — a 26-year-old creative entrepreneur based in Upper Marlboro, Maryland, USA.
+
+<strong>What you already know about Jay — never ask him to re-introduce himself:</strong>
+Jay is the founder of Solitude Lighting, a residential LED and smart home lighting installation company in Upper Marlboro, MD, serving PG County and Charles County. He also runs D2Jay Productions (videography, photography, DJing, sound design). He works full-time as an AV tech lead for an agency contracted by Marriott Hotels in DC. His commute is 1+ hour each way. His goal is to build Solitude Lighting to the point where he can leave Marriott for good and run his own businesses full-time.
+
+Services and pricing: Kitchen Island Install $1,000, Full Kitchen $3,000, Hallway Accent Lighting, Landscape Lighting, Special Event Lighting, Holiday Lighting, Custom/Premium Lighting. Service area: Upper Marlboro, Bowie, Waldorf, Mitchellville, Brandywine, PG County and Charles County MD. Website: solitudelighting.com (has booking page at /appointments).
+
+He graduated cum laude from SCAD (Savannah College of Art and Design). Technically gifted, creatively exceptional, naturally warm. His challenge: he gravitates toward creative execution and away from sales and outreach. He has done free work for family for years — that is ending. He tends toward perfectionism when speed-and-ship serves him better. His Aries Moon and Aries Midheaven mean he is built for bold, fast, independent action in his career — remind him of this when he stalls.
+
+<strong>His natal chart (Tropical, Placidus — born July 6, 1999, 8:12 AM, Columbia SC):</strong>
+Sun 14° Cancer — 12th house | Moon 14° Aries — 9th house | Rising 6° Leo
+Mercury 7° Leo — 1st house (conjunct Ascendant) | Venus 26° Leo — 1st house
+Mars 0° Scorpio — 4th house | Jupiter 1° Taurus — 10th house | Saturn 14° Taurus — 10th house
+Uranus 16° Aquarius Rx — 7th house | Neptune 3° Aquarius Rx — 6th house
+Pluto 8° Sagittarius Rx — 5th house | North Node 14° Leo Rx — 1st house
+Chiron 28° Scorpio Rx — 4th house | Midheaven 28° Aries
+
+<strong>Coaching style:</strong>
+— Always speak to Jay directly as "you." Never third-person. Never clinical.
+— Never overwhelm with more than 3 priorities at once. Identify the single most important next move.
+— When he stalls or avoids outreach, bring in his Aries Moon and North Node in Leo gently.
+— Challenge him when he is avoiding sales — that is his growth edge.
+— Celebrate every win, however small. He needs to see momentum.
+— When he brings a question or update, understand the context first, then give one clear recommendation.
+— Strategy, psychology, and astrology are all tools — use them together when relevant.
+
+<strong>Open every new conversation with:</strong> "Welcome back, Jay. What did you get done since we last talked — and what's on your mind today?"
+
+<strong>Ask Jay to name you in your first conversation.</strong>
+
+<strong>In your very first session, if Jay has not yet shared his "It Works" list:</strong>
+Ask him directly: "Before we do anything else, I want to know your list. Not your tasks — your desires. What do you actually want from this business and from your life? What is the number that means financial freedom for you? When do you want to leave Marriott? Write it down first if you haven't, then share it with me." Once he shares it, acknowledge every item specifically. Do the math with him: at his current pricing, how many installs per month does he need to match his Marriott income? What does the 6-month path look like? What is the minimum savings runway before leaving is safe? Make these numbers real and visible. Then connect every coaching session back to this list — reference it when he hits milestones, reference it when he needs motivation, and update it when his goals evolve.
+
+<strong>Recommended Claude skills to install in this project:</strong>
+marketing-psychology, social-content, seo-audit, marketing-ideas, content-strategy, copywriting, tiktok-marketing</div>
+  </div>
+</div>
+<div class="fc" style="margin-top:20px;">
+  <div class="fc-l">Future — After 3 clients and consistent revenue</div>
+  <div class="ct" style="margin-bottom:5px;font-family:Syne,sans-serif;font-size:14px;font-weight:700;color:var(--tx);">AI Agents for Solitude Lighting</div>
+  <p style="font-size:13px;color:var(--t2);line-height:1.7;">Once you have 3 paying clients and the $100/month Claude plan is worth it, we build agents that run things automatically — social posting, lead follow-up sequences, Google review requests, content repurposing, and daily monitoring. The trigger is client 3. Export your full JSON progress, bring it to your coach, and ask: "I have 3 clients now. What do we automate first and how does the playbook change?" That conversation creates Version 2 of this document.</p>
+</div>
+</div>
+
+<!-- ════ FOUNDATION (reference) ════ -->
+<div class="tab-panel" id="panel-foundation">
+<div class="gap"></div>
+<div class="sh">
+  <p class="sh-eye">Phase 0 — Reference</p>
+  <h2 class="sh-title">Foundation — context and why each step matters</h2>
+  <p class="sh-desc">All tasks are in the Schedule tab under Phase 0. This tab explains what to choose and why.</p>
+</div>
+<div class="ins ic">
+  <p class="ins-l">Separate Solitude Lighting accounts from D2Jay — completely</p>
+  <p>A homeowner looking for kitchen lighting has nothing in common with an artist booking a music video. Different audience, different tone, different content, different trust signals. You already have @solitudelighting on Instagram. Create a separate TikTok, Threads, and Facebook Business Page for Solitude Lighting only. <strong>Never cross-post between D2Jay and Solitude Lighting accounts.</strong> The D2Jay personal page can bridge early — repost one Solitude piece per week from your personal account to warm up existing followers while the new accounts build. After 30 posts, stop relying on D2Jay as a bridge.</p>
+</div>
+<div class="ins">
+  <p class="ins-l">Bank account options</p>
+  <p>Mercury (mercury.com — online, no fees, best for startups), Relay (relayfi.com — clean and simple for solo contractors), or walk into a local Citi or Chase branch. All three are solid. The most important thing is that you open one and use it — every dollar from Solitude Lighting goes in here, never mixed with personal money.</p>
+</div>
+<div class="ins">
+  <p class="ins-l">What to delay until after client 1</p>
+  <p>Business insurance ($30–$50/month), virtual mailbox ($10–$20/month), and professional email through Google Workspace ($6/month) are all worth doing — but they add monthly cost before you have proven income. Wait until your first paid install. Do not add expenses to prove a hypothesis.</p>
+</div>
+<div class="ins ic">
+  <p class="ins-l">The zero-followers question</p>
+  <p>Starting with zero followers is real — but it matters less than you think on Reels and TikTok, which push new content to non-followers based on watch time and engagement. The real answer is this: <strong>do not run paid ads on new accounts until you have at least 9 posts and some proof of work showing.</strong> Instead, lean hard on Facebook groups and Nextdoor first — those channels do not require followers. The algorithm treats a compelling Reel from a brand-new account the same as one from a million-follower account if people watch it. Post good content. Reply to everything. The followers come from the content, not the other way around.</p>
+</div>
+</div>
+
+<!-- ════ PROOF (reference) ════ -->
+<div class="tab-panel" id="panel-proof">
+<div class="gap"></div>
+<div class="sh">
+  <p class="sh-eye">Phase 1 — Reference</p>
+  <h2 class="sh-title">Proof — why clients need to see it before they call</h2>
+  <p class="sh-desc">All Phase 1 tasks are in the Schedule tab. This tab explains the psychology behind each step.</p>
+</div>
+<div class="ins ic">
+  <p class="ins-l">Speaking to the homeowner's problem — not your service</p>
+  <p>The homeowner's problem is not "I need LED lights." Their problem is <strong>"My home doesn't feel like me. Every time I walk into my kitchen I feel something is off and I don't know why. My guests notice. I spent good money on this house and it still doesn't feel premium."</strong> That is the emotion that drives the search. Every piece of proof, every caption, every post needs to speak to that feeling — not the product. Show them the after, help them feel what it is like to be in that space, and let them imagine it in their home.</p>
+</div>
+<div class="ins">
+  <p class="ins-l">The exact realtor script</p>
+  <p style="font-style:italic;font-size:13.5px;color:var(--tx);line-height:1.8;margin-top:6px;">"Hey [name], I'm growing Solitude Lighting and targeting homeowners who just closed on a new build in Waldorf, Brandywine, or Bowie — people who want to upgrade from builder-grade lighting. When you close with a buyer in one of those areas, you introduce me and I give them a $200 discount on any install. If they book, I send you $150 as a thank-you. No paperwork, no commitment. You just forward my info. Would that work for you?"</p>
+</div>
+<div class="ins it">
+  <p class="ins-l">The booking page is already live</p>
+  <p>Your website already has a booking page at <strong>solitudelighting.com/appointments</strong>. Use this link everywhere — social bios, DMs, text messages, email signatures. When someone expresses interest, your response is always: "You can book a free consult right here: solitudelighting.com/appointments." Make the first step one tap.</p>
+</div>
+</div>
+
+<!-- ════ CONTENT (reference) ════ -->
+<div class="tab-panel" id="panel-content">
+<div class="gap"></div>
+<div class="sh">
+  <p class="sh-eye">Phase 2 — Reference</p>
+  <h2 class="sh-title">Content — strategy, hooks, and platforms</h2>
+  <p class="sh-desc">All Phase 2 tasks are in the Schedule tab. Use this tab to understand pillars, hooks, and platform differences.</p>
+</div>
+<div class="ins ic">
+  <p class="ins-l">Your creative trap — and the fix</p>
+  <p>Your SCAD eye knows what looks good. Use it to recognize when something is good enough to ship — not perfect, good enough. <strong>Post it. Move to the next one.</strong> The algorithm rewards consistent volume far more than occasional perfection. Your coach can review content ideas and tell you if something is ready to post. That is the quality check — not your own internal perfectionism loop.</p>
+</div>
+<div class="cg">
+  <div class="card ac-c"><div class="ci ci-c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 10l4.553-2.069A1 1 0 0121 8.82V15.18a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg></div><div class="ct">Transformation Reveal — 30%</div><div class="cb">Before and after. Shoot the before first at every job. The switch flip moment drives the most DMs of any content type. This answers the homeowner's question: "What would my space look like?"</div><div class="tags"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><span class="bs">Sales</span></div></div>
+  <div class="card ac-c"><div class="ci ci-c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div><div class="ct">Education and Tips — 25%</div><div class="cb">"Why your kitchen feels dark." "What light temperature actually does." These get saved and shared. They answer the homeowner's question: "Why does my expensive house feel cheap?" CapCut AI and Higgsfield both work for faceless versions.</div><div class="tags"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span></div></div>
+  <div class="card ac-c"><div class="ci ci-c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="ct">Process and BTS — 25%</div><div class="cb">The install in progress. The precision. This answers: "Is this person actually good at what they do?" Builds trust before they ever message you.</div><div class="tags"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span></div></div>
+  <div class="card ac-c"><div class="ci ci-c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div><div class="ct">Client Reactions — 20%</div><div class="cb">Real homeowners reacting to the finished space. This answers: "Will I be happy with this?" Emotional proof is more powerful than any ad.</div><div class="tags"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><span class="bs">Sales</span></div></div>
+</div>
+<div class="hooks">
+  <div class="hk"><div class="hk-t">Problem hook — speaks to the homeowner's pain</div><div class="hk-v">"This kitchen light has been making you uncomfortable — and you didn't even know why."</div></div>
+  <div class="hk"><div class="hk-t">Result-first hook</div><div class="hk-v">"This install completely changed how this home feels. Here's exactly what we did."</div></div>
+  <div class="hk"><div class="hk-t">Curiosity hook</div><div class="hk-v">"Most people upgrade their furniture when the real problem is the lights."</div></div>
+  <div class="hk"><div class="hk-t">Contrarian hook</div><div class="hk-v">"Unpopular opinion: your paint color matters way less than your light temperature."</div></div>
+  <div class="hk"><div class="hk-t">Educational hook — most saved format</div><div class="hk-v">"3 things that make a living room feel like a luxury hotel — and none cost what you think."</div></div>
+</div>
+<div class="plg">
+  <div class="plc"><div class="pl-n"><span class="pl-dot" style="background:#E1306C;"></span>Instagram Reels</div><div class="pl-r" style="color:var(--coral);">Primary</div><div class="pl-b">1 to 2 reels per week. Transformation content. Caption by your coach every time.</div></div>
+  <div class="plc"><div class="pl-n"><span class="pl-dot" style="background:#010101;border:1px solid #333;"></span>TikTok</div><div class="pl-r" style="color:var(--gold);">Secondary</div><div class="pl-b">Same content, repurposed immediately. TikTok pushes new accounts hard if content is visual and compelling.</div></div>
+  <div class="plc"><div class="pl-n"><span class="pl-dot" style="background:#1877F2;"></span>Facebook Groups</div><div class="pl-r" style="color:var(--teal);">Community</div><div class="pl-b">Post as a neighbor. Does not require followers. This is your fastest path to DMs from real local homeowners.</div></div>
+  <div class="plc"><div class="pl-n"><span class="pl-dot" style="background:#010101;border:1px solid #333;"></span>Threads</div><div class="pl-r" style="color:var(--pur);">Conversation</div><div class="pl-b">Tips, questions, community. One tag max. DMV local groups. Add value first — never pitch.</div></div>
+  <div class="plc"><div class="pl-n"><span class="pl-dot" style="background:#00B246;"></span>Nextdoor</div><div class="pl-r" style="color:var(--grn);">Hyperlocal</div><div class="pl-b">Post as a neighbor. Neighbor posts get 3 to 4x more engagement than business posts.</div></div>
+</div>
+</div>
+
+<!-- ════ OUTREACH (reference) ════ -->
+<div class="tab-panel" id="panel-outreach">
+<div class="gap"></div>
+<div class="sh">
+  <p class="sh-eye">Phase 3 — Reference</p>
+  <h2 class="sh-title">Outreach — scripts and the math behind it</h2>
+  <p class="sh-desc">All Phase 3 tasks are in the Schedule tab. This tab has scripts, the math, and the strategic context.</p>
+</div>
+<div class="ins ip">
+  <p class="ins-l">The math that gets you to 3 clients</p>
+  <p>50 LinkedIn connection requests → 15% reply rate = 7 to 8 conversations → 30% close rate = 2 to 3 booked installs. That is your first month of outreach producing your first clients. One conversation with one realtor who closes 30 homes a year could produce 5 to 15 referrals over the following 24 months. <strong>You are not selling to individuals. You are building pipelines that keep producing.</strong></p>
+</div>
+<div class="ins ic">
+  <p class="ins-l">LinkedIn follow-up message — after they connect</p>
+  <p style="font-style:italic;font-size:13.5px;color:var(--tx);line-height:1.8;margin-top:6px;">"Hey [Name], appreciate the connection. Short version: I install LED kitchen and smart home lighting for new homeowners in PG County and Charles County. A lot of my ideal clients just bought in Waldorf or Bowie and want to upgrade from builder grade. If any of your buyers ever ask about that kind of upgrade, I'd love to be your go-to referral. I pay $150 per booking, no strings. Worth a quick chat?"</p>
+</div>
+<div class="ins">
+  <p class="ins-l">Quote follow-up sequence — Day 3, 7, 14</p>
+  <p>Day 3: "Hey, just checking in to see if you had any questions about the quote." Day 7: "I have a slot open the weekend of [date] — wanted to offer it to you first before I book it." Day 14: "Last reach out — if timing isn't right yet, no worries at all. Happy to connect when you're ready." Ask your Business Coach to write all three for you — it will personalize them to the specific client context.</p>
+</div>
+</div>
+
+<!-- ════ SEO (reference) ════ -->
+<div class="tab-panel" id="panel-seo">
+<div class="gap"></div>
+<div class="sh">
+  <p class="sh-eye">Phase 4 — Reference</p>
+  <h2 class="sh-title">SEO — how Google becomes your best employee</h2>
+  <p class="sh-desc">All Phase 4 tasks are in the Schedule. This tab explains the strategy.</p>
+</div>
+<div class="ins it">
+  <p class="ins-l">Social vs Google — two different jobs</p>
+  <p>Social media is a billboard — people see it while scrolling. Google is a directory that only appears when someone types in what they want and has their wallet out. <strong>Social builds awareness. Google captures intent.</strong> The homeowner who types "kitchen lighting installer Upper Marlboro MD" is not browsing. They are ready to book. These two phases run in parallel — not sequentially.</p>
+</div>
+<div class="ins">
+  <p class="ins-l">Local keywords that signal buying intent</p>
+  <p>Use these naturally in your Google Business description and every web page Claude writes for your site: "LED lighting installer Upper Marlboro MD," "under-cabinet lighting Bowie MD," "smart home lighting Waldorf MD," "kitchen accent lighting Prince George's County," "hallway LED lights Mitchellville MD," "lighting installer near me PG County."</p>
+</div>
+</div>
+
+<!-- ════ MINDSET ════ -->
+<div class="tab-panel" id="panel-mindset">
+<div class="gap"></div>
+<div class="sh">
+  <p class="sh-eye">Business Mindset</p>
+  <h2 class="sh-title">The mental models behind every decision</h2>
+  <p class="sh-desc">Read this when you hit a wall. When you're not sure why something isn't working. When you feel like you should be doing something but don't know what. These principles let you skip years of trial and error.</p>
+</div>
+<div class="fw">
+  <div class="fw-title">The Awareness and Sales Flywheel</div>
+  <div class="fw-row">
+    <div class="fw-node"><div class="fw-lbl">Awareness</div><div class="fw-sub">Content, groups, SEO, referrals, ads</div></div>
+    <div class="fw-arrow">→</div>
+    <div class="fw-node"><div class="fw-lbl">Conversations</div><div class="fw-sub">DMs, calls, free walk-throughs</div></div>
+    <div class="fw-arrow">→</div>
+    <div class="fw-node"><div class="fw-lbl">Sales</div><div class="fw-sub">Installs, revenue, testimonials</div></div>
+    <div class="fw-arrow">→</div>
+    <div class="fw-node"><div class="fw-lbl">More Awareness</div><div class="fw-sub">Reviews, word of mouth, before/afters</div></div>
+  </div>
+  <div class="fw-body">Put resources into awareness and you get more sales. Reinvest those sales into more awareness. Most people do one or the other and wonder why growth stalls. You are going to do both, deliberately, on purpose. Every week. Both sides of the flywheel, every week.</div>
+</div>
+<div class="pg">
+  <div class="pc"><div class="pn">What they're actually buying</div><div class="pb2">"My home finally feels like me." "Guests will be impressed." "I spent good money on this house and it should look like it." Speak to the feeling, not the product. Always.</div><div class="pa">In: every caption, pitch, and quote.</div></div>
+  <div class="pc"><div class="pn">Fix the bottleneck first</div><div class="pb2">Your only problem right now is not having enough clients. Not the wrong software. Not the wrong logo. Build clients first. One paying client teaches you more than 100 hours of planning.</div><div class="pa">When: you feel like organizing instead of selling.</div></div>
+  <div class="pc"><div class="pn">7 touchpoints before action</div><div class="pb2">Most people need to encounter your brand about 7 times before they take action. Posting, groups, Google, and outreach all compound together. This is why you do all of them — not one.</div><div class="pa">When: you feel like nobody is responding.</div></div>
+  <div class="pc"><div class="pn">Lower every barrier to yes</div><div class="pb2">"DM me" beats "fill out my booking form" every time. "Text me a photo of your space" gets replies. "Book a free consult here: [link]" gets bookings. The easier the first step, the more people take it.</div><div class="pa">In: every CTA on every post.</div></div>
+  <div class="pc"><div class="pn">Social proof does the selling</div><div class="pb2">People trust other people far more than they trust you telling them you're good. Every testimonial, every before/after, every client reaction video is social proof working for you 24 hours a day.</div><div class="pa">In: every client interaction and content decision.</div></div>
+  <div class="pc"><div class="pn">Ask for the referral at the peak</div><div class="pb2">Right after the reveal — when the client is emotional and excited — is your highest-motivation moment to ask for a referral. Not a week later. Not in an email. Right then.</div><div class="pa">At: the end of every install.</div></div>
+  <div class="pc"><div class="pn">Price signals quality</div><div class="pb2">A $1,000 install sounds professional. A $200 install sounds like Craigslist. Your prices are right. Do not discount. Discounting signals that the original price wasn't real.</div><div class="pa">When: you feel tempted to drop the price.</div></div>
+  <div class="pc"><div class="pn">Follow up past comfort</div><div class="pb2">Most deals die not because the person said no — but because no one followed up again. Day 3, Day 7, Day 14. Warm, not desperate. Most business is won in the follow-up.</div><div class="pa">After: every quote that goes quiet.</div></div>
+  <div class="pc"><div class="pn">Your North Node is calling</div><div class="pb2">North Node in Leo in your 1st house. Visibility and leadership are your destiny. Every post, every DM reply, every client conversation moves you toward it. The avoidance is the resistance. The showing up is the path.</div><div class="pa">When: you feel like hiding instead of posting.</div></div>
+  <div class="pc"><div class="pn">Your Aries Moon needs action</div><div class="pb2">Aries Moon and Aries Midheaven. You were built for bold, fast, independent career action. When you move quickly, things happen. When you overthink, momentum dies. Done beats perfect every time for your chart.</div><div class="pa">When: you are planning instead of doing.</div></div>
+</div>
+</div>
+
+<!-- ════════════════════════════════════════
+     SCHEDULE — THE MASTER TASK HUB
+════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-schedule">
+<div class="gap"></div>
+<div class="sh">
+  <p class="sh-eye">Every Task — Every Phase — In Order</p>
+  <h2 class="sh-title">The Schedule</h2>
+  <p class="sh-desc">Click a phase on the left. Click any day bar to expand it. Check the checkbox on each task to mark it done. Every task has an AI prompt built in — click the teal button to expand and copy it. Only the checkbox marks a task complete — you can freely read and select text in a task without checking it off.</p>
+</div>
+
+<!-- Overall progress -->
+<div class="op-block">
+  <div class="op-lbl">Overall Progress</div>
+  <div class="op-row"><span class="op-name">Day 1 Coach</span><div class="op-bar"><div class="op-fill" id="fill-d1" style="width:0%;background:var(--pur);"></div></div><span class="op-pct" id="pct-d1">0%</span></div>
+  <div class="op-row"><span class="op-name">Phase 0</span><div class="op-bar"><div class="op-fill" id="fill-p0" style="width:0%;background:var(--gold);"></div></div><span class="op-pct" id="pct-p0">0%</span></div>
+  <div class="op-row"><span class="op-name">Phase 1</span><div class="op-bar"><div class="op-fill" id="fill-p1" style="width:0%;background:var(--teal);"></div></div><span class="op-pct" id="pct-p1">0%</span></div>
+  <div class="op-row"><span class="op-name">Phase 2</span><div class="op-bar"><div class="op-fill" id="fill-p2" style="width:0%;background:var(--coral);"></div></div><span class="op-pct" id="pct-p2">0%</span></div>
+  <div class="op-row"><span class="op-name">Phase 3</span><div class="op-bar"><div class="op-fill" id="fill-p3" style="width:0%;background:var(--pur);"></div></div><span class="op-pct" id="pct-p3">0%</span></div>
+  <div class="op-row"><span class="op-name">Phase 4</span><div class="op-bar"><div class="op-fill" id="fill-p4" style="width:0%;background:var(--grn);"></div></div><span class="op-pct" id="pct-p4">0%</span></div>
+</div>
+
+<div class="sch-wrap">
+  <div class="sch-sidebar">
+    <button class="phase-btn active" onclick="openPhase('d1',this)" data-phase="d1"><span class="phase-dot" style="background:var(--pur);"></span>Day 1 — Coach</button>
+    <button class="phase-btn" onclick="openPhase('p0',this)" data-phase="p0"><span class="phase-dot" style="background:var(--gold);"></span>Phase 0 — Foundation</button>
+    <button class="phase-btn" onclick="openPhase('p1',this)" data-phase="p1"><span class="phase-dot" style="background:var(--teal);"></span>Phase 1 — Proof</button>
+    <button class="phase-btn" onclick="openPhase('p2',this)" data-phase="p2"><span class="phase-dot" style="background:var(--coral);"></span>Phase 2 — Content</button>
+    <button class="phase-btn" onclick="openPhase('p3',this)" data-phase="p3"><span class="phase-dot" style="background:var(--pur);"></span>Phase 3 — Outreach</button>
+    <button class="phase-btn" onclick="openPhase('p4',this)" data-phase="p4"><span class="phase-dot" style="background:var(--grn);"></span>Phase 4 — SEO</button>
+  </div>
+  <div class="sch-content">
+
+<!-- helper macros as JS template strings below -->
+<!-- ─────────── DAY 1: COACH ─────────── -->
+<div class="phase-panel active" id="pp-d1">
+  <div class="ph-hdr">
+    <div class="ph-eye">Day 1 — Before Anything Else</div>
+    <div class="ph-title">Know What You Want. Then Build the Coach.</div>
+    <div class="ph-desc">Before you talk to a coach, before you set up an account, before you do anything — you need to know what you actually want. Not vaguely. Specifically. In writing. This is Step 0. Everything else in this playbook flows from it.</div>
+  </div>
+  <div class="ph-prog"><div class="ph-fill" id="pf-d1" style="width:0%"></div></div>
+  <div id="phase-d1">
+
+  <!-- IT WORKS — before everything else -->
+  <div class="dg" style="border-color:rgba(201,168,76,.3);background:linear-gradient(135deg,rgba(201,168,76,.03),transparent);">
+    <button class="dg-toggle" onclick="toggleDay(this)" style="background:linear-gradient(135deg,rgba(201,168,76,.06),transparent);">
+      <div class="dg-toggle-left">
+        <span class="dg-badge" style="background:rgba(201,168,76,.18);color:var(--gold);border:1px solid rgba(201,168,76,.3);">Step 0</span>
+        <span class="dg-title" style="color:var(--gold);">Write your list — It Works</span>
+      </div>
+      <div class="dg-right">
+        <span class="dg-hint">▼ Click to expand</span>
+        <span class="dg-prog" id="dp-d1-0">0/3</span>
+        <svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+    </button>
+    <div class="dg-body">
+      <div class="dg-inner">
+
+        <!-- Book context block -->
+        <div style="background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.16);border-radius:var(--rs);padding:16px 18px;margin-bottom:16px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">From "It Works" by R.H. Jarrett</div>
+          <p style="font-size:13px;color:var(--t2);line-height:1.82;margin-bottom:10px;font-style:italic;">"You have within you a mighty power, anxious and willing to serve you, a power capable of giving you that which you earnestly desire."</p>
+          <p style="font-size:13px;color:var(--t2);line-height:1.82;margin-bottom:10px;font-style:italic;">"Write down on paper in order of their importance the things and conditions you really want. Do not be afraid of wanting too much. Go the limit."</p>
+          <p style="font-size:13px;color:var(--t2);line-height:1.82;margin-bottom:12px;font-style:italic;">"You can never realize your desires if you do not know positively and in detail what you want and when you want it. If you cannot decide this, you are not in earnest."</p>
+          <div style="border-top:1px solid rgba(201,168,76,.15);padding-top:10px;">
+            <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;">The Three Rules</div>
+            <p style="font-size:12.5px;color:var(--tx);line-height:1.8;"><strong>1.</strong> Read the list three times each day — morning, noon, and night.<br><strong>2.</strong> Think of what you want as often as possible.<br><strong>3.</strong> Do not talk to anyone about your plan — except your inner self, and your Business Coach.</p>
+          </div>
+        </div>
+
+        <div class="tl" id="dt-d1-0">
+          <div class="ti">
+            <div class="tcb" onclick="toggleTask(this,'dp-d1-0','dt-d1-0','d1')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <div class="ttxt">
+              <strong>Before you open Claude, before you create anything — sit down and write your list.</strong> Not on your phone. On paper or in a note app with no distractions. Write down everything you want from this business and from your life. Start with Solitude Lighting specifically: What does financial freedom look like for you? What is the number? How many installs per month gets you there? When do you want to leave Marriott? What does your day look like when this is working? Be specific. Go the limit. Include things that feel impossible right now. Write them in order of what matters most.
+              <div class="task-meta"><span class="tag t-fr">FREE</span><span class="tag t-ti">TIME</span><span class="ba">Awareness</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+              <button class="tp-toggle" onclick="toggleTP(this)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+                Prompts to help you figure out the numbers
+              </button>
+              <div class="tp-body"><div class="tp-inner">
+                <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+                <div class="tp-chip">Think through these before you write</div>
+                <div class="tp-text">Work through these questions honestly. Write the answers down — these become the foundation of your list.
+
+<strong>THE FREEDOM NUMBER:</strong>
+— What do you make at Marriott right now, after taxes, per month?
+— That is your floor. Your business needs to match or beat that before you leave.
+— At $1,000 per kitchen island install: how many jobs per month hits that number?
+— At $3,000 per full kitchen: how many jobs?
+— What mix of jobs feels realistic in Month 6? Month 12?
+— What does $10,000/month look like in installs? (That's the milestone.)
+
+<strong>THE TIMELINE:</strong>
+— When exactly do you want to leave Marriott? Name a specific date or month.
+— What has to be true about the business by then for you to feel safe making that move?
+— How much runway (savings) do you need to feel comfortable?
+
+<strong>THE LIFE:</strong>
+— What does a Tuesday look like when Solitude Lighting is your full-time life?
+— Where are you living?
+— What does your work week feel like — how many installs, how much creative work?
+— What does success feel like — not look like, feel like?
+
+<strong>WRITE THESE DOWN IN ORDER OF IMPORTANCE:</strong>
+Example format:
+1. Leave Marriott by [specific month and year]
+2. Make $[your Marriott income] per month from Solitude Lighting by [date]
+3. Complete [X] installs per month consistently
+4. Have [X] in savings as runway before I leave
+5. Live completely on business income by [date]
+6. [Your own items beyond these]
+
+This list is yours. It is private. It is specific. It is what "It Works" calls the only thing that actually activates the power within you.</div>
+              </div></div>
+            </div>
+          </div>
+          <div class="ti">
+            <div class="tcb" onclick="toggleTask(this,'dp-d1-0','dt-d1-0','d1')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <div class="ttxt">
+              <strong>Set up the three daily reads.</strong> Put three calendar reminders on your phone right now — morning, noon, and night — labeled "Read the list." This is the one non-negotiable commitment from the entire book. The book is 5 pages. The method is this simple. The only way it fails is if you stop reading the list.
+              <div class="task-meta"><span class="tag t-fr">FREE</span><span class="tag t-ti">5 min</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            </div>
+          </div>
+          <div class="ti">
+            <div class="tcb" onclick="toggleTask(this,'dp-d1-0','dt-d1-0','d1')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <div class="ttxt">
+              <strong>Share your list with your Business Coach in the very first session</strong> — after you create it in the next step. Your coach will use these goals in every conversation going forward. It will hold you accountable to the numbers you wrote. It will track whether each task in this playbook moves you closer to the specific things on your list. The coach knowing your list is what makes it a real coaching relationship, not just a chatbot.
+              <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+              <button class="tp-toggle" onclick="toggleTP(this)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+                First Business Coach session prompt — share your list
+              </button>
+              <div class="tp-body"><div class="tp-inner">
+                <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+                <div class="tp-chip">Business Coach Project — your very first message</div>
+                <div class="tp-skill">Skills: marketing-psychology, content-strategy</div>
+                <div class="tp-text">I just read a short book called "It Works" by R.H. Jarrett. The method is simple: write down everything you want, in order of importance, with specifics. Read it three times a day. I took it seriously and here is my list:
+
+[PASTE YOUR HANDWRITTEN LIST HERE]
+
+I want you to know these goals. I want you to hold me to them. When we talk about marketing tasks, I want you to connect them back to these numbers. When I am 3 installs away from the month I said I would leave Marriott, I want you to remind me of that. When I hit a milestone on this list, I want you to acknowledge it.
+
+Now help me do the math. Based on my pricing ($1,000 kitchen island, $3,000 full kitchen), what does a realistic path to my income goal look like month by month? What is the minimum number of installs per month I need before it is financially safe to leave Marriott? What should my savings runway be before I make that move?
+
+This is what I am working toward. Everything in this playbook is in service of this list.</div>
+              </div></div>
+            </div>
+          </div>
+        </div>
+        <div class="dn-l">Your list — write it here or paste it after writing on paper</div>
+        <textarea class="dn" id="dn-d1-0" placeholder="1. Leave Marriott by...&#10;2. Make $___/month from Solitude Lighting by...&#10;3. Complete ___ installs per month...&#10;4. Have $___ in savings before I leave...&#10;5. ...&#10;&#10;Go the limit. Be specific. This is private." style="min-height:140px;border-color:rgba(201,168,76,.2);"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 1 -->
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left">
+        <span class="dg-badge" style="background:var(--gd);color:var(--gold);">Day 1</span>
+        <span class="dg-title">Set up your Claude Coach Project</span>
+      </div>
+      <div class="dg-right">
+        <span class="dg-hint">▼ Click to expand</span>
+        <span class="dg-prog" id="dp-d1-1">0/3</span>
+        <svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+    </button>
+    <div class="dg-body">
+      <div class="dg-inner">
+        <div class="tl" id="dt-d1-1">
+          <div class="ti">
+            <div class="tcb" onclick="toggleTask(this,'dp-d1-1','dt-d1-1','d1')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <div class="ttxt">
+              <strong>Go to claude.ai → Projects in left sidebar → "New Project."</strong> Name it whatever feels right. Something like "My Business Coach" or leave it for the coach to help name.
+              <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            </div>
+          </div>
+          <div class="ti">
+            <div class="tcb" onclick="toggleTask(this,'dp-d1-1','dt-d1-1','d1')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <div class="ttxt">
+              <strong>In the "Project Instructions" field, paste the full coach prompt.</strong> It is in the Coach tab with a Copy button. This tells your coach everything about you, your chart, your business, and how you want to be coached — so you never have to explain yourself again.
+              <div class="task-meta"><span class="tag t-fr">FREE</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            </div>
+          </div>
+          <div class="ti">
+            <div class="tcb" onclick="toggleTask(this,'dp-d1-1','dt-d1-1','d1')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <div class="ttxt">
+              <strong>Start your first conversation.</strong> Your coach will open with: "Welcome back, Jay. What did you get done since we last talked — and what's on your mind today?" Tell it you are just getting started. Ask what it wants to be called. Give it a name.
+              <div class="task-meta"><span class="tag t-fr">FREE</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="dn-l">Notes</div>
+        <textarea class="dn" id="dn-d1-1" placeholder="What did you name your coach? What came up in your first session?"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left">
+        <span class="dg-badge" style="background:var(--gd);color:var(--gold);">Day 1</span>
+        <span class="dg-title">Set up Claude Code automation project folder</span>
+      </div>
+      <div class="dg-right">
+        <span class="dg-hint">▼ Click to expand</span>
+        <span class="dg-prog" id="dp-d1-2">0/1</span>
+        <svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+    </button>
+    <div class="dg-body">
+      <div class="dg-inner">
+        <div class="tl" id="dt-d1-2">
+          <div class="ti">
+            <div class="tcb" onclick="toggleTask(this,'dp-d1-2','dt-d1-2','d1')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <div class="ttxt">
+              <strong>Open your terminal and create your Solitude automation folder.</strong> This is where you will build your scheduled monitoring agent, LinkedIn tracker, and other automation that runs for you in the background.
+              <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+              <button class="tp-toggle" onclick="toggleTP(this)">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+                Claude Code Setup Prompt
+              </button>
+              <div class="tp-body"><div class="tp-inner">
+                <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+                <div class="tp-chip">Claude Code — run in terminal</div>
+                <div class="tp-skill">Install skills: marketing-automation, social-content, seo-audit in your Claude Code context</div>
+                <div class="tp-text">mkdir solitude-automation && cd solitude-automation && claude
+
+Once Claude Code opens, say:
+"I am setting up an automation project for Solitude Lighting, my residential LED lighting business in Upper Marlboro MD. I want to build: (1) a scheduled keyword monitoring agent that searches Facebook groups and Nextdoor daily for posts about lighting, electrician, contractor, kitchen, home improvement, and recommend — and sends me a daily email digest with links and a suggested reply for each relevant post, (2) a LinkedIn outreach follow-up tracker, and (3) a quote follow-up sequence emailer. What do I need to install first and what should we build first?"</div>
+              </div></div>
+            </div>
+          </div>
+        </div>
+        <div class="dn-l">Notes</div>
+        <textarea class="dn" id="dn-d1-2" placeholder="Claude Code setup status, what you built first..."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="br">
+    <button class="btn bg bdis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13M5 10l7 7 7-7"/><path d="M5 21h14"/></svg>Export to Dashboard</button>
+    <button class="btn bgh" onclick="exportJSON()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>Export Progress JSON</button>
+  </div>
+</div>
+</div>
+
+<!-- ─────────── PHASE 0: FOUNDATION ─────────── -->
+<div class="phase-panel" id="pp-p0">
+  <div class="ph-hdr">
+    <div class="ph-eye">Phase 0 — Weekend 1</div>
+    <div class="ph-title">Foundation — Give Solitude Lighting a legal birth</div>
+    <div class="ph-desc">Most of these tasks take under an hour. WAIT tasks add monthly cost — do those only after your first paid install.</div>
+    <div class="ph-meta"><span class="tag t-lo">$ LOW one-time</span><span class="tag t-wt">Some: WAIT after client 1</span></div>
+  </div>
+  <div class="ph-prog"><div class="ph-fill" id="pf-p0" style="width:0%"></div></div>
+  <div id="phase-p0">
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left">
+        <span class="dg-badge" style="background:var(--gd);color:var(--gold);">Day 2</span>
+        <span class="dg-title">LLC registration + EIN — the legal birth</span>
+      </div>
+      <div class="dg-right"><span class="dg-hint">▼ Click to expand</span><span class="dg-prog" id="dp-p0-1">0/2</span><svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </button>
+    <div class="dg-body"><div class="dg-inner">
+      <div class="tl" id="dt-p0-1">
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p0-1','dt-p0-1','p0')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Register Solitude Lighting as an LLC at sdat.dat.maryland.gov.</strong> Select "Create a New Business" → LLC. Cost about $100. Save the confirmation PDF in a folder called "Solitude Legal." This is the moment Solitude Lighting officially exists as a business entity — its own legal being.
+            <div class="task-meta"><span class="tag t-lo">$ LOW</span><span class="ba">Awareness</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            <button class="tp-toggle" onclick="toggleTP(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Ask your Business Coach</button>
+            <div class="tp-body"><div class="tp-inner">
+              <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+              <div class="tp-chip">Business Coach Project</div>
+              <div class="tp-skill">Skills: small-business-operations (if available)</div>
+              <div class="tp-text">Walk me through registering Solitude Lighting as an LLC in Maryland step by step. I need the exact URL, what to select on each screen, what information to have ready, how much it costs, and how long it takes. I am the sole owner — single-member LLC. Plain language only.</div>
+            </div></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p0-1','dt-p0-1','p0')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Get your EIN immediately after — free from IRS.gov.</strong> Search "Apply for EIN online" on irs.gov. Select LLC. Your EIN is issued instantly on screen. Screenshot it and save in "Solitude Legal." You need this number to open your bank account.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="dn-l">Notes</div><textarea class="dn" id="dn-p0-1" placeholder="LLC confirmation number, EIN number, any issues..."></textarea>
+    </div></div>
+  </div>
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left"><span class="dg-badge" style="background:var(--gd);color:var(--gold);">Day 3</span><span class="dg-title">Bank account + business phone number</span></div>
+      <div class="dg-right"><span class="dg-hint">▼ Click to expand</span><span class="dg-prog" id="dp-p0-2">0/2</span><svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </button>
+    <div class="dg-body"><div class="dg-inner">
+      <div class="tl" id="dt-p0-2">
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p0-2','dt-p0-2','p0')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Open a business bank account.</strong> Options: Mercury (mercury.com — online, zero fees, best for startups), Relay (relayfi.com — simple, good for solo contractors), or a local Citi or Chase branch if you prefer in-person. Have your LLC docs and EIN ready. All Solitude Lighting money goes here from this day forward. Never mix with personal.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p0-2','dt-p0-2','p0')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Set up a Google Voice business number at voice.google.com.</strong> Pick a number, forward to your cell. This goes on every social bio, every marketing piece, every client communication from here forward. Keep your personal number personal.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            <button class="tp-toggle" onclick="toggleTP(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Ask your Business Coach — write my phone greeting</button>
+            <div class="tp-body"><div class="tp-inner">
+              <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+              <div class="tp-chip">Business Coach Project</div>
+              <div class="tp-text">Write me a 20-second professional voicemail greeting for my Solitude Lighting business number. Warm but professional. My name is Jay. Include a line about leaving a message. Human tone — not robotic.</div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dn-l">Notes</div><textarea class="dn" id="dn-p0-2" placeholder="Which bank? Google Voice number?"></textarea>
+    </div></div>
+  </div>
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left"><span class="dg-badge" style="background:var(--gd);color:var(--gold);">Day 4</span><span class="dg-title">Create separate Solitude Lighting social accounts</span></div>
+      <div class="dg-right"><span class="dg-hint">▼ Click to expand</span><span class="dg-prog" id="dp-p0-3">0/3</span><svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </button>
+    <div class="dg-body"><div class="dg-inner">
+      <div class="tl" id="dt-p0-3">
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p0-3','dt-p0-3','p0')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Create @solitudelighting TikTok account.</strong> Completely separate from D2Jay. Different audience (homeowners vs. creatives), different brand, different content. Never cross-post between them. Early on, selectively repost one Solitude piece per week from your D2Jay personal account to warm up your existing followers while new accounts grow. Stop doing that bridge after 30 posts.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p0-3','dt-p0-3','p0')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Create @solitudelighting Threads account and a Solitude Lighting Facebook Business Page.</strong> Four platforms, four separate Solitude accounts (Instagram, TikTok, Threads, Facebook). Your Instagram already exists as @solitudelighting.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p0-3','dt-p0-3','p0')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Update all Solitude Lighting social bios.</strong> Google Voice number in every bio. Location: Upper Marlboro, MD. Website: solitudelighting.com. Link in bio: solitudelighting.com/appointments (your booking page is already live). Ask your Business Coach to write all five bios in one shot.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            <button class="tp-toggle" onclick="toggleTP(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Ask your Business Coach — write all 5 social bios</button>
+            <div class="tp-body"><div class="tp-inner">
+              <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+              <div class="tp-chip">Business Coach Project</div>
+              <div class="tp-skill">Skills: social-content, copywriting</div>
+              <div class="tp-text">Write short bios for all Solitude Lighting social profiles. Include the booking link solitudelighting.com/appointments as the call to action.
+
+Write one version for each:
+1. Instagram bio — 150 characters max
+2. TikTok bio — 80 characters max
+3. Threads bio — 160 characters max
+4. Facebook Business Page description — 255 characters max
+5. Nextdoor business description — under 180 words, neighbor-talking tone, not corporate
+
+No emojis. Professional but warm throughout.</div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dn-l">Notes</div><textarea class="dn" id="dn-p0-3" placeholder="Account handles created, bio text used..."></textarea>
+    </div></div>
+  </div>
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left"><span class="dg-badge" style="background:var(--gd);color:var(--gold);">Day 5</span><span class="dg-title">Portfolio organization and electrician partners</span></div>
+      <div class="dg-right"><span class="dg-hint">▼ Click to expand</span><span class="dg-prog" id="dp-p0-4">0/2</span><svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </button>
+    <div class="dg-body"><div class="dg-inner">
+      <div class="tl" id="dt-p0-4">
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p0-4','dt-p0-4','p0')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Organize your best 10 photos from all past lighting work.</strong> The kitchen at home, Chloe's install, events, festivals — everything. Rename each with location keywords (example: kitchen-led-install-upper-marlboro-md.jpg). Save in a folder called "Solitude Portfolio." These are your proof assets across every platform.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p0-4','dt-p0-4','p0')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Find 2 licensed electricians in PG County and Charles County to partner with.</strong> You call them for permitted electrical work. They call you when clients ask about decorative lighting. Use the Claude Code prompt to find them and generate your outreach email automatically.
+            <div class="task-meta"><span class="tag t-fr">FREE to set up</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            <button class="tp-toggle" onclick="toggleTP(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Claude Code — find electricians + generate outreach</button>
+            <div class="tp-body"><div class="tp-inner">
+              <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+              <div class="tp-chip">Claude Code — with web search enabled</div>
+              <div class="tp-skill">Skills: marketing-ideas, seo-audit</div>
+              <div class="tp-text">Search Google Maps and business directories for the top 10 licensed electricians in PG County and Charles County, Maryland. For each one, list: business name, phone number, website, and Google Maps rating if available.
+
+Then write a short 100-word outreach email from Jay proposing a mutual referral deal: Jay calls them for permitted electrical work; they call Jay for decorative lighting upgrade clients. Warm and direct — not corporate.
+
+Output everything as a formatted list I can copy into my outreach tracker.</div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dn-l">Notes</div><textarea class="dn" id="dn-p0-4" placeholder="Portfolio status, electricians contacted, responses..."></textarea>
+    </div></div>
+  </div>
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left">
+        <span class="dg-badge" style="background:rgba(255,255,255,.05);color:var(--t3);">WAIT</span>
+        <span class="dg-title">After client 1 — Insurance, mailbox, business email</span>
+      </div>
+      <div class="dg-right"><span class="dg-hint">▼ Click to expand</span><span class="dg-prog" id="dp-p0-5">0/3</span><svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </button>
+    <div class="dg-body"><div class="dg-inner">
+      <p style="font-size:12px;color:var(--t3);margin-bottom:10px;font-style:italic;">Do not add monthly expenses until Solitude Lighting has proven it can generate revenue. These are all worth doing — just not yet.</p>
+      <div class="tl" id="dt-p0-5">
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p0-5','dt-p0-5','p0')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Get general liability insurance.</strong> Options: Next Insurance (nextinsurance.com — online and fast), Thimble (thimble.com — pay per job, flexible), or call a local State Farm or Allstate agent to compare. Expect $30 to $50/month. Required later to qualify for Google Local Services Ads.
+            <div class="task-meta"><span class="tag t-lo">$ LOW/mo</span><span class="tag t-wt">WAIT</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p0-5','dt-p0-5','p0')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Get a virtual mailbox address for Google Business Profile.</strong> Options: iPostal1 (ipostal1.com — $10/mo), Stable (stable.app — $10/mo), or UPS Store near you ($20–$30/mo). You need a real business address that is not your home address to verify your Google Business Profile.
+            <div class="task-meta"><span class="tag t-lo">$ LOW/mo</span><span class="tag t-wt">WAIT</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p0-5','dt-p0-5','p0')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Set up contact@solitudelighting.com via Google Workspace ($6/month).</strong> Your website already shows contact@solitudelighting.com as the email — make it real. Connect to your solitudelighting.com domain. All professional client communication goes through this.
+            <div class="task-meta"><span class="tag t-lo">$ LOW/mo</span><span class="tag t-wt">WAIT</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="dn-l">Notes</div><textarea class="dn" id="dn-p0-5" placeholder="Note when completed and which option you chose..."></textarea>
+    </div></div>
+  </div>
+
+  <div class="br">
+    <button class="btn bg bdis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13M5 10l7 7 7-7"/><path d="M5 21h14"/></svg>Export to Dashboard</button>
+    <button class="btn bgh" onclick="exportJSON()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>Export Progress JSON</button>
+  </div>
+</div>
+</div>
+
+<!-- ─────────── PHASE 1: PROOF ─────────── -->
+<div class="phase-panel" id="pp-p1">
+  <div class="ph-hdr">
+    <div class="ph-eye">Phase 1 — Weeks 1 to 3</div>
+    <div class="ph-title">Proof — Build assets that sell while you sleep</div>
+    <div class="ph-desc">Testimonials, portfolio, Google Business, and the first client conversations. Every task here either builds proof or opens a sales conversation.</div>
+  </div>
+  <div class="ph-prog"><div class="ph-fill" id="pf-p1" style="width:0%"></div></div>
+  <div id="phase-p1">
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left"><span class="dg-badge" style="background:rgba(78,205,196,.12);color:var(--teal);">Day 6</span><span class="dg-title">Three texts — realtor, Chloe, and mom</span></div>
+      <div class="dg-right"><span class="dg-hint">▼ Click to expand</span><span class="dg-prog" id="dp-p1-1">0/3</span><svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </button>
+    <div class="dg-body"><div class="dg-inner">
+      <div class="tl" id="dt-p1-1">
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p1-1','dt-p1-1','p1')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Text the realtor you know today — the exact script is in the Proof reference tab.</strong> Send it as written. Do not soften it. If no reply by Day 13, send one follow-up: "Hey [name], just following up — no pressure. Wanted to make sure you got my last message."
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p1-1','dt-p1-1','p1')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Text Chloe asking for a 60-second camera reaction to her finished space.</strong> Ask your Business Coach to write both the Chloe message and the mom message for you.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            <button class="tp-toggle" onclick="toggleTP(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Ask your Business Coach — write testimonial texts</button>
+            <div class="tp-body"><div class="tp-inner">
+              <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+              <div class="tp-chip">Business Coach Project</div>
+              <div class="tp-skill">Skills: copywriting, social-content</div>
+              <div class="tp-text">Write two casual text messages. I need to ask two people for a short video testimonial about my lighting work.
+
+Person 1 — Chloe: a family friend whose kitchen I recently installed LED lighting in.
+Person 2 — my mom: she has seen my lighting work.
+
+For each: a warm, friendly text asking for a 60-second video of their honest reaction to how the space turned out. No pressure or script needed. Also ask if I can use photos of the space in my marketing. Short and human — not corporate.</div>
+            </div></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p1-1','dt-p1-1','p1')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Text your mom using the second message your Business Coach wrote.</strong> Two testimonials are always better than one — real people, real reactions, different perspectives.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="dn-l">Notes</div><textarea class="dn" id="dn-p1-1" placeholder="Realtor response, Chloe response, mom response..."></textarea>
+    </div></div>
+  </div>
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left"><span class="dg-badge" style="background:rgba(78,205,196,.12);color:var(--teal);">Day 7</span><span class="dg-title">Before footage rule + Free Audit offer post</span></div>
+      <div class="dg-right"><span class="dg-hint">▼ Click to expand</span><span class="dg-prog" id="dp-p1-2">0/3</span><svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </button>
+    <div class="dg-body"><div class="dg-inner">
+      <div class="tl" id="dt-p1-2">
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p1-2','dt-p1-2','p1')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Lock in the before footage rule — commit to it starting with your next job.</strong> Before touching anything at a new client's space: walk through on camera for 30 to 60 seconds showing the existing flat lighting. This footage creates the contrast that makes the transformation land. Without the before, there is no story. Shoot it first. Every single time.
+            <div class="task-meta"><span class="ba">Awareness</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p1-2','dt-p1-2','p1')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Get the Free Lighting Audit post written by your Business Coach.</strong> You are offering 10 free 20-minute in-home lighting walk-throughs. No install needed — just you walking their space with your portfolio on an iPad. In-person consults close at 3 to 4x the rate of any online channel. This is free selling, not free working.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            <button class="tp-toggle" onclick="toggleTP(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Ask your Business Coach — Free Audit posts</button>
+            <div class="tp-body"><div class="tp-inner">
+              <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+              <div class="tp-chip">Business Coach Project</div>
+              <div class="tp-skill">Skills: copywriting, social-content, marketing-psychology</div>
+              <div class="tp-text">Write 4 versions of a post announcing my free in-home lighting consultation offer. I'm offering 10 free 20-minute in-home lighting walk-throughs this month for homeowners in Upper Marlboro, Bowie, and Waldorf. I assess their space and show them what lighting could do for it — no install required. The call to action is to book at solitudelighting.com/appointments.
+
+Write one for each:
+1. Instagram (with 3 to 5 hashtags, under 150 words)
+2. Facebook neighborhood groups (neighbor-tone, casual, under 120 words)
+3. Nextdoor (ultra-casual, mention I live locally, under 100 words)
+4. Threads (value-first, one topic tag, under 100 words)
+
+No emojis. Lead with the homeowner's problem — not my service.</div>
+            </div></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p1-2','dt-p1-2','p1')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Post all 4 versions the same day</strong> — Instagram, TikTok (adapted), Threads, and 2 Facebook neighborhood groups. Reply to every comment and DM within 2 hours of posting. This is your most important habit — the algorithm rewards early engagement and so does the human on the other side.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="dn-l">Notes</div><textarea class="dn" id="dn-p1-2" placeholder="Engagement from the free audit post, DMs received..."></textarea>
+    </div></div>
+  </div>
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left"><span class="dg-badge" style="background:rgba(78,205,196,.12);color:var(--teal);">Week 2</span><span class="dg-title">Google Business Profile — claim and complete it</span></div>
+      <div class="dg-right"><span class="dg-hint">▼ Click to expand</span><span class="dg-prog" id="dp-p1-3">0/2</span><svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </button>
+    <div class="dg-body"><div class="dg-inner">
+      <div class="tl" id="dt-p1-3">
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p1-3','dt-p1-3','p1')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Get your virtual mailbox address first</strong> (iPostal1, Stable, or UPS Store). You need a verifiable business address that is not your home address to claim a Google Business Profile.
+            <div class="task-meta"><span class="tag t-lo">$ LOW/mo</span><span class="ba">Awareness</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p1-3','dt-p1-3','p1')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Claim or create your Google Business Profile at business.google.com.</strong> Fill every field: services, service areas (Upper Marlboro, Bowie, Waldorf, Mitchellville, Brandywine), hours, website (solitudelighting.com), phone, and the description your Business Coach writes. Upload all 10 portfolio photos. Google will mail a verification postcard — about 5 days.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            <button class="tp-toggle" onclick="toggleTP(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Ask your Business Coach — write Google Business description</button>
+            <div class="tp-body"><div class="tp-inner">
+              <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+              <div class="tp-chip">Business Coach Project</div>
+              <div class="tp-skill">Skills: seo-audit, copywriting</div>
+              <div class="tp-text">Write a Google Business Profile description for Solitude Lighting. Under 250 words in 2 short paragraphs. Include these search terms naturally: LED lighting installer Upper Marlboro MD, smart home lighting Bowie, kitchen accent lighting Prince George's County, under-cabinet LED lights Maryland. Warm and professional tone. No emojis.</div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dn-l">Notes</div><textarea class="dn" id="dn-p1-3" placeholder="Google Business status, verification postcard ETA..."></textarea>
+    </div></div>
+  </div>
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left"><span class="dg-badge" style="background:rgba(78,205,196,.12);color:var(--teal);">Week 2</span><span class="dg-title">Facebook groups — automated monitoring setup</span></div>
+      <div class="dg-right"><span class="dg-hint">▼ Click to expand</span><span class="dg-prog" id="dp-p1-4">0/2</span><svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </button>
+    <div class="dg-body"><div class="dg-inner">
+      <div class="tl" id="dt-p1-4">
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p1-4','dt-p1-4','p1')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Ask your Business Coach to research and list all Facebook Groups to join in your target areas.</strong> Save the list in your notes below. Then join every group on the list. This is also the list you feed into your Claude Code monitoring agent.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            <button class="tp-toggle" onclick="toggleTP(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Ask your Business Coach — find Facebook groups</button>
+            <div class="tp-body"><div class="tp-inner">
+              <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+              <div class="tp-chip">Business Coach Project — with web search</div>
+              <div class="tp-skill">Skills: marketing-ideas, social-content</div>
+              <div class="tp-text">Research and list the most active Facebook Groups I should join for Solitude Lighting marketing in the DMV area. Target areas: Upper Marlboro (20772), Mitchellville and Bowie (20721), Waldorf (20601–20603), Brandywine (20613), Lake Arbor, Fairwood, Woodmore MD.
+
+Include:
+1. Neighborhood and subdivision groups for each area
+2. Large PG County and Charles County community groups (50,000+ member groups especially)
+3. Home improvement and decor groups for the DMV
+4. New homeowner groups for the DC Maryland Virginia area
+
+For each: group name to search for on Facebook, approximate size, and one sentence on why it matters for my business.</div>
+            </div></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p1-4','dt-p1-4','p1')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Build the Facebook and Nextdoor keyword monitoring agent in Claude Code.</strong> This runs on a schedule and sends you a daily email digest of relevant posts — so you never have to monitor manually. You just read the digest and reply to the best ones.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            <button class="tp-toggle" onclick="toggleTP(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Claude Code — build the keyword monitoring agent</button>
+            <div class="tp-body"><div class="tp-inner">
+              <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+              <div class="tp-chip">Claude Code — solitude-automation folder</div>
+              <div class="tp-skill">Skills: marketing-automation, social-content</div>
+              <div class="tp-text">Build me a keyword monitoring agent for Solitude Lighting. Here is what it needs to do:
+
+1. Every day at 7am, search Facebook Groups (using the Claude browser extension or Playwright) for posts in these groups: [paste your Facebook groups list here] that contain any of these keywords: lighting, electrician, contractor, kitchen, home improvement, recommend, upgrade, hallway, LED, smart home
+
+2. For each matching post, pull: the post text, the poster's name, the group name, and the post URL
+
+3. For each matching post, use the Anthropic API to generate a suggested reply that is helpful (not salesy), ends with "I do lighting installs in this area — happy to come take a look for free. Book at solitudelighting.com/appointments"
+
+4. Send me a daily email digest at 7:15am with all matching posts, their suggested replies, and direct links
+
+5. Also do the same for Nextdoor if there is a way to access it programmatically
+
+Walk me through the setup step by step. I am not a developer — explain everything clearly.</div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dn-l">Notes — paste Facebook groups list here</div>
+      <textarea class="dn" id="dn-p1-4" placeholder="Paste the groups list from your Business Coach here. Note which ones you joined..."></textarea>
+    </div></div>
+  </div>
+
+  <div class="br">
+    <button class="btn bg bdis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13M5 10l7 7 7-7"/><path d="M5 21h14"/></svg>Export to Dashboard</button>
+    <button class="btn bgh" onclick="exportJSON()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>Export Progress JSON</button>
+  </div>
+</div>
+</div>
+
+<!-- ─────────── PHASE 2: CONTENT ─────────── -->
+<div class="phase-panel" id="pp-p2">
+  <div class="ph-hdr">
+    <div class="ph-eye">Phase 2 — Month 1 to 3</div>
+    <div class="ph-title">Content — posts that work while you rest</div>
+    <div class="ph-desc">Your Business Coach writes every caption, hook, and script. Higgsfield and CapCut AI handle faceless video creation. You approve, post, and move on. Consistency beats perfection every time.</div>
+  </div>
+  <div class="ph-prog"><div class="ph-fill" id="pf-p2" style="width:0%"></div></div>
+  <div id="phase-p2">
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left"><span class="dg-badge" style="background:rgba(232,131,106,.12);color:var(--coral);">Day 9</span><span class="dg-title">Threads strategy research + 7-day content plan</span></div>
+      <div class="dg-right"><span class="dg-hint">▼ Click to expand</span><span class="dg-prog" id="dp-p2-1">0/2</span><svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </button>
+    <div class="dg-body"><div class="dg-inner">
+      <div class="tl" id="dt-p2-1">
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p2-1','dt-p2-1','p2')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Get your Threads DMV strategy and first 7 Threads posts from your Business Coach.</strong> Threads has active DMV local groups. Your coach researches what works, finds the right communities, and writes your first week of posts — all in one prompt.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            <button class="tp-toggle" onclick="toggleTP(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Ask your Business Coach — Threads DMV deep research</button>
+            <div class="tp-body"><div class="tp-inner">
+              <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+              <div class="tp-chip">Business Coach Project — with web search</div>
+              <div class="tp-skill">Skills: social-content, marketing-ideas, tiktok-marketing</div>
+              <div class="tp-text">Research and tell me:
+1. What DMV-area communities or topic tags are active on Threads that local homeowners follow
+2. What content types perform best on Threads for a local service business
+3. How Threads tone and format should differ from Instagram
+
+Then write my first 7 Threads posts as a lighting installer in the DMV:
+— 2 educational lighting tips
+— 2 local community posts that feel like a neighbor, not a business
+— 2 conversation-starters that invite replies
+— 1 subtle service mention that doesn't feel like an ad
+
+Each post under 200 words. One topic tag max. No emojis. Start each post by addressing a feeling the homeowner has — not a product.</div>
+            </div></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p2-1','dt-p2-1','p2')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Get your full 7-day content plan from your Business Coach</strong> — 7 days of posts with hooks, captions, and hashtags for Instagram and TikTok. Save the output in your notes. This is your posting blueprint for weeks 2 and 3.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            <button class="tp-toggle" onclick="toggleTP(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Ask your Business Coach — 7-day content plan</button>
+            <div class="tp-body"><div class="tp-inner">
+              <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+              <div class="tp-chip">Business Coach Project</div>
+              <div class="tp-skill">Skills: social-content, copywriting, marketing-psychology, tiktok-marketing</div>
+              <div class="tp-text">Write a 7-day content plan for Solitude Lighting for Instagram Reels and TikTok. I have photos and short videos from past jobs but no before footage yet — just afters.
+
+For each of the 7 days include:
+1. Content type: transformation reveal, education, behind the scenes, or client reaction
+2. The specific topic
+3. A 3-second scroll-stopping hook that leads with the homeowner's problem or feeling
+4. A full caption under 150 words ending with a link to solitudelighting.com/appointments
+5. 3 to 5 local hashtags
+
+On Day 2 and Day 5 also include a TikTok-adapted version (more casual, slightly shorter). Tone: confident, local, human. No emojis.</div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dn-l">Notes — paste content plan output here</div>
+      <textarea class="dn" id="dn-p2-1" placeholder="Paste the 7-day plan here, or note where you saved it..."></textarea>
+    </div></div>
+  </div>
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left"><span class="dg-badge" style="background:rgba(232,131,106,.12);color:var(--coral);">Day 10</span><span class="dg-title">Post your first Reel + repurpose everywhere</span></div>
+      <div class="dg-right"><span class="dg-hint">▼ Click to expand</span><span class="dg-prog" id="dp-p2-2">0/2</span><svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </button>
+    <div class="dg-body"><div class="dg-inner">
+      <div class="tl" id="dt-p2-2">
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p2-2','dt-p2-2','p2')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Post your first Reel on @solitudelighting Instagram.</strong> Use your best existing photo or video from your portfolio folder. Caption and hook already written in your content plan. Open CapCut, add on-screen text from the hook, add a trending sound, export and post. Caption already written — copy and paste.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p2-2','dt-p2-2','p2')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Immediately repurpose the same video to TikTok and Threads.</strong> Slightly adapted captions from your plan. Takes 10 minutes. Triples your reach. Set a timer for 60 minutes and reply to every comment and DM that comes in during that window.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="dn-l">Notes</div><textarea class="dn" id="dn-p2-2" placeholder="First Reel views, comments, DMs received..."></textarea>
+    </div></div>
+  </div>
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left"><span class="dg-badge" style="background:rgba(232,131,106,.12);color:var(--coral);">Week 3</span><span class="dg-title">Faceless video with Higgsfield + micro-influencer DMs</span></div>
+      <div class="dg-right"><span class="dg-hint">▼ Click to expand</span><span class="dg-prog" id="dp-p2-3">0/2</span><svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </button>
+    <div class="dg-body"><div class="dg-inner">
+      <div class="tl" id="dt-p2-3">
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p2-3','dt-p2-3','p2')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Set up Higgsfield and create your first faceless educational video.</strong> Higgsfield is an AI video generator that works well with Claude. You give it a script and it produces a polished short video — no face required, no filming equipment needed. Get a Higgsfield account (higgsfield.ai) and use the setup prompt below to connect it with your workflow. Your Business Coach writes the script. Higgsfield makes the video. CapCut AI is your backup option if needed.
+            <div class="task-meta"><span class="tag t-fr">FREE tier available</span><span class="ba">Awareness</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            <button class="tp-toggle" onclick="toggleTP(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Business Coach + Higgsfield setup prompt</button>
+            <div class="tp-body"><div class="tp-inner">
+              <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+              <div class="tp-chip">Step 1: Business Coach Project — get the script</div>
+              <div class="tp-skill">Skills: social-content, copywriting, tiktok-marketing</div>
+              <div class="tp-text"><strong>Step 1 — Ask your Business Coach for the script:</strong>
+
+Write a 30-second educational video script about why most kitchens feel dark even with overhead lights on. Plain language only — explain it like a knowledgeable friend, not a lecture. End with one sentence about how LED accent lighting solves this. No emojis. Confident and conversational.
+
+Also write: the video caption (under 120 words, call to action to book at solitudelighting.com/appointments, 3 hashtags), and 3 alternative hook options for the first 3 seconds.
+
+<strong>Step 2 — Set up Higgsfield:</strong>
+1. Go to higgsfield.ai and create an account (free tier available)
+2. Select "Text to Video" or "Script to Video"
+3. Paste the script your Business Coach wrote
+4. Choose a visual style that fits — "cinematic," "modern home," or "realistic" work well for lighting content
+5. Generate, review, download
+6. Open in CapCut to add your captions and brand name overlay
+7. Post
+
+For ongoing use: Claude Code can batch-generate scripts via the Anthropic API and feed them into Higgsfield's API if you want to automate content creation at scale later.</div>
+            </div></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p2-3','dt-p2-3','p2')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Find 5 to 10 DMV home decor micro-influencers for collab DMs.</strong> Black interior design or home makeover accounts, 5K to 50K followers, DMV focus. Your Business Coach finds the list and writes the DM. You just review and send.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            <button class="tp-toggle" onclick="toggleTP(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Ask your Business Coach — find influencers + write DM</button>
+            <div class="tp-body"><div class="tp-inner">
+              <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+              <div class="tp-chip">Business Coach Project — with web search</div>
+              <div class="tp-skill">Skills: social-content, marketing-ideas</div>
+              <div class="tp-text">Search Instagram and TikTok for 5 to 10 Black home decor, interior design, or room makeover micro-influencers with 5,000 to 50,000 followers who are based in or focused on the DMV area (DC, Maryland, Virginia).
+
+List each with: their handle, follower count, and why they would be a good fit for a Solitude Lighting collab.
+
+Then write a DM I can send to each: I want to propose that they feature a lighting transformation as part of a room reveal or home content post and tag Solitude Lighting. No money changes hands — just mutual visibility. Under 120 words, warm and direct, ends with the booking link solitudelighting.com/appointments.</div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dn-l">Notes</div><textarea class="dn" id="dn-p2-3" placeholder="Influencers found and DMed, Higgsfield account status, first video created..."></textarea>
+    </div></div>
+  </div>
+
+  <div class="br">
+    <button class="btn bg bdis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13M5 10l7 7 7-7"/><path d="M5 21h14"/></svg>Export to Dashboard</button>
+    <button class="btn bgh" onclick="exportJSON()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>Export Progress JSON</button>
+  </div>
+</div>
+</div>
+
+<!-- ─────────── PHASE 3: OUTREACH ─────────── -->
+<div class="phase-panel" id="pp-p3">
+  <div class="ph-hdr">
+    <div class="ph-eye">Phase 3 — Month 1 to 2</div>
+    <div class="ph-title">Outreach — Go get clients instead of waiting for them</div>
+    <div class="ph-desc">50 LinkedIn contacts, realtor partnerships, EDDM, quote follow-ups, and a referral card. Claude Code tracks every follow-up automatically. You just reply to the people who respond.</div>
+  </div>
+  <div class="ph-prog"><div class="ph-fill" id="pf-p3" style="width:0%"></div></div>
+  <div id="phase-p3">
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left"><span class="dg-badge" style="background:rgba(155,141,232,.12);color:var(--pur);">Day 6</span><span class="dg-title">Text the realtor you know + print the referral card</span></div>
+      <div class="dg-right"><span class="dg-hint">▼ Click to expand</span><span class="dg-prog" id="dp-p3-1">0/2</span><svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </button>
+    <div class="dg-body"><div class="dg-inner">
+      <div class="tl" id="dt-p3-1">
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p3-1','dt-p3-1','p3')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Text the realtor you know today — exact script is in the Proof reference tab.</strong> Send it as written. Do not modify it. If no reply by Day 13, follow up once: "Hey [name], just following up — no pressure. Wanted to make sure you got my last message."
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p3-1','dt-p3-1','p3')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Create a physical referral card to hand at every install.</strong> A small, beautiful card with: Solitude Lighting name, your Google Voice number, solitudelighting.com/appointments, and one line: "Refer a neighbor who books — they save $200, you earn $150. No signup required." Hand it right after the reveal when the client is at their emotional peak. That is your highest-conversion referral moment.
+            <div class="task-meta"><span class="tag t-lo">$ LOW (printing)</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            <button class="tp-toggle" onclick="toggleTP(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Ask your Business Coach — design the referral card copy</button>
+            <div class="tp-body"><div class="tp-inner">
+              <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+              <div class="tp-chip">Business Coach Project</div>
+              <div class="tp-skill">Skills: copywriting, marketing-psychology</div>
+              <div class="tp-text">Design the copy for a small physical referral card for Solitude Lighting. The card will be handed to clients right after I finish an install — at the moment when they are most excited about how the space looks.
+
+Include:
+— Business name: Solitude Lighting
+— One punchy headline about the referral offer
+— The deal: they refer a neighbor who books, the neighbor gets $200 off, they get $150 cash
+— The booking link: solitudelighting.com/appointments
+— Phone: (their Google Voice number)
+
+Make it feel premium, not cheap. Keep the copy tight. Also suggest dimensions and what printing service to use (Moo.com, Canva Print, or Vistaprint).</div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dn-l">Notes</div><textarea class="dn" id="dn-p3-1" placeholder="Realtor response, referral card status..."></textarea>
+    </div></div>
+  </div>
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left"><span class="dg-badge" style="background:rgba(155,141,232,.12);color:var(--pur);">Day 14</span><span class="dg-title">LinkedIn 50-person prospect system + automated tracker</span></div>
+      <div class="dg-right"><span class="dg-hint">▼ Click to expand</span><span class="dg-prog" id="dp-p3-2">0/3</span><svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </button>
+    <div class="dg-body"><div class="dg-inner">
+      <div class="tl" id="dt-p3-2">
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p3-2','dt-p3-2','p3')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Get your LinkedIn search queries from your Business Coach, then build your 50-person Google Sheet.</strong> Search LinkedIn for realtors and interior designers in Waldorf, Bowie, Upper Marlboro, Mitchellville, Prince George's County. Paste names, titles, and URLs into a Google Sheet. Target 50 total.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="tag t-ti">TIME</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            <button class="tp-toggle" onclick="toggleTP(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Ask your Business Coach — LinkedIn search queries + messages</button>
+            <div class="tp-body"><div class="tp-inner">
+              <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+              <div class="tp-chip">Business Coach Project</div>
+              <div class="tp-skill">Skills: marketing-ideas, copywriting</div>
+              <div class="tp-text">Give me 15 LinkedIn search queries to find realtors and interior designers in Waldorf MD, Bowie MD, Upper Marlboro MD, Mitchellville MD, and Prince George's County MD.
+
+Then write a LinkedIn connection request template I can customize for each person. Under 280 characters. Do not pitch. Just get the connection. Leave [NAME] as a placeholder.
+
+Also write the follow-up DM to send after they connect — the one that proposes the $150 referral deal. Under 150 words. Warm and direct. End with the booking link solitudelighting.com/appointments.</div>
+            </div></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p3-2','dt-p3-2','p3')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Build the LinkedIn outreach tracker and automated follow-up reminder in Claude Code.</strong> This Google Sheets script highlights rows that need follow-up and emails you a daily digest — so you never drop the ball on a connection.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            <button class="tp-toggle" onclick="toggleTP(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Claude Code — build the LinkedIn tracker</button>
+            <div class="tp-body"><div class="tp-inner">
+              <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+              <div class="tp-chip">Claude Code — solitude-automation folder</div>
+              <div class="tp-skill">Skills: marketing-automation</div>
+              <div class="tp-text">Build a Google Sheets outreach tracker for my LinkedIn campaign. Columns: Name, LinkedIn URL, Title, Company, Location, Connection Request Sent (date), Connected (yes/no/date), Follow-up Sent (date), Response (yes/no/positive), Notes.
+
+Add Google Apps Script that:
+1. Highlights yellow: rows where connection request was sent 5+ days ago and Connected is still blank
+2. Highlights orange: rows where Connected is yes but Follow-up Sent is blank and 2+ days have passed
+3. Sends an email digest at 8am daily listing exactly who needs action today and what action is needed
+
+Walk me through setup step by step — I'm not a developer.</div>
+            </div></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p3-2','dt-p3-2','p3')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Send your first 10 LinkedIn connection requests.</strong> Pull up each profile. Paste their info into your Business Coach to get a personalized message. Review, add any specific personal detail you noticed, and send. Log the date in your tracker. Repeat in batches of 10 over the next week.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="dn-l">Notes</div><textarea class="dn" id="dn-p3-2" placeholder="LinkedIn progress, connections, conversations started..."></textarea>
+    </div></div>
+  </div>
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left"><span class="dg-badge" style="background:rgba(155,141,232,.12);color:var(--pur);">Week 3</span><span class="dg-title">Partnership one-pager + EDDM campaign planning</span></div>
+      <div class="dg-right"><span class="dg-hint">▼ Click to expand</span><span class="dg-prog" id="dp-p3-3">0/3</span><svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </button>
+    <div class="dg-body"><div class="dg-inner">
+      <div class="tl" id="dt-p3-3">
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p3-3','dt-p3-3','p3')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Build the Solitude Lighting partnership one-pager PDF in Claude Code.</strong> A professional one-page document you email to any realtor, designer, or contractor who shows interest. Explains who you are, what you install, who your ideal client is, and the referral deal.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            <button class="tp-toggle" onclick="toggleTP(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Claude Code — build partnership one-pager PDF</button>
+            <div class="tp-body"><div class="tp-inner">
+              <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+              <div class="tp-chip">Claude Code</div>
+              <div class="tp-text">Build me a single-page HTML document I can save as a PDF — a professional partnership one-pager for Solitude Lighting. Include:
+— Business: Solitude Lighting, LED and smart home lighting installation, Upper Marlboro MD, owner Jay Adams
+— Services: under-cabinet kitchen lighting, hallway accent lighting, smart home lighting, landscape lighting, special event and holiday lighting
+— Ideal client: new homeowners in PG County and Charles County who want to upgrade from builder-grade lighting
+— Prices: Kitchen Island from $1,000, Full Kitchen from $3,000
+— Referral deal: $150 to the referrer per booked job, $200 discount for the referred client
+— Booking: solitudelighting.com/appointments
+— Phone: (202) 656-8115
+— Email: contact@solitudelighting.com
+
+Design: dark background, gold accents, clean and premium. Print-ready.</div>
+            </div></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p3-3','dt-p3-3','p3')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Find and email renovation contractors near Waldorf and Bowie.</strong> Contractors doing full kitchen remodels often don't include decorative lighting in their scope. You become the person they call at the end of every job. One contractor relationship in Charles County can mean 15 to 20 jobs per year. Find them on Google ("kitchen remodeling contractor Waldorf MD") or NARI Metro DC.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            <button class="tp-toggle" onclick="toggleTP(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Business Coach — find contractors + write outreach email</button>
+            <div class="tp-body"><div class="tp-inner">
+              <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+              <div class="tp-chip">Business Coach Project — web search</div>
+              <div class="tp-skill">Skills: marketing-ideas</div>
+              <div class="tp-text">Search for the top 10 kitchen remodeling contractors in Waldorf MD and Bowie MD. For each: business name, phone, website.
+
+Then write a 100-word outreach email proposing that we partner: I come in at the end of their kitchen remodels to install decorative LED lighting as the finishing touch. They subcontract me, or they refer clients who ask about lighting. The email is from Jay at Solitude Lighting. Warm and direct.</div>
+            </div></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p3-3','dt-p3-3','p3')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Plan your first USPS Every Door Direct Mail campaign — best months are March and October.</strong> You already have postcards made. EDDM mails to every home in a zip code with no mailing list needed — about $0.20 per piece. 1,000 postcards = roughly $200 plus printing. Target zip codes: 20721 (Mitchellville), 20613 (Brandywine), 20603 (Waldorf). Visit usps.com/eddm to plan carrier routes.
+            <div class="task-meta"><span class="tag t-me">$$ MED</span><span class="ba">Awareness</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="dn-l">Notes</div><textarea class="dn" id="dn-p3-3" placeholder="One-pager status, contractor outreach, EDDM planning..."></textarea>
+    </div></div>
+  </div>
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left"><span class="dg-badge" style="background:rgba(155,141,232,.12);color:var(--pur);">Ongoing</span><span class="dg-title">After every install — the three asks before you leave</span></div>
+      <div class="dg-right"><span class="dg-hint">▼ Click to expand</span><span class="dg-prog" id="dp-p3-4">Habit</span><svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </button>
+    <div class="dg-body"><div class="dg-inner">
+      <p style="font-size:13px;color:var(--t2);line-height:1.72;margin-bottom:12px;">Right after the reveal — when the client is still in the emotional peak of seeing the finished space — is your highest-conversion moment for all three asks. Not a week later. Not in an email. Right then.</p>
+      <p style="font-size:13.5px;color:var(--tx);line-height:1.85;"><strong>1. Google review.</strong> "This really helps my business — would you mind leaving a quick Google review right now? Takes 2 minutes." Hand them your phone with the review page already open. Most people say yes when asked in person immediately after a positive experience.<br><br><strong>2. Video testimonial.</strong> "Would you do me a quick video — just 60 seconds of your honest reaction to how it looks? No script needed." Film it right there. One take is enough.<br><br><strong>3. Referral card.</strong> Hand them the physical referral card. "If you know anyone else who's been thinking about upgrading their lighting — they get $200 off their install and you get $150 cash when they book. Just forward my info." That is it. No pressure. Just a card and a clear offer.</p>
+      <div class="dn-l">Habit Notes</div><textarea class="dn" id="dn-p3-4" placeholder="Reviews collected, testimonials filmed, referrals given..."></textarea>
+    </div></div>
+  </div>
+
+  <div class="br">
+    <button class="btn bg bdis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13M5 10l7 7 7-7"/><path d="M5 21h14"/></svg>Export to Dashboard</button>
+    <button class="btn bgh" onclick="exportJSON()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>Export Progress JSON</button>
+  </div>
+</div>
+</div>
+
+<!-- ─────────── PHASE 4: SEO ─────────── -->
+<div class="phase-panel" id="pp-p4">
+  <div class="ph-hdr">
+    <div class="ph-eye">Phase 4 — Month 2 to 6</div>
+    <div class="ph-title">SEO — Get found on Google forever</div>
+    <div class="ph-desc">A social post lasts 48 hours. A Google result sends you clients for years. Run this phase in parallel with Phase 2 — not after it. The homeowner typing "kitchen lighting installer Upper Marlboro" already has their wallet out.</div>
+  </div>
+  <div class="ph-prog"><div class="ph-fill" id="pf-p4" style="width:0%"></div></div>
+  <div id="phase-p4">
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left"><span class="dg-badge" style="background:rgba(114,184,122,.11);color:var(--grn);">Week 2</span><span class="dg-title">Complete Google Business Profile</span></div>
+      <div class="dg-right"><span class="dg-hint">▼ Click to expand</span><span class="dg-prog" id="dp-p4-1">0/2</span><svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </button>
+    <div class="dg-body"><div class="dg-inner">
+      <div class="tl" id="dt-p4-1">
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p4-1','dt-p4-1','p4')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Once the verification postcard arrives, fully complete your Google Business Profile.</strong> Every field. The description your Business Coach wrote. All 10 photos. Services, hours, service areas. Set a weekly reminder to post one update (a new photo or a tip) to your Google Business profile — this is a small, underused signal that keeps you ranking higher than inactive competitors.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p4-1','dt-p4-1','p4')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Get 3 local SEO pages written by your Business Coach and publish them on solitudelighting.com.</strong> One per service and location. Once live, they work forever in the background. Your Squarespace site makes adding pages straightforward.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+            <button class="tp-toggle" onclick="toggleTP(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Ask your Business Coach — write 3 local SEO pages</button>
+            <div class="tp-body"><div class="tp-inner">
+              <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+              <div class="tp-chip">Business Coach Project</div>
+              <div class="tp-skill">Skills: seo-audit, copywriting</div>
+              <div class="tp-text">Write 3 separate local SEO pages for solitudelighting.com. Each page about 400 words.
+
+Page 1: Under-cabinet kitchen LED lighting installation in Upper Marlboro, MD
+Page 2: Hallway accent lighting installation in Bowie, MD
+Page 3: Smart home lighting installation in Waldorf, MD
+
+For each: write in second person speaking directly to the homeowner and their specific frustration with builder-grade lighting. Include price range ($1,000 to $3,000 depending on scope), a clear call to action linking to solitudelighting.com/appointments, and the location and service keywords used naturally. No emojis. Professional but approachable.</div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+      <div class="dn-l">Notes</div><textarea class="dn" id="dn-p4-1" placeholder="Verification status, pages published, keywords tracked..."></textarea>
+    </div></div>
+  </div>
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left"><span class="dg-badge" style="background:rgba(114,184,122,.11);color:var(--grn);">Month 2</span><span class="dg-title">First 5 Google reviews</span></div>
+      <div class="dg-right"><span class="dg-hint">▼ Click to expand</span><span class="dg-prog" id="dp-p4-2">0/1</span><svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </button>
+    <div class="dg-body"><div class="dg-inner">
+      <div class="tl" id="dt-p4-2">
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p4-2','dt-p4-2','p4')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Text Chloe and your mom your direct Google review link and ask for a review.</strong> Script: "Hey, would you do me a favor and leave a quick Google review for Solitude Lighting? Takes 2 minutes. Here's the link: [your Google Business review URL]." Text, not email — much higher reply rate. After every paying client install, ask before you leave. Hand them your phone with the page already open. Your goal is 5 reviews before applying for Google Local Services Ads.
+            <div class="task-meta"><span class="tag t-fr">FREE</span><span class="ba">Awareness</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="dn-l">Notes</div><textarea class="dn" id="dn-p4-2" placeholder="Current review count, who you've asked..."></textarea>
+    </div></div>
+  </div>
+
+  <div class="dg">
+    <button class="dg-toggle" onclick="toggleDay(this)">
+      <div class="dg-toggle-left"><span class="dg-badge" style="background:rgba(114,184,122,.11);color:var(--grn);">Month 3</span><span class="dg-title">Google Local Services Ads — Google Guaranteed badge</span></div>
+      <div class="dg-right"><span class="dg-hint">▼ Click to expand</span><span class="dg-prog" id="dp-p4-3">0/1</span><svg class="dg-ch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+    </button>
+    <div class="dg-body"><div class="dg-inner">
+      <div class="tl" id="dt-p4-3">
+        <div class="ti">
+          <div class="tcb" onclick="toggleTask(this,'dp-p4-3','dt-p4-3','p4')"><svg viewBox="0 0 10 8" fill="none"><path d="M1 4l3 3 5-5" stroke="#09090B" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div class="ttxt">
+            <strong>Once you have 5 Google reviews and your insurance is active, apply for Google Local Services Ads.</strong> Go to ads.google.com/local-services-ads. Select Home Services. Submit your insurance certificate. This earns the green Google Guaranteed badge at the very top of local search results. Pay per lead only — roughly $30 to $80 each. $200/month gets you 3 to 5 leads from homeowners who are actively searching and ready to book.
+            <div class="task-meta"><span class="tag t-me">$$ MED/mo</span><span class="ba">Awareness</span><span class="bs">Sales</span><button class="task-copy" onclick="copyTaskText(this)" title="Copy task text"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="dn-l">Notes</div><textarea class="dn" id="dn-p4-3" placeholder="Application status, lead cost, results..."></textarea>
+    </div></div>
+  </div>
+
+  <div class="br">
+    <button class="btn bg bdis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v13M5 10l7 7 7-7"/><path d="M5 21h14"/></svg>Export to Dashboard</button>
+    <button class="btn bgh" onclick="exportJSON()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>Export Progress JSON</button>
+  </div>
+</div>
+</div>
+
+  </div><!-- end sch-content -->
+</div><!-- end sch-wrap -->
+</div><!-- end schedule tab panel -->
+
+<!-- ════ NOTES ════ -->
+<div class="tab-panel" id="panel-notes">
+<div class="gap"></div>
+<div class="sh">
+  <p class="sh-eye">Your Notes</p>
+  <h2 class="sh-title">General notes and progress updates</h2>
+  <p class="sh-desc">Use this for anything you want to capture — ideas, blockers, questions for your dad, things to bring to your next Business Coach session. Click Export Progress JSON to download your full progress file and share it with your coach anytime.</p>
+</div>
+<div class="ai-box">
+  <div class="ai-hdr"><span class="ai-chip">Business Coach Project</span><span class="ai-tool">How to share your progress with your coach</span></div>
+  <p>Click "Export Progress JSON" below. A file downloads. Open your Business Coach project and say:</p>
+  <button class="sp-toggle" onclick="toggleSP(this)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>Show import prompt
+  </button>
+  <div class="sp-body"><div class="sp-inner">
+    <button class="copy-btn" onclick="copyBtn(this)">Copy</button>
+    <div class="sp-text">Here is my current playbook progress JSON: [paste the file contents here]. Based on what I've done and what's still open, tell me: (1) what I should focus on next week, (2) if there is anything I marked done that should be revisited, and (3) what you think is my biggest risk right now. Be honest.</div>
+  </div></div>
+</div>
+<textarea class="gn" id="global-notes" placeholder="Write anything here — ideas, blockers, questions, what you noticed, what you want to change..."></textarea>
+<div class="br" style="margin-top:10px;">
+  <button class="btn bgh" onclick="saveNotes()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/></svg>Save Notes</button>
+  <button class="btn bgh" onclick="exportJSON()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>Export Progress JSON</button>
+  <button class="btn bgh" onclick="exportPDF()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>Plain Text Export</button>
+</div>
+<div id="notes-sum" style="margin-top:22px;"></div>
+</div>
+
+</div><!-- end pw -->
+
+<footer style="text-align:center;padding:40px 24px;border-top:1px solid var(--br);color:var(--t3);font-size:12px;line-height:1.9;">
+  <p style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--t2);margin-bottom:3px;">Solitude Lighting — Marketing Playbook v5.0</p>
+  <p>Awareness. Sales. Automation. Freedom.</p>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════
+// SUPABASE CONFIG
+// ═══════════════════════════════════════════════
+const SB_URL  = 'https://tqpfqotzcynizkrqbnwl.supabase.co';
+const SB_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRxcGZxb3R6Y3luaXprcnFibndsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU1MDQyNTIsImV4cCI6MjA5MTA4MDI1Mn0.3kPVj8WJEJrTYf14Wzskt-DtrG1uzHoAx6PUvGvWK2Q';
+const SB_HDR  = {'Content-Type':'application/json','apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Prefer':'resolution=merge-duplicates'};
+
+// ── SYNC STATUS PILL ──
+let syncTimer=null;
+function setSyncStatus(state,label){
+  const pill=document.getElementById('sync-pill');
+  const lbl=document.getElementById('sync-label');
+  if(!pill||!lbl)return;
+  pill.className='sync-pill sync-'+state;
+  lbl.textContent=label;
+}
+function syncSaving(){
+  clearTimeout(syncTimer);
+  setSyncStatus('saving','Saving…');
+}
+function syncSaved(){
+  clearTimeout(syncTimer);
+  setSyncStatus('idle','Saved');
+}
+function syncError(){
+  clearTimeout(syncTimer);
+  setSyncStatus('error','Save failed');
+  // auto-clear error after 4s
+  syncTimer=setTimeout(()=>setSyncStatus('idle','Saved'),4000);
+}
+
+// helper: derive phase from task list id  e.g. "dt-p1-2" → "p1"
+function phaseFromListId(listId){return listId.replace('dt-','').split('-')[0];}
+// helper: derive phase from note id e.g. "dn-p1-2" → "p1", "global-notes" → "global"
+function phaseFromNoteId(id){if(id==='global-notes')return'global';return id.replace('dn-','').split('-')[0];}
+// helper: stable task_id from list id + index  e.g. "dt-p1-2", 0 → "p1-2-0"
+function makeTaskId(listId,idx){return listId.replace('dt-','')+'-'+idx;}
+// helper: get day group label from a task element
+function getDayGroup(item){
+  const dg=item.closest('.dg');
+  return dg?dg.querySelector('.dg-title')?.textContent?.trim()||''  :'';
+}
+
+async function sbUpsertTask(listId,idx,done,taskText,phase,dayGroup){
+  const taskId=makeTaskId(listId,idx);
+  const body={task_id:taskId,phase:phase||phaseFromListId(listId),day_group:dayGroup||'',task_text:(taskText||'').slice(0,120),done,done_at:done?new Date().toISOString():null};
+  syncSaving();
+  try{
+    const r=await fetch(SB_URL+'/rest/v1/solitude_lighting_tasks',{method:'POST',headers:SB_HDR,body:JSON.stringify(body)});
+    if(r.ok)syncSaved(); else syncError();
+  }catch(e){console.warn('Supabase task sync failed (offline?)',e);syncError();}
+}
+
+async function sbUpsertNote(noteId,content){
+  const body={note_id:noteId,phase:phaseFromNoteId(noteId),content};
+  syncSaving();
+  try{
+    const r=await fetch(SB_URL+'/rest/v1/solitude_lighting_notes',{method:'POST',headers:SB_HDR,body:JSON.stringify(body)});
+    if(r.ok)syncSaved(); else syncError();
+  }catch(e){console.warn('Supabase note sync failed (offline?)',e);syncError();}
+}
+
+async function sbLoadAll(){
+  try{
+    const [tr,nr]=await Promise.all([
+      fetch(SB_URL+'/rest/v1/solitude_lighting_tasks?select=*',{headers:{...SB_HDR,Prefer:''}}),
+      fetch(SB_URL+'/rest/v1/solitude_lighting_notes?select=*',{headers:{...SB_HDR,Prefer:''}})
+    ]);
+    return{tasks:await tr.json(),notes:await nr.json()};
+  }catch(e){console.warn('Supabase load failed, using localStorage',e);return null;}
+}
+
+// ═══════════════════════════════════════════════
+// UI — TABS / PHASE / DAY
+// ═══════════════════════════════════════════════
+function openTab(id){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-tabs button').forEach(b=>b.classList.remove('active'));
+  const panel=document.getElementById('panel-'+id),btn=document.getElementById('tab-'+id);
+  if(panel)panel.classList.add('active');
+  if(btn)btn.classList.add('active');
+  const hw=document.getElementById('hero-wrap');
+  if(hw)hw.style.display=id==='overview'?'block':'none';
+  window.scrollTo({top:0,behavior:'smooth'});
+  lsSave();
+}
+
+window.addEventListener('scroll',()=>{
+  const p=document.getElementById('hero-par');
+  if(p&&window.scrollY<window.innerHeight*1.5)p.style.transform=`scale(1.1) translateY(${window.scrollY*.22}px)`;
+},{passive:true});
+
+function openPhase(id,btn){
+  document.querySelectorAll('.phase-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.phase-btn').forEach(b=>b.classList.remove('active'));
+  const panel=document.getElementById('pp-'+id);
+  if(panel)panel.classList.add('active');
+  if(btn)btn.classList.add('active');
+}
+
+function toggleDay(btn){
+  const body=btn.nextElementSibling;
+  const open=body.classList.toggle('open');
+  btn.classList.toggle('open',open);
+  const hint=btn.querySelector('.dg-hint');
+  if(hint)hint.textContent=open?'▲ Click to collapse':'▼ Click to expand';
+}
+
+// ═══════════════════════════════════════════════
+// TASK COMPLETION — checkbox only
+// ═══════════════════════════════════════════════
+function toggleTask(cb,dpId,dtId,phaseKey){
+  const item=cb.closest('.ti');
+  item.classList.toggle('done');
+  const done=item.classList.contains('done');
+  // derive index within the task list
+  const list=document.getElementById(dtId);
+  const idx=list?Array.from(list.querySelectorAll('.ti')).indexOf(item):0;
+  const taskText=item.querySelector('strong')?.textContent?.trim()||'';
+  const dayGroup=getDayGroup(item);
+  updateDayProg(dpId,dtId);
+  updatePhaseProg(phaseKey);
+  updateOverall();
+  lsSave();
+  // sync to Supabase asynchronously — never blocks UI
+  sbUpsertTask(dtId,idx,done,taskText,phaseKey,dayGroup);
+}
+
+function updateDayProg(dpId,dtId){
+  const list=document.getElementById(dtId);if(!list)return;
+  const all=list.querySelectorAll('.ti').length,done=list.querySelectorAll('.ti.done').length;
+  const pill=document.getElementById(dpId);
+  if(!pill||pill.textContent==='Habit')return;
+  pill.textContent=done+'/'+all;
+  pill.classList.toggle('done',done===all&&all>0);
+}
+
+function updatePhaseProg(phaseKey){
+  const map={d1:'pp-d1',p0:'pp-p0',p1:'pp-p1',p2:'pp-p2',p3:'pp-p3',p4:'pp-p4'};
+  const panel=document.getElementById(map[phaseKey]);if(!panel)return;
+  const all=panel.querySelectorAll('.ti').length,done=panel.querySelectorAll('.ti.done').length;
+  const bar=document.getElementById('pf-'+phaseKey);
+  if(bar&&all>0)bar.style.width=Math.round((done/all)*100)+'%';
+}
+
+function updateOverall(){
+  [['d1','fill-d1','pct-d1'],['p0','fill-p0','pct-p0'],['p1','fill-p1','pct-p1'],
+   ['p2','fill-p2','pct-p2'],['p3','fill-p3','pct-p3'],['p4','fill-p4','pct-p4']].forEach(([k,fid,pid])=>{
+    const map={d1:'pp-d1',p0:'pp-p0',p1:'pp-p1',p2:'pp-p2',p3:'pp-p3',p4:'pp-p4'};
+    const panel=document.getElementById(map[k]);if(!panel)return;
+    const all=panel.querySelectorAll('.ti').length,done=panel.querySelectorAll('.ti.done').length;
+    const pct=all>0?Math.round((done/all)*100):0;
+    const fill=document.getElementById(fid),pctEl=document.getElementById(pid);
+    if(fill)fill.style.width=pct+'%';if(pctEl)pctEl.textContent=pct+'%';
+  });
+}
+
+// ═══════════════════════════════════════════════
+// COPY TASK TEXT
+// ═══════════════════════════════════════════════
+function copyTaskText(btn){
+  const item=btn.closest('.ti');
+  const ttxt=item.querySelector('.ttxt');
+  const clone=ttxt.cloneNode(true);
+  clone.querySelectorAll('button,.tp-body,.tp-toggle,.task-meta').forEach(el=>el.remove());
+  const text=clone.textContent.trim();
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='Copied';btn.classList.add('copied');
+    setTimeout(()=>{btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy';btn.classList.remove('copied');},1800);
+  }).catch(()=>{btn.textContent='Copied';setTimeout(()=>{btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Copy';},1800);});
+}
+
+// ═══════════════════════════════════════════════
+// PROMPT TOGGLES / COPY PROMPT
+// ═══════════════════════════════════════════════
+function toggleTP(btn){const body=btn.nextElementSibling;btn.classList.toggle('open',body.classList.toggle('open'));}
+function toggleSP(btn){const body=btn.nextElementSibling;btn.classList.toggle('open',body.classList.toggle('open'));}
+function copyBtn(btn){
+  const inner=btn.closest('.tp-inner,.sp-inner');
+  const txt=inner.querySelector('.tp-text,.sp-text');if(!txt)return;
+  navigator.clipboard.writeText(txt.innerText).then(()=>{
+    btn.textContent='Copied!';btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied');},2000);
+  }).catch(()=>{
+    const r=document.createRange();r.selectNodeContents(txt);
+    window.getSelection().removeAllRanges();window.getSelection().addRange(r);
+    document.execCommand('copy');btn.textContent='Copied!';
+    setTimeout(()=>{btn.textContent='Copy';},2000);
+  });
+}
+
+// ═══════════════════════════════════════════════
+// NOTES — sync on blur
+// ═══════════════════════════════════════════════
+function wireNoteSync(){
+  document.querySelectorAll('[id^="dn-"],[id="global-notes"]').forEach(el=>{
+    el.addEventListener('blur',()=>{
+      lsSave();
+      sbUpsertNote(el.id,el.value);
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════
+// LOCALSTORAGE (fallback / fast restore)
+// ═══════════════════════════════════════════════
+function lsCollect(){
+  const s={v:'5.0',ts:new Date().toISOString(),tasks:{},notes:{},activeTab:'overview',activePhase:'d1'};
+  const ap=document.querySelector('.tab-panel.active');if(ap)s.activeTab=ap.id.replace('panel-','');
+  const aph=document.querySelector('.phase-btn.active');if(aph)s.activePhase=aph.dataset.phase||'d1';
+  document.querySelectorAll('[id^="dt-"]').forEach(list=>{
+    s.tasks[list.id]=[];
+    list.querySelectorAll('.ti').forEach((item,i)=>{s.tasks[list.id].push({i,done:item.classList.contains('done'),t:item.querySelector('strong')?.textContent?.slice(0,70)||''});});
+  });
+  document.querySelectorAll('[id^="dn-"],[id="global-notes"]').forEach(el=>{s.notes[el.id]=el.value;});
+  return s;
+}
+function lsSave(){try{localStorage.setItem('sl_v5',JSON.stringify(lsCollect()));}catch(e){}}
+function applyState(tasks,notes){
+  if(tasks){
+    // tasks from Supabase: array of {task_id, done}
+    // task_id format: "phase-daygroup-taskindex"  e.g. "p1-2-0"
+    // list id format: "dt-p1-2"
+    tasks.forEach(row=>{
+      if(!row.done)return;
+      // reconstruct list id and index from task_id
+      const parts=row.task_id.split('-');
+      if(parts.length<3)return;
+      const idx=parseInt(parts[parts.length-1]);
+      const listId='dt-'+parts.slice(0,-1).join('-');
+      const list=document.getElementById(listId);
+      if(!list)return;
+      const els=list.querySelectorAll('.ti');
+      if(els[idx])els[idx].classList.add('done');
+    });
+  }
+  if(notes){
+    notes.forEach(row=>{
+      const el=document.getElementById(row.note_id);
+      if(el&&row.content)el.value=row.content;
+    });
+  }
+  document.querySelectorAll('[id^="dp-"]').forEach(pill=>{
+    if(pill.textContent==='Habit')return;
+    updateDayProg(pill.id,pill.id.replace('dp-','dt-'));
+  });
+  ['d1','p0','p1','p2','p3','p4'].forEach(k=>updatePhaseProg(k));
+  updateOverall();
+}
+
+// ═══════════════════════════════════════════════
+// LOAD — Supabase first, localStorage fallback
+// ═══════════════════════════════════════════════
+async function loadAll(){
+  // show a subtle loading indicator
+  setSyncStatus('saving','Syncing…');
+
+  const sbData=await sbLoadAll();
+
+  if(sbData&&Array.isArray(sbData.tasks)){
+    applyState(sbData.tasks,sbData.notes);
+    syncSaved();
+  } else {
+    // fallback to localStorage
+    try{
+      const raw=localStorage.getItem('sl_v5');
+      if(raw){
+        const s=JSON.parse(raw);
+        if(s.tasks)Object.entries(s.tasks).forEach(([lid,items])=>{
+          const list=document.getElementById(lid);if(!list)return;
+          const els=list.querySelectorAll('.ti');
+          items.forEach(item=>{if(els[item.i]&&item.done)els[item.i].classList.add('done');});
+        });
+        if(s.notes)Object.entries(s.notes).forEach(([id,val])=>{const el=document.getElementById(id);if(el)el.value=val;});
+        applyState(null,null);
+      }
+    }catch(e){}
+    setSyncStatus('error','Offline');
+  }
+
+  // restore tab/phase
+  try{
+    const raw=localStorage.getItem('sl_v5');
+    if(raw){
+      const s=JSON.parse(raw);
+      if(s.activeTab)openTab(s.activeTab);else document.getElementById('hero-wrap').style.display='block';
+      if(s.activePhase){const pb=document.querySelector(`.phase-btn[data-phase="${s.activePhase}"]`);if(pb)openPhase(s.activePhase,pb);}
+    } else {document.getElementById('hero-wrap').style.display='block';}
+  }catch(e){document.getElementById('hero-wrap').style.display='block';}
+
+  // pill stays — no removal needed
+}
+
+// ═══════════════════════════════════════════════
+// EXPORT / PRINT
+// ═══════════════════════════════════════════════
+function exportJSON(){
+  const state=lsCollect();
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download='solitude_v5_'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(url);
+}
+function exportPDF(){
+  const w=window.open('','_blank');
+  let c='SOLITUDE LIGHTING — MARKETING PLAYBOOK v5.0\nExported: '+new Date().toLocaleDateString()+'\n\n';
+  c+='PROGRESS\n';
+  [['d1','pct-d1'],['p0','pct-p0'],['p1','pct-p1'],['p2','pct-p2'],['p3','pct-p3'],['p4','pct-p4']].forEach(([k,pid])=>{
+    const el=document.getElementById(pid);if(el)c+=k.toUpperCase()+': '+el.textContent+'\n';
+  });
+  c+='\nCOMPLETED\n';
+  document.querySelectorAll('.ti.done').forEach(ti=>{c+='[X] '+(ti.querySelector('strong')?.textContent||'').slice(0,100)+'\n';});
+  c+='\nPENDING\n';
+  document.querySelectorAll('.ti:not(.done)').forEach(ti=>{c+='[ ] '+(ti.querySelector('strong')?.textContent||'').slice(0,100)+'\n';});
+  c+='\nNOTES\n';
+  document.querySelectorAll('[id^="dn-"],[id="global-notes"]').forEach(el=>{if(el.value.trim())c+=el.id+': '+el.value.trim()+'\n\n';});
+  w.document.write('<pre style="font-family:monospace;font-size:12px;padding:24px;max-width:720px;line-height:1.65;white-space:pre-wrap;">'+c+'</pre>');
+  w.document.title='Solitude Playbook v5';
+  setTimeout(()=>{w.print();},300);
+}
+function saveNotes(){
+  lsSave();
+  const btn=event.target.closest('.btn');
+  if(btn){const o=btn.innerHTML;btn.innerHTML='Saved';setTimeout(()=>{btn.innerHTML=o;},1400);}
+}
+
+// ═══════════════════════════════════════════════
+// NOTES SUMMARY TAB
+// ═══════════════════════════════════════════════
+document.getElementById('tab-notes')?.addEventListener('click',()=>{
+  const c=document.getElementById('notes-sum');if(!c)return;
+  c.innerHTML='';
+  document.querySelectorAll('[id^="dn-"],[id="global-notes"]').forEach(el=>{
+    if(!el.value.trim())return;
+    const d=document.createElement('div');
+    d.style.cssText='background:var(--d3);border:1px solid var(--br);border-radius:var(--rs);padding:11px 14px;margin-bottom:8px;';
+    d.innerHTML='<div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin-bottom:4px;">'+el.id+'</div><div style="font-size:12.5px;color:var(--t2);line-height:1.65;white-space:pre-wrap;">'+el.value.replace(/</g,'&lt;')+'</div>';
+    c.appendChild(d);
+  });
+  if(!c.children.length)c.innerHTML='<p style="font-size:13px;color:var(--t3);">Notes from all phases will appear here.</p>';
+});
+
+document.addEventListener('change',e=>{if(e.target.tagName==='TEXTAREA')lsSave();});
+window.addEventListener('load',()=>{wireNoteSync();loadAll();});
+</script>
+</body>
+</html>

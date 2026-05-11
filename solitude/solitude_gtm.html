@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solitude Lighting — Market Opportunity</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: #8A6E30;
+    --dark: #0A0A0B;
+    --dark2: #111113;
+    --dark3: #1A1A1D;
+    --dark4: #242428;
+    --dark5: #2E2E34;
+    --text: #F0EDE6;
+    --text-muted: #9A9488;
+    --text-dim: #5A5750;
+    --teal: #2DD4BF;
+    --coral: #F97316;
+    --radius: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    background: radial-gradient(ellipse 80% 60% at 50% 40%, #1a1608 0%, var(--dark) 70%);
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 20%, rgba(201,168,76,0.06) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(201,168,76,0.04) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.8s forwards;
+  }
+
+  .hero-stat { text-align: center; }
+  .hero-stat .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .hero-stat .lbl {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+
+  .hero-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--dark5);
+    align-self: center;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 6rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 560px;
+    margin-bottom: 3rem;
+    line-height: 1.7;
+  }
+
+  /* DIVIDER LINE */
+  .full-divider {
+    border: none;
+    border-top: 1px solid var(--dark4);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* AVATAR CARDS */
+  .avatar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .avatar-card {
+    background: var(--dark3);
+    border: 1px solid var(--dark5);
+    border-radius: var(--radius);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+
+  .avatar-card:hover { border-color: var(--gold-dim); }
+
+  .avatar-card.featured {
+    border-color: var(--gold-dim);
+    background: linear-gradient(135deg, #1a1608 0%, var(--dark3) 60%);
+  }
+
+  .avatar-card.featured::before {
+    content: '★ BEST FIT';
+    position: absolute;
+    top: 1rem; right: 1rem;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    background: rgba(201,168,76,0.15);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  .avatar-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 1rem;
+  }
+
+  .avatar-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 0.25rem;
+  }
+
+  .avatar-role {
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .avatar-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .avatar-detail {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .avatar-detail .dot {
+    color: var(--gold);
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .avatar-ticket {
+    background: var(--dark4);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .avatar-ticket .t-lbl { font-size: 11px; color: var(--text-dim); }
+  .avatar-ticket .t-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+  }
+
+  /* MARKET MAP */
+  .market-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .market-card {
+    background: var(--dark3);
+    border: 1px solid var(--dark5);
+    border-radius: var(--radius);
+    padding: 1.25rem 1.5rem;
+    transition: transform 0.2s;
+  }
+
+  .market-card:hover { transform: translateY(-2px); }
+
+  .market-card .city {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .market-card .income {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .market-card .sub {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .market-card.hot { border-color: var(--gold-dim); }
+
+  /* BAR CHART */
+  .bar-chart { margin-top: 2.5rem; }
+
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .bar-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    width: 140px;
+    flex-shrink: 0;
+  }
+
+  .bar-track {
+    flex: 1;
+    height: 8px;
+    background: var(--dark4);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: var(--gold);
+    transform-origin: left;
+    animation: growBar 1.2s ease forwards;
+    transform: scaleX(0);
+  }
+
+  .bar-val {
+    font-size: 13px;
+    color: var(--gold);
+    width: 48px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* CHANNEL TABLE */
+  .channel-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--dark4);
+    border: 1px solid var(--dark4);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+
+  .channel-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    background: var(--dark3);
+    padding: 1rem 1.5rem;
+    gap: 1rem;
+    align-items: center;
+    transition: background 0.2s;
+  }
+
+  .channel-row:hover { background: var(--dark4); }
+
+  .channel-row.header {
+    background: var(--dark2);
+    padding: 0.75rem 1.5rem;
+  }
+
+  .channel-row.header span {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .ch-name { font-size: 14px; color: var(--text); }
+  .ch-cost { font-size: 13px; color: var(--text-muted); }
+
+  .pill {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    padding: 3px 9px;
+    border-radius: 20px;
+  }
+
+  .pill-gold { background: rgba(201,168,76,0.15); color: var(--gold); }
+  .pill-teal { background: rgba(45,212,191,0.12); color: var(--teal); }
+  .pill-coral { background: rgba(249,115,22,0.12); color: var(--coral); }
+  .pill-dim { background: var(--dark4); color: var(--text-dim); }
+
+  /* REVENUE CALC */
+  .revenue-block {
+    background: linear-gradient(135deg, #1a1608 0%, var(--dark3) 100%);
+    border: 1px solid var(--gold-dim);
+    border-radius: var(--radius);
+    padding: 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+
+  .revenue-block::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at center, rgba(201,168,76,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .rev-eq {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .rev-box {
+    background: var(--dark4);
+    border: 1px solid var(--dark5);
+    border-radius: 10px;
+    padding: 1.25rem 1.75rem;
+    text-align: center;
+  }
+
+  .rev-box .top {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .rev-box .bot {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+  }
+
+  .rev-op {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    color: var(--text-dim);
+  }
+
+  .rev-result {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 300;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .rev-sub { font-size: 14px; color: var(--text-muted); }
+
+  /* ROADMAP */
+  .roadmap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 640px) {
+    .roadmap { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; }
+    .channel-row { grid-template-columns: 1fr 1fr; }
+    .rev-eq { gap: 0.75rem; }
+  }
+
+  .phase {
+    background: var(--dark3);
+    border: 1px solid var(--dark5);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    position: relative;
+  }
+
+  .phase-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: var(--dark5);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .phase-title {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.25rem;
+  }
+
+  .phase-period {
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+  }
+
+  .phase-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .phase-items li {
+    font-size: 13px;
+    color: var(--text-muted);
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .phase-items li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold-dim);
+  }
+
+  .phase-target {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--dark5);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+  }
+
+  /* QUOTE */
+  .quote-block {
+    text-align: center;
+    padding: 5rem 2rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.3;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .quote-attr {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes growBar {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--dark4);
+    font-size: 12px;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Solitude Lighting · Market Opportunity</div>
+  <h1>The Market Is <em>Already Here.</em><br>You Just Have to Show Up.</h1>
+  <p class="hero-sub">80,000+ affluent homeowners in your backyard. New homes going up every month. Zero well-known competitors with your skill set.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="num">$186K</div>
+      <div class="lbl">Avg income, Woodmore</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <div class="num">3,100+</div>
+      <div class="lbl">New homes permitted nearby (2024)</div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <div class="num">30</div>
+      <div class="lbl">Clients to hit $90K/yr</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHO YOU'RE SELLING TO -->
+<section class="fade-in">
+  <div class="section-label">Your Customers</div>
+  <h2 class="section-title">Three people who<br><em>want what you build.</em></h2>
+  <p class="section-sub">One avatar is clearly the best fit right now. Here's who they are.</p>
+
+  <div class="avatar-grid">
+
+    <div class="avatar-card featured">
+      <div class="avatar-icon" style="background:rgba(201,168,76,0.15);">👩🏾</div>
+      <div class="avatar-name">Tasha & Marcus</div>
+      <div class="avatar-role">Established homeowner · Best fit</div>
+      <div class="avatar-details">
+        <div class="avatar-detail"><span class="dot">◆</span><span>Federal employee + IT contractor, combined $185K–$240K</span></div>
+        <div class="avatar-detail"><span class="dot">◆</span><span>Lives in Mitchellville, Lake Arbor, Woodmore, or Fairwood</span></div>
+        <div class="avatar-detail"><span class="dot">◆</span><span>Hosts Mother's Day brunch, sorority events, Christmas</span></div>
+        <div class="avatar-detail"><span class="dot">◆</span><span>Tired of yellowing incandescents from 2005</span></div>
+        <div class="avatar-detail"><span class="dot">◆</span><span>One happy Tasha sends you 3–5 referrals</span></div>
+      </div>
+      <div class="avatar-ticket">
+        <span class="t-lbl">Average job value</span>
+        <span class="t-val">$2,500–$3,000</span>
+      </div>
+    </div>
+
+    <div class="avatar-card">
+      <div class="avatar-icon" style="background:rgba(45,212,191,0.1);">👩🏽‍💻</div>
+      <div class="avatar-name">Jasmine & DeAndre</div>
+      <div class="avatar-role">New homeowner · Secondary fit</div>
+      <div class="avatar-details">
+        <div class="avatar-detail"><span class="dot">◆</span><span>Cybersecurity + fed contractor, combined $135–$185K</span></div>
+        <div class="avatar-detail"><span class="dot">◆</span><span>Just bought a Ryan Homes or Lennar new build in Waldorf</span></div>
+        <div class="avatar-detail"><span class="dot">◆</span><span>Builder-grade everything. Wants to make it "theirs."</span></div>
+        <div class="avatar-detail"><span class="dot">◆</span><span>Finds you on Instagram Reels or TikTok</span></div>
+        <div class="avatar-detail"><span class="dot">◆</span><span>Will finance. Decides fast (2–5 weeks).</span></div>
+      </div>
+      <div class="avatar-ticket">
+        <span class="t-lbl">Average job value</span>
+        <span class="t-val">$1,500–$2,200</span>
+      </div>
+    </div>
+
+    <div class="avatar-card">
+      <div class="avatar-icon" style="background:rgba(249,115,22,0.1);">🎉</div>
+      <div class="avatar-name">The Event Client</div>
+      <div class="avatar-role">Weddings & events · Later stage</div>
+      <div class="avatar-details">
+        <div class="avatar-detail"><span class="dot">◆</span><span>Brides, party hosts, milestone events (50ths, sweet 16s)</span></div>
+        <div class="avatar-detail"><span class="dot">◆</span><span>DMV wedding lighting market: $25–45M/year</span></div>
+        <div class="avatar-detail"><span class="dot">◆</span><span>Strong competitor already (XL Lighting, District Heights)</span></div>
+        <div class="avatar-detail"><span class="dot">◆</span><span>Needs a 2-person crew minimum. Not solo-feasible yet.</span></div>
+        <div class="avatar-detail"><span class="dot">◆</span><span>Good supplement — not the primary revenue base.</span></div>
+      </div>
+      <div class="avatar-ticket">
+        <span class="t-lbl">Event lighting range</span>
+        <span class="t-val">$700–$3,500</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="full-divider">
+
+<!-- MARKET DATA -->
+<section class="fade-in">
+  <div class="section-label">The Market</div>
+  <h2 class="section-title">Your neighbors are<br><em>already wealthy.</em></h2>
+  <p class="section-sub">PG County and Charles County are home to some of the highest concentrations of affluent Black homeowners in America. A $2,500 install is 1–2% of their annual income.</p>
+
+  <div class="market-grid">
+    <div class="market-card hot">
+      <div class="city">Woodmore</div>
+      <div class="income">$186K</div>
+      <div class="sub">Median household income</div>
+    </div>
+    <div class="market-card hot">
+      <div class="city">Mitchellville (20721)</div>
+      <div class="income">$167K</div>
+      <div class="sub">90.5% homeownership</div>
+    </div>
+    <div class="market-card hot">
+      <div class="city">Brandywine</div>
+      <div class="income">$151K</div>
+      <div class="sub">95.9% homeownership</div>
+    </div>
+    <div class="market-card">
+      <div class="city">Upper Marlboro</div>
+      <div class="income">$137K</div>
+      <div class="sub">Your home base</div>
+    </div>
+    <div class="market-card">
+      <div class="city">Waldorf (20603)</div>
+      <div class="income">$137K</div>
+      <div class="sub">1,542 new homes in 2024</div>
+    </div>
+    <div class="market-card">
+      <div class="city">Charles County</div>
+      <div class="income">$122K</div>
+      <div class="sub">#1 wealthiest majority-Black county in America</div>
+    </div>
+  </div>
+
+  <div class="bar-chart fade-in" style="margin-top:3rem;">
+    <p style="font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;">Homes earning $200K+ per area</p>
+    <div class="bar-row">
+      <div class="bar-label">Brock Hall CDP</div>
+      <div class="bar-track"><div class="bar-fill" style="width:46%"></div></div>
+      <div class="bar-val">46%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Woodmore CDP</div>
+      <div class="bar-track"><div class="bar-fill" style="width:44.6%"></div></div>
+      <div class="bar-val">44%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Mitchellville</div>
+      <div class="bar-track"><div class="bar-fill" style="width:39.3%"></div></div>
+      <div class="bar-val">39%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Brandywine</div>
+      <div class="bar-track"><div class="bar-fill" style="width:34.4%"></div></div>
+      <div class="bar-val">34%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Upper Marlboro</div>
+      <div class="bar-track"><div class="bar-fill" style="width:28.3%"></div></div>
+      <div class="bar-val">28%</div>
+    </div>
+  </div>
+</section>
+
+<hr class="full-divider">
+
+<!-- CHANNELS -->
+<section class="fade-in">
+  <div class="section-label">Where to Find Them</div>
+  <h2 class="section-title">The channels that<br><em>actually convert.</em></h2>
+  <p class="section-sub">Not every channel is equal. Here's what works for a solo operator at your price point — ranked by how fast they produce real jobs.</p>
+
+  <div class="channel-grid">
+    <div class="channel-row header">
+      <span>Channel</span>
+      <span>Cost</span>
+      <span>Speed</span>
+      <span>Quality</span>
+    </div>
+    <div class="channel-row">
+      <div class="ch-name">LinkedIn outreach — realtors + designers</div>
+      <div class="ch-cost">Free</div>
+      <div><span class="pill pill-gold">Fast</span></div>
+      <div><span class="pill pill-gold">Very High</span></div>
+    </div>
+    <div class="channel-row">
+      <div class="ch-name">Google Business Profile (free listing)</div>
+      <div class="ch-cost">Free</div>
+      <div><span class="pill pill-teal">2–4 wks</span></div>
+      <div><span class="pill pill-gold">Very High</span></div>
+    </div>
+    <div class="channel-row">
+      <div class="ch-name">Nextdoor — neighbor posts + reply farming</div>
+      <div class="ch-cost">Free</div>
+      <div><span class="pill pill-gold">Fast</span></div>
+      <div><span class="pill pill-teal">High</span></div>
+    </div>
+    <div class="channel-row">
+      <div class="ch-name">Facebook Groups (PG County, Waldorf, Bowie)</div>
+      <div class="ch-cost">Free</div>
+      <div><span class="pill pill-gold">Fast</span></div>
+      <div><span class="pill pill-teal">High</span></div>
+    </div>
+    <div class="channel-row">
+      <div class="ch-name">Instagram Reels / TikTok transformations</div>
+      <div class="ch-cost">Free</div>
+      <div><span class="pill pill-teal">Builds</span></div>
+      <div><span class="pill pill-teal">High</span></div>
+    </div>
+    <div class="channel-row">
+      <div class="ch-name">Google Local Services Ads (Google Guaranteed)</div>
+      <div class="ch-cost">$200–300/mo</div>
+      <div><span class="pill pill-teal">2–3 wks</span></div>
+      <div><span class="pill pill-gold">Very High</span></div>
+    </div>
+    <div class="channel-row">
+      <div class="ch-name">USPS Every Door Direct Mail (postcards)</div>
+      <div class="ch-cost">~$200/1K</div>
+      <div><span class="pill pill-dim">Slow</span></div>
+      <div><span class="pill pill-teal">Medium</span></div>
+    </div>
+    <div class="channel-row">
+      <div class="ch-name">Angi / HomeAdvisor / Thumbtack</div>
+      <div class="ch-cost">High CAC</div>
+      <div><span class="pill pill-coral">Skip</span></div>
+      <div><span class="pill pill-coral">Poor ROI</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="full-divider">
+
+<!-- REVENUE MATH -->
+<section class="fade-in">
+  <div class="section-label">The Math</div>
+  <h2 class="section-title">What 30 clients<br><em>actually looks like.</em></h2>
+  <p class="section-sub">You only need 2–3 jobs a month. This is what consistent execution produces in year one.</p>
+
+  <div class="revenue-block">
+    <div class="rev-eq">
+      <div class="rev-box">
+        <div class="top">2.5</div>
+        <div class="bot">Jobs / month</div>
+      </div>
+      <div class="rev-op">×</div>
+      <div class="rev-box">
+        <div class="top">$2,750</div>
+        <div class="bot">Avg ticket</div>
+      </div>
+      <div class="rev-op">×</div>
+      <div class="rev-box">
+        <div class="top">12</div>
+        <div class="bot">Months</div>
+      </div>
+      <div class="rev-op">=</div>
+    </div>
+    <div class="rev-result">$82,500</div>
+    <div class="rev-sub">Year one gross revenue — solo, part-time marketing effort</div>
+  </div>
+
+  <div class="roadmap" style="margin-top:2rem;">
+    <div class="phase fade-in">
+      <div class="phase-num">01</div>
+      <div class="phase-title">Foundation</div>
+      <div class="phase-period">Months 1–3</div>
+      <ul class="phase-items">
+        <li>Google Business Profile live</li>
+        <li>50 LinkedIn connections sent</li>
+        <li>First realtor partnership active</li>
+        <li>Chloe's job photographed & posted</li>
+        <li>First 5 Google reviews</li>
+      </ul>
+      <div class="phase-target">1–2 paid jobs</div>
+    </div>
+    <div class="phase fade-in">
+      <div class="phase-num">02</div>
+      <div class="phase-title">Momentum</div>
+      <div class="phase-period">Months 4–9</div>
+      <ul class="phase-items">
+        <li>Weekly Instagram Reels posting</li>
+        <li>Nextdoor active in 5 neighborhoods</li>
+        <li>Builder partner (Waldorf/Brandywine)</li>
+        <li>20+ Google reviews</li>
+        <li>Google LSA launched</li>
+      </ul>
+      <div class="phase-target">2–3 jobs/month</div>
+    </div>
+    <div class="phase fade-in">
+      <div class="phase-num">03</div>
+      <div class="phase-title">Scale</div>
+      <div class="phase-period">Months 10–18</div>
+      <ul class="phase-items">
+        <li>Hire 1 part-time installer helper</li>
+        <li>Add permanent exterior lighting</li>
+        <li>Event lighting as weekend revenue</li>
+        <li>Referral network fully running</li>
+        <li>Consider Trimlight dealership</li>
+      </ul>
+      <div class="phase-target">$250K+ path</div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-block fade-in">
+  <div style="color:var(--gold);font-size:3rem;font-family:'Cormorant Garamond',serif;line-height:1;margin-bottom:1.5rem;">"</div>
+  <div class="quote-text">The market isn't the constraint. You're sitting inside one of the most concentrated affluent Black homeowner markets in the entire country.</div>
+  <div class="quote-attr">Solitude Lighting · Market Analysis · 2026</div>
+</div>
+
+<footer>
+  Solitude Lighting &nbsp;·&nbsp; Upper Marlboro, MD &nbsp;·&nbsp; solitudelighting.com
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
