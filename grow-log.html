@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Grow Log — 18 Genetics, Ranked</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --paper:      #F4EFE1;
+    --paper-card: #FBF8ED;
+    --ink:        #23301F;
+    --ink-soft:   #56604C;
+    --pine:       #2E4023;
+    --pine-dark:  #1B2716;
+    --moss:       #6B7C4F;
+    --gold:       #B98A32;
+    --gold-soft:  #E7C878;
+    --rust:       #9C5230;
+    --line:       #D9D0B6;
+    --line-soft:  #E7E0CC;
+
+    --terp-limonene:      #C99A2E;
+    --terp-myrcene:       #6E7A3F;
+    --terp-caryophyllene: #9C5230;
+    --terp-linalool:      #8C7AA6;
+    --terp-pinene:        #3E5C3B;
+    --terp-humulene:      #8A7250;
+    --terp-other:         #A79C86;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(ellipse at top left, #F8F3E5 0%, var(--paper) 45%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Inter', system-ui, sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    color:var(--pine-dark);
+    margin:0 0 .4em 0;
+    letter-spacing:-0.01em;
+  }
+
+  .mono{ font-family:'Space Mono', monospace; }
+
+  a{ color:var(--rust); }
+
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 28px; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:96px 0 64px;
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(115deg, rgba(46,64,35,0.035) 0px, rgba(46,64,35,0.035) 1px, transparent 1px, transparent 64px);
+    pointer-events:none;
+  }
+  .hero-eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--rust);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .hero-eyebrow::before{
+    content:"";
+    width:26px; height:1px;
+    background:var(--rust);
+    display:inline-block;
+  }
+  h1.hero-title{
+    font-size:clamp(38px, 6vw, 64px);
+    line-height:1.02;
+    max-width:820px;
+  }
+  h1.hero-title em{
+    font-style:italic;
+    color:var(--moss);
+  }
+  .hero-sub{
+    max-width:600px;
+    color:var(--ink-soft);
+    font-size:17.5px;
+    margin-top:18px;
+  }
+  .hero-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:28px;
+    margin-top:40px;
+    padding-top:28px;
+    border-top:1px solid var(--line);
+  }
+  .hero-meta .stat{ min-width:110px; }
+  .hero-meta .stat .num{
+    font-family:'Fraunces', serif;
+    font-size:30px;
+    font-weight:600;
+    color:var(--pine-dark);
+    display:block;
+  }
+  .hero-meta .stat .lbl{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- SECTION SCAFFOLDING ---------- */
+  section{ padding:64px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    margin-bottom:34px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{ font-size:clamp(26px, 3.4vw, 34px); }
+  .section-tag{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--moss);
+    background:#EAE4CE;
+    border:1px solid var(--line);
+    padding:5px 11px;
+    border-radius:100px;
+    white-space:nowrap;
+  }
+
+  /* ---------- TL;DR ---------- */
+  .tldr-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:14px;
+    overflow:hidden;
+  }
+  .tldr-card{
+    background:var(--paper-card);
+    padding:26px 24px;
+  }
+  .tldr-card .k{
+    font-family:'Space Mono', monospace;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--rust);
+    display:block;
+    margin-bottom:10px;
+  }
+  .tldr-card p{ margin:0; font-size:14.5px; color:var(--ink-soft); }
+  .tldr-card strong{ color:var(--ink); }
+
+  @media (max-width: 820px){
+    .tldr-grid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width: 560px){
+    .tldr-grid{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- TIER BLOCKS ---------- */
+  .tier{ margin-bottom:52px; }
+  .tier:last-child{ margin-bottom:0; }
+  .tier-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:6px;
+  }
+  .tier-num{
+    font-family:'Fraunces', serif;
+    font-size:15px;
+    color:var(--paper);
+    background:var(--pine);
+    width:30px; height:30px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+  .tier.stage-4 .tier-num{ background:var(--ink-soft); }
+  .tier.stage-3 .tier-num{ background:var(--rust); }
+  .tier.stage-2 .tier-num{ background:var(--moss); }
+  .tier-head h3{ font-size:21px; margin:0; }
+  .tier-desc{
+    color:var(--ink-soft);
+    font-size:14.5px;
+    max-width:680px;
+    margin:6px 0 22px 46px;
+  }
+
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(280px,1fr));
+    gap:16px;
+  }
+
+  /* ---------- STRAIN CARD ---------- */
+  .strain-card{
+    background:var(--paper-card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:20px 20px 18px;
+    position:relative;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .strain-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 24px -14px rgba(27,39,22,0.35);
+  }
+  .strain-card .rank{
+    position:absolute;
+    top:16px; right:18px;
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    color:var(--line);
+    color:#C7BE9E;
+  }
+  .strain-card h4{
+    font-size:19px;
+    margin-bottom:2px;
+    padding-right:28px;
+  }
+  .strain-card .breeder{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+    font-style:italic;
+  }
+
+  .gauge-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+  }
+  .gauge{
+    flex:1;
+    height:7px;
+    background:#E7E0CC;
+    border-radius:6px;
+    overflow:hidden;
+    position:relative;
+  }
+  .gauge > span{
+    display:block;
+    height:100%;
+    border-radius:6px;
+    background:linear-gradient(90deg, var(--moss), var(--gold) 60%, var(--rust));
+  }
+  .gauge.unverified > span{
+    background:repeating-linear-gradient(90deg, #C7BE9E 0px, #C7BE9E 4px, transparent 4px, transparent 8px);
+  }
+  .gauge-label{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    color:var(--ink);
+    white-space:nowrap;
+  }
+
+  .terp-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-bottom:14px;
+  }
+  .terp-pill{
+    font-size:11px;
+    padding:3px 9px;
+    border-radius:100px;
+    color:#fff;
+    font-family:'Space Mono', monospace;
+    letter-spacing:.02em;
+    white-space:nowrap;
+  }
+
+  .strain-card .why{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    border-top:1px dashed var(--line);
+    padding-top:12px;
+    margin:0;
+  }
+  .strain-card .why strong{ color:var(--pine-dark); }
+
+  /* ---------- FULL TABLE ---------- */
+  .table-scroll{
+    overflow-x:auto;
+    border:1px solid var(--line);
+    border-radius:12px;
+    background:var(--paper-card);
+  }
+  table.full{
+    border-collapse:collapse;
+    width:100%;
+    min-width:1080px;
+    font-size:13.5px;
+  }
+  table.full th, table.full td{
+    padding:12px 14px;
+    text-align:left;
+    border-bottom:1px solid var(--line-soft);
+    vertical-align:top;
+  }
+  table.full thead th{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--paper);
+    background:var(--pine);
+    position:sticky; top:0;
+  }
+  table.full tbody tr:nth-child(even){ background:#F5F0E1; }
+  table.full tbody tr:hover{ background:#EFE8D2; }
+  table.full td.rankcell{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    color:var(--ink-soft);
+    text-align:center;
+  }
+  table.full td.namecell strong{ display:block; color:var(--pine-dark); font-size:14.5px; }
+  table.full td.namecell span{ color:var(--ink-soft); font-size:12px; }
+  .mini-terp{
+    display:inline-block;
+    font-size:10px;
+    padding:2px 7px;
+    border-radius:100px;
+    color:#fff;
+    margin:1px 2px 1px 0;
+  }
+  .tag{
+    display:inline-block;
+    font-family:'Space Mono', monospace;
+    font-size:10.5px;
+    padding:2px 8px;
+    border-radius:5px;
+    border:1px solid var(--line);
+    color:var(--ink-soft);
+  }
+  .tag.pos{ border-color:#8FA06B; color:#4E5C36; background:#EEF1E3; }
+  .tag.neg{ border-color:#C99172; color:#8A4224; background:#F3E4DA; }
+  .tag.thin{ border-color:#C7BE9E; color:var(--ink-soft); background:#EFE9D8; }
+
+  /* ---------- DETAIL / ACCORDION ---------- */
+  details.strain-detail{
+    background:var(--paper-card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    margin-bottom:10px;
+    padding:0;
+    overflow:hidden;
+  }
+  details.strain-detail summary{
+    cursor:pointer;
+    list-style:none;
+    padding:16px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    font-family:'Fraunces', serif;
+    font-size:16.5px;
+    color:var(--pine-dark);
+  }
+  details.strain-detail summary::-webkit-details-marker{ display:none; }
+  details.strain-detail summary .s-left{
+    display:flex; align-items:baseline; gap:12px;
+  }
+  details.strain-detail summary .s-left .idx{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+  details.strain-detail summary .s-breeder{
+    font-family:'Inter', sans-serif;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+  details.strain-detail summary .chevron{
+    font-family:'Space Mono', monospace;
+    color:var(--rust);
+    transition:transform .18s ease;
+    flex-shrink:0;
+  }
+  details[open].strain-detail summary .chevron{ transform:rotate(45deg); }
+  .detail-body{
+    padding:0 20px 22px;
+    border-top:1px solid var(--line-soft);
+  }
+  .detail-body .row{
+    display:grid;
+    grid-template-columns:140px 1fr;
+    gap:14px;
+    padding:9px 0;
+    border-bottom:1px dashed var(--line-soft);
+    font-size:14px;
+  }
+  .detail-body .row:last-child{ border-bottom:none; }
+  .detail-body .row .k{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--rust);
+    padding-top:2px;
+  }
+  .detail-body .row .v{ color:var(--ink-soft); }
+  .detail-body .row .v strong{ color:var(--ink); }
+
+  @media (max-width: 620px){
+    .detail-body .row{ grid-template-columns:1fr; gap:4px; }
+  }
+
+  /* ---------- CAVEATS / FOOTER ---------- */
+  .caveat-list{
+    display:grid;
+    gap:14px;
+    margin-top:10px;
+  }
+  .caveat-list li{
+    list-style:none;
+    padding:16px 18px;
+    background:var(--paper-card);
+    border:1px solid var(--line);
+    border-left:3px solid var(--rust);
+    border-radius:8px;
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+  .caveat-list li strong{ color:var(--ink); }
+
+  footer{
+    padding:44px 0 70px;
+    text-align:center;
+  }
+  footer p{
+    color:var(--ink-soft);
+    font-size:13px;
+    max-width:520px;
+    margin:0 auto;
+  }
+  footer .leaf{
+    font-size:22px;
+    margin-bottom:14px;
+    color:var(--moss);
+  }
+
+  ::selection{ background:var(--gold-soft); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Field Guide — 18 Boutique Genetics</div>
+    <h1 class="hero-title">The Grow Log:<br><em>what to plant next.</em></h1>
+    <p class="hero-sub">
+      A consumer-facing breakdown of the seed collection — genetics, terpenes, potency, and what
+      actual growers on Reddit and grow forums are saying, ranked so you know exactly which jar to
+      open first.
+    </p>
+    <div class="hero-meta">
+      <div class="stat"><span class="num">18</span><span class="lbl">Strains Reviewed</span></div>
+      <div class="stat"><span class="num">05</span><span class="lbl">Grow-Next Picks</span></div>
+      <div class="stat"><span class="num">04</span><span class="lbl">Priority Tiers</span></div>
+      <div class="stat"><span class="num">12+</span><span class="lbl">Breeders Represented</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TL;DR ============ -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>TL;DR</h2>
+      <span class="section-tag">Read this first</span>
+    </div>
+    <div class="tldr-grid">
+      <div class="tldr-card">
+        <span class="k">Grow these first</span>
+        <p><strong>POTG x Lilac Diesel</strong> (Ethos), <strong>Grease Truck</strong> &amp;
+        <strong>Brain Storm</strong> (Dirty Bird), <strong>Ocean Fruit</strong> (Square One), and
+        <strong>Glazed Pastries</strong> (In House) — the best mix of real grow reports, credible
+        potency, and forgiving cultivation.</p>
+      </div>
+      <div class="tldr-card">
+        <span class="k">Highest claimed THC</span>
+        <p><strong>Cherry Poppers</strong> (31%, Barney's Farm) and <strong>Birthday Cake</strong>
+        (24–27%, BlimBurn) test high on paper — but these are unverified breeder marketing
+        numbers, not lab-confirmed.</p>
+      </div>
+      <div class="tldr-card">
+        <span class="k">Thin on data</span>
+        <p>Mind Flayer, Gas Nana, Sunset Skunk, Frozen Papaya, Divine Truffle, and the unconfirmed
+        Acapulco Gold pack have little to no firsthand grow data. Treat as pheno-hunts.</p>
+      </div>
+      <div class="tldr-card">
+        <span class="k">Red flags</span>
+        <p>Frozen Papaya's only documented run went intersex mid-flower. Mind Flayer threw male
+        flowers in one grow. Cull aggressively if you see anthers.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TIERED RECOMMENDATIONS ============ -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Recommended Growing Order</h2>
+      <span class="section-tag">4 Tiers · 18 Strains</span>
+    </div>
+
+    <!-- STAGE 1 -->
+    <div class="tier stage-1">
+      <div class="tier-head"><span class="tier-num">1</span><h3>Grow Next — Highest Confidence</h3></div>
+      <p class="tier-desc">Real grower diaries, desirable terpene profiles, and forgiving genetics. Start here.</p>
+      <div class="card-grid">
+
+        <div class="strain-card">
+          <span class="rank">#1</span>
+          <h4>POTG x Lilac Diesel</h4>
+          <div class="breeder">Ethos Genetics</div>
+          <div class="gauge-row"><div class="gauge"><span style="width:66%"></span></div><span class="gauge-label">~20–28%</span></div>
+          <div class="terp-row">
+            <span class="terp-pill" style="background:var(--terp-caryophyllene)">gas</span>
+            <span class="terp-pill" style="background:var(--terp-linalool)">grape</span>
+            <span class="terp-pill" style="background:var(--terp-myrcene)">chem</span>
+          </div>
+          <p class="why"><strong>Why:</strong> 80 GrowDiaries logs on the Planet of the Grapes parent alone (9.1/10 avg) — "extremely loud, very potent, couchlock." Best-documented lineage in the whole collection.</p>
+        </div>
+
+        <div class="strain-card">
+          <span class="rank">#2</span>
+          <h4>Grease Truck</h4>
+          <div class="breeder">Dirty Bird Genetics</div>
+          <div class="gauge-row"><div class="gauge unverified"><span style="width:58%"></span></div><span class="gauge-label">high, unverified</span></div>
+          <div class="terp-row">
+            <span class="terp-pill" style="background:var(--terp-pinene)">limonene</span>
+            <span class="terp-pill" style="background:var(--terp-caryophyllene)">caryophyllene</span>
+            <span class="terp-pill" style="background:var(--terp-linalool)">linalool</span>
+          </div>
+          <p class="why"><strong>Why:</strong> Independent smoke report: "so pungent," heavy narcotic relaxation. Uniform structure, low pheno variation, high yield — easy for any experience level.</p>
+        </div>
+
+        <div class="strain-card">
+          <span class="rank">#3</span>
+          <h4>Ocean Fruit</h4>
+          <div class="breeder">Square One Genetics</div>
+          <div class="gauge-row"><div class="gauge unverified"><span style="width:55%"></span></div><span class="gauge-label">high, unverified</span></div>
+          <div class="terp-row">
+            <span class="terp-pill" style="background:var(--terp-limonene)">tropical</span>
+            <span class="terp-pill" style="background:var(--terp-caryophyllene)">gas</span>
+            <span class="terp-pill" style="background:var(--terp-humulene)">berry</span>
+          </div>
+          <p class="why"><strong>Why:</strong> 6+ documented grows, vigorous and forgiving. One grower: "really got my attention." Frosty, fruity-funky, and trains well.</p>
+        </div>
+
+        <div class="strain-card">
+          <span class="rank">#4</span>
+          <h4>Brain Storm</h4>
+          <div class="breeder">Dirty Bird Genetics</div>
+          <div class="gauge-row"><div class="gauge unverified"><span style="width:55%"></span></div><span class="gauge-label">high, unverified</span></div>
+          <div class="terp-row">
+            <span class="terp-pill" style="background:var(--terp-limonene)">sweet</span>
+            <span class="terp-pill" style="background:var(--terp-humulene)">earthy</span>
+            <span class="terp-pill" style="background:var(--terp-caryophyllene)">peppery</span>
+          </div>
+          <p class="why"><strong>Why:</strong> "Contentment next level" per independent smoke report. Dark purple bag appeal, calming without anchoring you to the couch.</p>
+        </div>
+
+        <div class="strain-card">
+          <span class="rank">#5</span>
+          <h4>Glazed Pastries</h4>
+          <div class="breeder">In House Genetics</div>
+          <div class="gauge-row"><div class="gauge"><span style="width:57%"></span></div><span class="gauge-label">~20–23%</span></div>
+          <div class="terp-row">
+            <span class="terp-pill" style="background:var(--terp-caryophyllene)">caryophyllene</span>
+            <span class="terp-pill" style="background:var(--terp-limonene)">vanilla</span>
+          </div>
+          <p class="why"><strong>Why:</strong> "Ridiculously solid" trichome coverage "on par with expensive clones," per repeat grower. Productive and easy.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- STAGE 2 -->
+    <div class="tier stage-2">
+      <div class="tier-head"><span class="tier-num">2</span><h3>Reliable Classics</h3></div>
+      <p class="tier-desc">Familiar genotypes with a track record — good picks once your Stage 1 grows are underway.</p>
+      <div class="card-grid">
+
+        <div class="strain-card">
+          <span class="rank">#6</span>
+          <h4>Durban Nights <span style="font-size:12px;font-weight:400;">(Thai Herer 99)</span></h4>
+          <div class="breeder">Brothers Grimm Seeds</div>
+          <div class="gauge-row"><div class="gauge unverified"><span style="width:60%"></span></div><span class="gauge-label">high, unverified</span></div>
+          <div class="terp-row">
+            <span class="terp-pill" style="background:var(--terp-limonene)">tropical</span>
+            <span class="terp-pill" style="background:var(--terp-humulene)">spicy</span>
+          </div>
+          <p class="why"><strong>Why:</strong> "Amazing nose and frosted out." Potent creative daytime sativa — but expect a tall plant and a late finish.</p>
+        </div>
+
+        <div class="strain-card">
+          <span class="rank">#7</span>
+          <h4>Birthday Cake</h4>
+          <div class="breeder">BlimBurn Seeds</div>
+          <div class="gauge-row"><div class="gauge"><span style="width:74%"></span></div><span class="gauge-label">24–27% (claimed)</span></div>
+          <div class="terp-row">
+            <span class="terp-pill" style="background:var(--terp-caryophyllene)">caryophyllene</span>
+            <span class="terp-pill" style="background:var(--terp-limonene)">vanilla</span>
+          </div>
+          <p class="why"><strong>Why:</strong> Loved for flavor and relaxation; some reviewers note potency runs "subpar" versus the hype. Reliable, high-THC dessert indica.</p>
+        </div>
+
+        <div class="strain-card">
+          <span class="rank">#8</span>
+          <h4>Sour Gorilla</h4>
+          <div class="breeder">Breeder unconfirmed on pack</div>
+          <div class="gauge-row"><div class="gauge"><span style="width:55%"></span></div><span class="gauge-label">15–23% avg</span></div>
+          <div class="terp-row">
+            <span class="terp-pill" style="background:var(--terp-limonene)">citrus</span>
+            <span class="terp-pill" style="background:var(--terp-myrcene)">diesel</span>
+            <span class="terp-pill" style="background:var(--terp-caryophyllene)">pepper</span>
+          </div>
+          <p class="why"><strong>Why:</strong> "Balanced high, not too heady" — loved genotype across breeders. Loud, frosty. Expect pheno variability since the pack breeder is unconfirmed.</p>
+        </div>
+
+        <div class="strain-card">
+          <span class="rank">#9</span>
+          <h4>Double Afghani Kush</h4>
+          <div class="breeder">In House Genetics</div>
+          <div class="gauge-row"><div class="gauge"><span style="width:50%"></span></div><span class="gauge-label">~20%</span></div>
+          <div class="terp-row">
+            <span class="terp-pill" style="background:var(--terp-humulene)">earthy</span>
+            <span class="terp-pill" style="background:var(--terp-pinene)">hashy</span>
+          </div>
+          <p class="why"><strong>Why:</strong> Fastest finisher in the collection (45–55 days). Resinous, sedative nighttime indica with quick turnover.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- STAGE 3 -->
+    <div class="tier stage-3">
+      <div class="tier-head"><span class="tier-num">3</span><h3>Pheno-Hunts — For the Adventurous</h3></div>
+      <p class="tier-desc">Promising but variable. Grow multiple seeds and cull hard for the keeper phenotype.</p>
+      <div class="card-grid">
+
+        <div class="strain-card">
+          <span class="rank">#10</span>
+          <h4>Cherry Poppers</h4>
+          <div class="breeder">Likely Barney's Farm</div>
+          <div class="gauge-row"><div class="gauge"><span style="width:89%"></span></div><span class="gauge-label">31% (unverified)</span></div>
+          <div class="terp-row">
+            <span class="terp-pill" style="background:var(--terp-humulene)">cherry</span>
+            <span class="terp-pill" style="background:var(--terp-limonene)">citrus</span>
+          </div>
+          <p class="why"><strong>Why:</strong> Highest claimed THC in the collection, but the number is unverified breeder marketing and firsthand reviews are thin. Big yields, verify potency yourself.</p>
+        </div>
+
+        <div class="strain-card">
+          <span class="rank">#11</span>
+          <h4>Chiroptera Kush</h4>
+          <div class="breeder">MZ Jill Genetics</div>
+          <div class="gauge-row"><div class="gauge unverified"><span style="width:40%"></span></div><span class="gauge-label">not published</span></div>
+          <div class="terp-row">
+            <span class="terp-pill" style="background:var(--terp-linalool)">blueberry</span>
+            <span class="terp-pill" style="background:var(--terp-humulene)">grape</span>
+          </div>
+          <p class="why"><strong>Why:</strong> Sparse data but glowing: "all gas no brakes," dense sticky purple colas. Strong flavor/resin upside, under-documented.</p>
+        </div>
+
+        <div class="strain-card">
+          <span class="rank">#12</span>
+          <h4>Flaming Cheetoz</h4>
+          <div class="breeder">Lit Farms</div>
+          <div class="gauge-row"><div class="gauge unverified"><span style="width:40%"></span></div><span class="gauge-label">not verified</span></div>
+          <div class="terp-row">
+            <span class="terp-pill" style="background:var(--terp-humulene)">funk</span>
+            <span class="terp-pill" style="background:var(--terp-limonene)">candy</span>
+          </div>
+          <p class="why"><strong>Why:</strong> 10/10 documented grow, but "major support issues" — stretchy and leaning. Two of three phenos ran one-dimensional; hunt for the fruity #3-type.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- STAGE 4 -->
+    <div class="tier stage-4">
+      <div class="tier-head"><span class="tier-num">4</span><h3>Curiosities — Lowest Priority</h3></div>
+      <p class="tier-desc">Little to no firsthand data, and some carry specific red flags. Grow only if you enjoy the gamble.</p>
+      <div class="card-grid">
+
+        <div class="strain-card">
+          <span class="rank">#13</span>
+          <h4>Mind Flayer</h4>
+          <div class="breeder">Solfire Gardens</div>
+          <div class="gauge-row"><div class="gauge unverified"><span style="width:35%"></span></div><span class="gauge-label">not verified</span></div>
+          <div class="terp-row"><span class="terp-pill" style="background:var(--terp-humulene)">gelato</span></div>
+          <p class="why"><strong>Why:</strong> One documented grow flagged pheno instability and a hermie (male flowers). Loud on paper, unproven in practice.</p>
+        </div>
+
+        <div class="strain-card">
+          <span class="rank">#14</span>
+          <h4>Sunset Skunk</h4>
+          <div class="breeder">Thug Pug Genetics</div>
+          <div class="gauge-row"><div class="gauge unverified"><span style="width:35%"></span></div><span class="gauge-label">not published</span></div>
+          <div class="terp-row"><span class="terp-pill" style="background:var(--terp-myrcene)">skunk</span></div>
+          <p class="why"><strong>Why:</strong> Respected breeder, but this specific cross is barely documented (~1 grow diary exists). Buy only from verified vendors — counterfeit risk.</p>
+        </div>
+
+        <div class="strain-card">
+          <span class="rank">#15</span>
+          <h4>Gas Nana</h4>
+          <div class="breeder">Solfire Gardens</div>
+          <div class="gauge-row"><div class="gauge"><span style="width:64%"></span></div><span class="gauge-label">20–25% (vendor est.)</span></div>
+          <div class="terp-row"><span class="terp-pill" style="background:var(--terp-humulene)">banana</span></div>
+          <p class="why"><strong>Why:</strong> Interesting terps, but essentially no verified grow/smoke data, and even the lineage is disputed between sources.</p>
+        </div>
+
+        <div class="strain-card">
+          <span class="rank">#16</span>
+          <h4>Divine Truffle</h4>
+          <div class="breeder">BeLeaf x In House</div>
+          <div class="gauge-row"><div class="gauge"><span style="width:64%"></span></div><span class="gauge-label">20–25% (claimed)</span></div>
+          <div class="terp-row"><span class="terp-pill" style="background:var(--terp-humulene)">garlic</span></div>
+          <p class="why"><strong>Why:</strong> Elite frost potential, but the parent White Truffle line reports low yield and lab tests of just 16–19% — well under the claim.</p>
+        </div>
+
+        <div class="strain-card">
+          <span class="rank">#17</span>
+          <h4>Frozen Papaya</h4>
+          <div class="breeder">Sin City Seeds</div>
+          <div class="gauge-row"><div class="gauge unverified"><span style="width:30%"></span></div><span class="gauge-label">unverified</span></div>
+          <div class="terp-row"><span class="terp-pill" style="background:var(--terp-limonene)">papaya</span></div>
+          <p class="why"><strong>Why:</strong> The only documented grow went intersex mid-flower and died. "Not impressed by Sin City genetics" — real red flag.</p>
+        </div>
+
+        <div class="strain-card">
+          <span class="rank">#18</span>
+          <h4>Acapulco Gold</h4>
+          <div class="breeder">Unconfirmed pack</div>
+          <div class="gauge-row"><div class="gauge"><span style="width:63%"></span></div><span class="gauge-label">~20–25%</span></div>
+          <div class="terp-row"><span class="terp-pill" style="background:var(--terp-caryophyllene)">toffee</span></div>
+          <p class="why"><strong>Why:</strong> Beautiful heritage strain, but modern seed versions are widely called "a simulacrum" of the original. Long flower, huge plant. Grow for the story, not the potency chase.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ FULL COMPARISON TABLE ============ -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Full Comparison Table</h2>
+      <span class="section-tag">All 18 · Ranked</span>
+    </div>
+    <div class="table-scroll">
+      <table class="full">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Strain</th>
+            <th>Genetics</th>
+            <th>Type</th>
+            <th>THC</th>
+            <th>Terpenes</th>
+            <th>Flowering</th>
+            <th>Review Sentiment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="rankcell">1</td>
+            <td class="namecell"><strong>POTG x Lilac Diesel</strong><span>Ethos Genetics</span></td>
+            <td>Planet of the Grapes x Lilac Diesel</td>
+            <td>Hybrid</td>
+            <td>~20–28%</td>
+            <td><span class="mini-terp" style="background:var(--terp-caryophyllene)">gas</span><span class="mini-terp" style="background:var(--terp-linalool)">grape</span></td>
+            <td>8–10 wk</td>
+            <td><span class="tag pos">Positive</span> 80 diaries, 9.1/10 avg</td>
+          </tr>
+          <tr>
+            <td class="rankcell">2</td>
+            <td class="namecell"><strong>Grease Truck</strong><span>Dirty Bird Genetics</span></td>
+            <td>Milk Truck x Grease Monkey</td>
+            <td>Indica</td>
+            <td>High (unverified)</td>
+            <td><span class="mini-terp" style="background:var(--terp-limonene)">limonene</span><span class="mini-terp" style="background:var(--terp-caryophyllene)">caryophyllene</span><span class="mini-terp" style="background:var(--terp-linalool)">linalool</span></td>
+            <td>56–63 d</td>
+            <td><span class="tag pos">Positive</span> uniform, easy, heavy relax</td>
+          </tr>
+          <tr>
+            <td class="rankcell">3</td>
+            <td class="namecell"><strong>Ocean Fruit</strong><span>Square One Genetics</span></td>
+            <td>Brisker OG x Purple Punch</td>
+            <td>Indica-hybrid</td>
+            <td>High (unverified)</td>
+            <td><span class="mini-terp" style="background:var(--terp-limonene)">tropical</span><span class="mini-terp" style="background:var(--terp-caryophyllene)">gas</span></td>
+            <td>56–65 d</td>
+            <td><span class="tag pos">Positive</span> vigorous, forgiving, frosty</td>
+          </tr>
+          <tr>
+            <td class="rankcell">4</td>
+            <td class="namecell"><strong>Brain Storm</strong><span>Dirty Bird Genetics</span></td>
+            <td>Slurricane #7 x The Brunch F1 #5</td>
+            <td>Indica-lean</td>
+            <td>High (unverified)</td>
+            <td><span class="mini-terp" style="background:var(--terp-limonene)">sweet</span><span class="mini-terp" style="background:var(--terp-humulene)">earthy</span></td>
+            <td>~55–63 d</td>
+            <td><span class="tag pos">Positive</span> "contentment next level"</td>
+          </tr>
+          <tr>
+            <td class="rankcell">5</td>
+            <td class="namecell"><strong>Glazed Pastries</strong><span>In House Genetics</span></td>
+            <td>Pastries x Platinum</td>
+            <td>Indica-hybrid</td>
+            <td>~20–23%</td>
+            <td><span class="mini-terp" style="background:var(--terp-caryophyllene)">caryophyllene</span><span class="mini-terp" style="background:var(--terp-limonene)">vanilla</span></td>
+            <td>9–10 wk</td>
+            <td><span class="tag pos">Positive</span> "ridiculously solid" trichomes</td>
+          </tr>
+          <tr>
+            <td class="rankcell">6</td>
+            <td class="namecell"><strong>Durban Nights</strong><span>Brothers Grimm Seeds</span></td>
+            <td>(Durban-Thai x Jack Herer) x Cinderella 99</td>
+            <td>Mostly sativa</td>
+            <td>High (unverified)</td>
+            <td><span class="mini-terp" style="background:var(--terp-limonene)">tropical</span><span class="mini-terp" style="background:var(--terp-humulene)">spicy</span></td>
+            <td>8–9 wk (runs late)</td>
+            <td><span class="tag pos">Positive</span> creative sativa, tall/late</td>
+          </tr>
+          <tr>
+            <td class="rankcell">7</td>
+            <td class="namecell"><strong>Birthday Cake</strong><span>BlimBurn Seeds</span></td>
+            <td>Girl Scout Cookies x Cherry Pie</td>
+            <td>Indica-lean (60/40)</td>
+            <td>24–27% (claimed)</td>
+            <td><span class="mini-terp" style="background:var(--terp-caryophyllene)">caryophyllene</span><span class="mini-terp" style="background:var(--terp-limonene)">vanilla</span></td>
+            <td>9–10 wk</td>
+            <td><span class="tag pos">Mostly positive</span> potency varies by pheno</td>
+          </tr>
+          <tr>
+            <td class="rankcell">8</td>
+            <td class="namecell"><strong>Sour Gorilla</strong><span>Breeder unconfirmed</span></td>
+            <td>Sour Diesel x Gorilla Glue #4</td>
+            <td>Indica-lean (65/35)</td>
+            <td>15–23% avg</td>
+            <td><span class="mini-terp" style="background:var(--terp-limonene)">citrus</span><span class="mini-terp" style="background:var(--terp-myrcene)">diesel</span></td>
+            <td>~9 wk</td>
+            <td><span class="tag pos">Positive</span> genotype well-liked</td>
+          </tr>
+          <tr>
+            <td class="rankcell">9</td>
+            <td class="namecell"><strong>Double Afghani Kush</strong><span>In House Genetics</span></td>
+            <td>Afghani Urkle x Double Kush Breath</td>
+            <td>Indica (90%+)</td>
+            <td>~20%</td>
+            <td><span class="mini-terp" style="background:var(--terp-humulene)">earthy</span><span class="mini-terp" style="background:var(--terp-pinene)">hashy</span></td>
+            <td>45–55 d (fast)</td>
+            <td><span class="tag thin">Limited data</span> fast, resinous</td>
+          </tr>
+          <tr>
+            <td class="rankcell">10</td>
+            <td class="namecell"><strong>Cherry Poppers</strong><span>Likely Barney's Farm</span></td>
+            <td>Lemon Kush x Cherry Zkittlez</td>
+            <td>Sativa-lean (60/40)</td>
+            <td>31% (unverified claim)</td>
+            <td><span class="mini-terp" style="background:var(--terp-humulene)">cherry</span><span class="mini-terp" style="background:var(--terp-limonene)">citrus</span></td>
+            <td>60–65 d</td>
+            <td><span class="tag thin">Thin data</span> vigorous, potency unproven</td>
+          </tr>
+          <tr>
+            <td class="rankcell">11</td>
+            <td class="namecell"><strong>Chiroptera Kush</strong><span>MZ Jill Genetics</span></td>
+            <td>Bat Girl x Purple Afghani Kush</td>
+            <td>Indica/sativa</td>
+            <td>Not published</td>
+            <td><span class="mini-terp" style="background:var(--terp-linalool)">blueberry</span><span class="mini-terp" style="background:var(--terp-humulene)">grape</span></td>
+            <td>56–63 d</td>
+            <td><span class="tag thin">Sparse but glowing</span> "all gas no brakes"</td>
+          </tr>
+          <tr>
+            <td class="rankcell">12</td>
+            <td class="namecell"><strong>Flaming Cheetoz</strong><span>Lit Farms</span></td>
+            <td>Cheetah Piss x Runtz</td>
+            <td>Hybrid (indica-lean)</td>
+            <td>Not verified</td>
+            <td><span class="mini-terp" style="background:var(--terp-humulene)">funk</span><span class="mini-terp" style="background:var(--terp-limonene)">candy</span></td>
+            <td>60–65 d</td>
+            <td><span class="tag pos">Good grow, pheno-variable</span> needs staking</td>
+          </tr>
+          <tr>
+            <td class="rankcell">13</td>
+            <td class="namecell"><strong>Mind Flayer</strong><span>Solfire Gardens</span></td>
+            <td>Double Tap x Why U Gelly</td>
+            <td>Hybrid</td>
+            <td>Not verified</td>
+            <td><span class="mini-terp" style="background:var(--terp-humulene)">gelato</span></td>
+            <td>58–70 d</td>
+            <td><span class="tag neg">Caution</span> instability + hermie flagged</td>
+          </tr>
+          <tr>
+            <td class="rankcell">14</td>
+            <td class="namecell"><strong>Sunset Skunk</strong><span>Thug Pug Genetics</span></td>
+            <td>Early Skunk x Sherb Breath</td>
+            <td>Hybrid</td>
+            <td>Not published</td>
+            <td><span class="mini-terp" style="background:var(--terp-myrcene)">skunk</span></td>
+            <td>~9 wk</td>
+            <td><span class="tag thin">Barely documented</span> ~1 grow diary</td>
+          </tr>
+          <tr>
+            <td class="rankcell">15</td>
+            <td class="namecell"><strong>Gas Nana</strong><span>Solfire Gardens</span></td>
+            <td>Banana Runtz x Gary Payton</td>
+            <td>Mostly indica</td>
+            <td>20–25% (vendor est.)</td>
+            <td><span class="mini-terp" style="background:var(--terp-humulene)">banana</span></td>
+            <td>63–70 d</td>
+            <td><span class="tag thin">Minimal data</span> lineage disputed</td>
+          </tr>
+          <tr>
+            <td class="rankcell">16</td>
+            <td class="namecell"><strong>Divine Truffle</strong><span>BeLeaf x In House</span></td>
+            <td>Divinity #35 x White Truffle</td>
+            <td>Mostly indica</td>
+            <td>20–25% (claimed)</td>
+            <td><span class="mini-terp" style="background:var(--terp-humulene)">garlic</span></td>
+            <td>8–9 wk</td>
+            <td><span class="tag neg">Unproven</span> parent line tested 16–19%</td>
+          </tr>
+          <tr>
+            <td class="rankcell">17</td>
+            <td class="namecell"><strong>Frozen Papaya</strong><span>Sin City Seeds</span></td>
+            <td>Papaya x White Nightmare</td>
+            <td>Hybrid (50/50–60/40)</td>
+            <td>Unverified</td>
+            <td><span class="mini-terp" style="background:var(--terp-limonene)">papaya</span></td>
+            <td>50–65 d</td>
+            <td><span class="tag neg">Negative</span> only grow went intersex, died</td>
+          </tr>
+          <tr>
+            <td class="rankcell">18</td>
+            <td class="namecell"><strong>Acapulco Gold</strong><span>Unconfirmed pack</span></td>
+            <td>Mexican (Guerrero) sativa landrace</td>
+            <td>Sativa (80/20)</td>
+            <td>~20–25%</td>
+            <td><span class="mini-terp" style="background:var(--terp-caryophyllene)">toffee</span></td>
+            <td>60–75 d</td>
+            <td><span class="tag thin">Variable</span> authenticity varies by pack</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DETAILED NOTES ============ -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Detailed Notes</h2>
+      <span class="section-tag">Click to expand</span>
+    </div>
+
+    <details class="strain-detail" open>
+      <summary><span class="s-left"><span class="idx">01</span> POTG x Lilac Diesel <span class="s-breeder">— Ethos Genetics</span></span><span class="chevron">+</span></summary>
+      <div class="detail-body">
+        <div class="row"><div class="k">Genetics</div><div class="v">Planet of the Grapes x Lilac Diesel</div></div>
+        <div class="row"><div class="k">Type</div><div class="v">Hybrid, feminized</div></div>
+        <div class="row"><div class="k">Flowering</div><div class="v">8–10 weeks (~65 days commonly reported)</div></div>
+        <div class="row"><div class="k">THC</div><div class="v"><strong>~20–28%</strong> — Leafly notes Lilac Diesel runs higher than average; AllBud lists a 20–21% average for the parent</div></div>
+        <div class="row"><div class="k">Terpenes</div><div class="v">Gassy, grape, chem, citrus, sour berry</div></div>
+        <div class="row"><div class="k">Reviews</div><div class="v">Best-documented lineage in the collection. Planet of the Grapes alone has 80 GrowDiaries diaries (73 growers, 41 harvests) at a 9.1/10 rating. A 10/10 grower: <strong>"very Frosty, Extrem Loud and very Potent, Couchlock effect… Gassy A.F. with a chemical Citrus/Grape."</strong> One THCFarmer grower flagged potency variability (2 of 3 plants "could not get me high"). Ethos is broadly praised for stable genetics and customer service.</div></div>
+      </div>
+    </details>
+
+    <details class="strain-detail">
+      <summary><span class="s-left"><span class="idx">02</span> Grease Truck <span class="s-breeder">— Dirty Bird Genetics</span></span><span class="chevron">+</span></summary>
+      <div class="detail-body">
+        <div class="row"><div class="k">Genetics</div><div class="v">Milk Truck x Grease Monkey</div></div>
+        <div class="row"><div class="k">Type</div><div class="v">Indica, feminized F1</div></div>
+        <div class="row"><div class="k">Flowering</div><div class="v">56–63 days</div></div>
+        <div class="row"><div class="k">THC</div><div class="v">Not independently verified — described as strongly narcotic/relaxing</div></div>
+        <div class="row"><div class="k">Terpenes</div><div class="v">Gassy, creamy, sweet — dominant limonene, caryophyllene, linalool, with pinene/humulene present</div></div>
+        <div class="row"><div class="k">Reviews</div><div class="v">Independent North Atlantic smoke report: pungent fuel stench, chunky green-and-purple nugs, <strong>"mind numbing, physically relaxing and narcotic… an herbal lobotomy."</strong> Breeder and reviewer both note uniform structure and low pheno variation — an easy, high-yielding indica for any experience level.</div></div>
+      </div>
+    </details>
+
+    <details class="strain-detail">
+      <summary><span class="s-left"><span class="idx">03</span> Ocean Fruit <span class="s-breeder">— Square One Genetics</span></span><span class="chevron">+</span></summary>
+      <div class="detail-body">
+        <div class="row"><div class="k">Genetics</div><div class="v">Brisker OG (Tahoe OG x Peanut Butter Breath) x Purple Punch</div></div>
+        <div class="row"><div class="k">Type</div><div class="v">Indica-leaning hybrid (~70/30), feminized</div></div>
+        <div class="row"><div class="k">Flowering</div><div class="v">56–65 days</div></div>
+        <div class="row"><div class="k">THC</div><div class="v">Not independently verified; dense, resin-heavy buds per breeder</div></div>
+        <div class="row"><div class="k">Terpenes</div><div class="v">Tropical candy, gas, sour, berry</div></div>
+        <div class="row"><div class="k">Reviews</div><div class="v">6+ GrowDiaries diaries plus a Rollitup grower who ran it among six strains and said it <strong>"was one of if not the strain that really got my attention."</strong> Growers report great fruity smells and frost "almost everywhere." Vigorous and trainable, though seeds sell out fast.</div></div>
+      </div>
+    </details>
+
+    <details class="strain-detail">
+      <summary><span class="s-left"><span class="idx">04</span> Brain Storm <span class="s-breeder">— Dirty Bird Genetics</span></span><span class="chevron">+</span></summary>
+      <div class="detail-body">
+        <div class="row"><div class="k">Genetics</div><div class="v">Slurricane #7 x The Brunch F1 #5</div></div>
+        <div class="row"><div class="k">Type</div><div class="v">Indica-leaning, feminized</div></div>
+        <div class="row"><div class="k">Flowering</div><div class="v">~55–63 days</div></div>
+        <div class="row"><div class="k">THC</div><div class="v">Not published</div></div>
+        <div class="row"><div class="k">Terpenes</div><div class="v">Sweet, earthy, peppery, floral</div></div>
+        <div class="row"><div class="k">Reviews</div><div class="v">Independent North Atlantic smoke report was enthusiastic — dense dark-purple buds with "immense bag appeal," describing the high as <strong>"intensely calming and soothing… contentment was next level,"</strong> relaxed but not anchored to the couch.</div></div>
+      </div>
+    </details>
+
+    <details class="strain-detail">
+      <summary><span class="s-left"><span class="idx">05</span> Glazed Pastries <span class="s-breeder">— In House Genetics</span></span><span class="chevron">+</span></summary>
+      <div class="detail-body">
+        <div class="row"><div class="k">Genetics</div><div class="v">Pastries (Compound Genetics) x Platinum</div></div>
+        <div class="row"><div class="k">Type</div><div class="v">Mostly indica hybrid, feminized</div></div>
+        <div class="row"><div class="k">Flowering</div><div class="v">9–10 weeks</div></div>
+        <div class="row"><div class="k">THC</div><div class="v">~20%, up to ~23–24% claimed</div></div>
+        <div class="row"><div class="k">Terpenes</div><div class="v">Caryophyllene-dominant; sweet pastry, vanilla, gas</div></div>
+        <div class="row"><div class="k">Reviews</div><div class="v">Repeat GrowDiaries grower praised buds as <strong>"ridiculously solid,"</strong> with trichome coverage "on par with any expensive clones," and an "extremely gassy with a slight sour edge" nose. Productive, easy, distinctive terps — needs odor control.</div></div>
+      </div>
+    </details>
+
+    <details class="strain-detail">
+      <summary><span class="s-left"><span class="idx">06</span> Durban Nights / Thai Herer 99 <span class="s-breeder">— Brothers Grimm Seeds</span></span><span class="chevron">+</span></summary>
+      <div class="detail-body">
+        <div class="row"><div class="k">Genetics</div><div class="v">(Durban-Thai Highflyer x Jack Herer) x reversed Cinderella 99</div></div>
+        <div class="row"><div class="k">Type</div><div class="v">Mostly sativa, feminized</div></div>
+        <div class="row"><div class="k">Flowering</div><div class="v">8–9 weeks (one grower called it "the longest flowering time I've ever ran")</div></div>
+        <div class="row"><div class="k">THC</div><div class="v">Not verified — cerebral, uplifting, "adrenaline rush" reported</div></div>
+        <div class="row"><div class="k">Terpenes</div><div class="v">Tropical, spicy, exotic, incense, sour, with gas/skunk in some phenos</div></div>
+        <div class="row"><div class="k">Reviews</div><div class="v">GrowDiaries growers on the Durban x C99 line: <strong>"amazing nose and frosted out,"</strong> dense golf-ball nugs, energetic/creative smoke "well suited to musicians and artists." Caveats: very tall, late-finishing plant.</div></div>
+      </div>
+    </details>
+
+    <details class="strain-detail">
+      <summary><span class="s-left"><span class="idx">07</span> Birthday Cake <span class="s-breeder">— BlimBurn Seeds</span></span><span class="chevron">+</span></summary>
+      <div class="detail-body">
+        <div class="row"><div class="k">Genetics</div><div class="v">Girl Scout Cookies x Cherry Pie</div></div>
+        <div class="row"><div class="k">Type</div><div class="v">Indica-leaning hybrid (~60/40), feminized</div></div>
+        <div class="row"><div class="k">Flowering</div><div class="v">~9–10 weeks (56–70 days per some vendors)</div></div>
+        <div class="row"><div class="k">THC</div><div class="v">BlimBurn's own page states <strong>"Medium (24%–27%)"</strong> — other sources give a 22–28% range</div></div>
+        <div class="row"><div class="k">Terpenes</div><div class="v">Sweet vanilla, berry, earthy; caryophyllene-forward</div></div>
+        <div class="row"><div class="k">Reviews</div><div class="v">The strain family is widely reviewed on AllBud with mixed potency verdicts — many love the flavor and relaxing effect, but one reviewer found <strong>"THC levels subpar for such a highly touted strain."</strong> A reliable, familiar dessert indica overall.</div></div>
+      </div>
+    </details>
+
+    <details class="strain-detail">
+      <summary><span class="s-left"><span class="idx">08</span> Sour Gorilla <span class="s-breeder">— Breeder unconfirmed on pack</span></span><span class="chevron">+</span></summary>
+      <div class="detail-body">
+        <div class="row"><div class="k">Genetics</div><div class="v">Sour Diesel x Gorilla Glue #4 (sold by Space GenetiX, Top Dawg Seeds, Crop King, IZI Seeds, others)</div></div>
+        <div class="row"><div class="k">Type</div><div class="v">Indica-leaning hybrid (~65/35)</div></div>
+        <div class="row"><div class="k">Flowering</div><div class="v">~9 weeks</div></div>
+        <div class="row"><div class="k">THC</div><div class="v">AllBud lists 15–23% average; the GG4 parent alone ranges from a Leafly-listed 20% up to a reported 32% on other batches</div></div>
+        <div class="row"><div class="k">Terpenes</div><div class="v">Sour-diesel fuel, citrus, earthy, peppery — myrcene, limonene, caryophyllene</div></div>
+        <div class="row"><div class="k">Reviews</div><div class="v">The genotype is well-liked on Leafly/AllBud — <strong>"a really balanced high, not too heady,"</strong> good for sleep, loud and frosty with strong bag appeal. Because the pack's breeder is unconfirmed, expect pheno variability.</div></div>
+      </div>
+    </details>
+
+    <details class="strain-detail">
+      <summary><span class="s-left"><span class="idx">09</span> Double Afghani Kush <span class="s-breeder">— In House Genetics</span></span><span class="chevron">+</span></summary>
+      <div class="detail-body">
+        <div class="row"><div class="k">Genetics</div><div class="v">Afghani Urkle x Double Kush Breath</div></div>
+        <div class="row"><div class="k">Type</div><div class="v">Pure/mostly indica (90%+), feminized</div></div>
+        <div class="row"><div class="k">Flowering</div><div class="v">Fast — 45–55 days (some listings up to 9 weeks)</div></div>
+        <div class="row"><div class="k">THC</div><div class="v">~20%, CBD ~1.5%</div></div>
+        <div class="row"><div class="k">Terpenes</div><div class="v">Earthy, hashy, sweet, floral — landrace-style</div></div>
+        <div class="row"><div class="k">Reviews</div><div class="v">Limited firsthand data, but described as a moderately challenging (watch mildew/mold), fast-finishing, resinous nighttime indica. Fast flowering is a real advantage for grow turnover.</div></div>
+      </div>
+    </details>
+
+    <details class="strain-detail">
+      <summary><span class="s-left"><span class="idx">10</span> Cherry Poppers <span class="s-breeder">— likely Barney's Farm</span></span><span class="chevron">+</span></summary>
+      <div class="detail-body">
+        <div class="row"><div class="k">Genetics</div><div class="v">Lemon Kush x Cherry Zkittlez</div></div>
+        <div class="row"><div class="k">Type</div><div class="v">Sativa-leaning hybrid (~60/40), feminized</div></div>
+        <div class="row"><div class="k">Flowering</div><div class="v">60–65 days indoor</div></div>
+        <div class="row"><div class="k">THC</div><div class="v">Barney's Farm states <strong>"THC content of 31%"</strong> — an unverified breeder marketing figure, treat with skepticism</div></div>
+        <div class="row"><div class="k">Terpenes</div><div class="v">Sweet cherry/berry, candy, citrus, creamy</div></div>
+        <div class="row"><div class="k">Reviews</div><div class="v">Firsthand feedback is thin. Zamnesia comments report good germination and fast growth with strong LST/SCROG response: <strong>"Super ertrag und stabile genetik"</strong> (great yield and stable genetics) — though one grower got two males from five feminized seeds. No independent lab confirmation of the 31% claim.</div></div>
+      </div>
+    </details>
+
+    <details class="strain-detail">
+      <summary><span class="s-left"><span class="idx">11</span> Chiroptera Kush <span class="s-breeder">— MZ Jill Genetics</span></span><span class="chevron">+</span></summary>
+      <div class="detail-body">
+        <div class="row"><div class="k">Genetics</div><div class="v">Bat Girl (Jack's Cleaner Blueberry pheno) x Purple Afghani Kush</div></div>
+        <div class="row"><div class="k">Type</div><div class="v">Indica/sativa hybrid, feminized</div></div>
+        <div class="row"><div class="k">Flowering</div><div class="v">56–63 days</div></div>
+        <div class="row"><div class="k">THC</div><div class="v">Not published</div></div>
+        <div class="row"><div class="k">Terpenes</div><div class="v">Candied blueberry, grape syrup, plum, floral, lemon citrus</div></div>
+        <div class="row"><div class="k">Reviews</div><div class="v">Sparse, but one tester review was glowing: <strong>"crazy crazy fire… smells like straight purple berries and super super dense sticky colas… all gas no brakes."</strong> Heavy resin, good hash/concentrate candidate.</div></div>
+      </div>
+    </details>
+
+    <details class="strain-detail">
+      <summary><span class="s-left"><span class="idx">12</span> Flaming Cheetoz <span class="s-breeder">— Lit Farms</span></span><span class="chevron">+</span></summary>
+      <div class="detail-body">
+        <div class="row"><div class="k">Genetics</div><div class="v">Cheetah Piss x Runtz</div></div>
+        <div class="row"><div class="k">Type</div><div class="v">Hybrid, indica-leaning phenos, feminized</div></div>
+        <div class="row"><div class="k">Flowering</div><div class="v">60–65 days</div></div>
+        <div class="row"><div class="k">THC</div><div class="v">Not independently verified</div></div>
+        <div class="row"><div class="k">Terpenes</div><div class="v">Ammonia/funk (Cheetah Piss side), sweet fruity candy (Runtz side), gas</div></div>
+        <div class="row"><div class="k">Reviews</div><div class="v">One complete, detailed grow rated 10/10, "Easy." Grower found 2 of 3 phenos "quite gassy with very little else flavour wise," with a standout #3 pheno showing "juicy, candy like taste." Con: <strong>"major support issues"</strong> — plants stretched and leaned, needing staking.</div></div>
+      </div>
+    </details>
+
+    <details class="strain-detail">
+      <summary><span class="s-left"><span class="idx">13</span> Mind Flayer <span class="s-breeder">— Solfire Gardens</span></span><span class="chevron">+</span></summary>
+      <div class="detail-body">
+        <div class="row"><div class="k">Genetics</div><div class="v">Double Tap x Why U Gelly</div></div>
+        <div class="row"><div class="k">Type</div><div class="v">Hybrid, feminized</div></div>
+        <div class="row"><div class="k">Flowering</div><div class="v">58–70 days</div></div>
+        <div class="row"><div class="k">THC</div><div class="v">Not lab-verified</div></div>
+        <div class="row"><div class="k">Terpenes</div><div class="v">Bubblegum-gelato, chem funk, fruity sugary berry</div></div>
+        <div class="row"><div class="k">Reviews</div><div class="v">Thin. One GrowDiaries note flagged pheno instability ("un poco inestable, varios fenotipos diferentes") and a grower pulled male flowers off the plant — a hermie caution. Loud aroma and heavy frost noted, but stability is questioned.</div></div>
+      </div>
+    </details>
+
+    <details class="strain-detail">
+      <summary><span class="s-left"><span class="idx">14</span> Sunset Skunk <span class="s-breeder">— Thug Pug Genetics</span></span><span class="chevron">+</span></summary>
+      <div class="detail-body">
+        <div class="row"><div class="k">Genetics</div><div class="v">Early Skunk x Sherb Breath (S1/reversed)</div></div>
+        <div class="row"><div class="k">Type</div><div class="v">Hybrid, feminized</div></div>
+        <div class="row"><div class="k">Flowering</div><div class="v">~9 weeks</div></div>
+        <div class="row"><div class="k">THC</div><div class="v">Not published</div></div>
+        <div class="row"><div class="k">Terpenes</div><div class="v">Skunky, orange-citrus, funky, spicy, earthy</div></div>
+        <div class="row"><div class="k">Reviews</div><div class="v">Very limited (~1 diary). Respected breeder brand, but this specific cross is barely documented. <strong>Buy only from breeder-verified vendors</strong> (SeedsHereNow, North Atlantic Seed Co., Terpy T) — counterfeit seed risk is real for Thug Pug.</div></div>
+      </div>
+    </details>
+
+    <details class="strain-detail">
+      <summary><span class="s-left"><span class="idx">15</span> Gas Nana <span class="s-breeder">— Solfire Gardens</span></span><span class="chevron">+</span></summary>
+      <div class="detail-body">
+        <div class="row"><div class="k">Genetics</div><div class="v">Banana Runtz x Gary Payton</div></div>
+        <div class="row"><div class="k">Type</div><div class="v">Mostly indica, feminized</div></div>
+        <div class="row"><div class="k">Flowering</div><div class="v">63–70 days</div></div>
+        <div class="row"><div class="k">THC</div><div class="v">20–25% (vendor estimate only, unverified)</div></div>
+        <div class="row"><div class="k">Terpenes</div><div class="v">Banana candy, diesel/gas, earthy</div></div>
+        <div class="row"><div class="k">Reviews</div><div class="v">Minimal — the only firsthand grow reported it "stretchy af" with possible pollination issues; no cured smoke report exists. THCFarmer also flags a lineage discrepancy versus the breeder's stated genetics.</div></div>
+      </div>
+    </details>
+
+    <details class="strain-detail">
+      <summary><span class="s-left"><span class="idx">16</span> Divine Truffle <span class="s-breeder">— BeLeaf Seeds x In House Genetics</span></span><span class="chevron">+</span></summary>
+      <div class="detail-body">
+        <div class="row"><div class="k">Genetics</div><div class="v">Divinity #35 (Divine Gelato #3 x OGKB v2.1) x White Truffle (Gorilla Butter pheno)</div></div>
+        <div class="row"><div class="k">Type</div><div class="v">Mostly indica, feminized</div></div>
+        <div class="row"><div class="k">Flowering</div><div class="v">8–9 weeks</div></div>
+        <div class="row"><div class="k">THC</div><div class="v">20–25% claimed by breeder/vendor; unverified</div></div>
+        <div class="row"><div class="k">Terpenes</div><div class="v">Gassy funky beef jerky, garlicky, mushroom, kerosene</div></div>
+        <div class="row"><div class="k">Reviews</div><div class="v">No firsthand grow/smoke report exists for this exact cross. Adjacent White Truffle-line grower feedback is mixed: elite frost and bag appeal but low yield, foxtaily growth, and pheno variance. One grower who ran several White Truffle cuts noted they <strong>"test out between 16-19 percent… incredible frost doesn't always equate to potency."</strong></div></div>
+      </div>
+    </details>
+
+    <details class="strain-detail">
+      <summary><span class="s-left"><span class="idx">17</span> Frozen Papaya <span class="s-breeder">— Sin City Seeds</span></span><span class="chevron">+</span></summary>
+      <div class="detail-body">
+        <div class="row"><div class="k">Genetics</div><div class="v">Papaya x White Nightmare</div></div>
+        <div class="row"><div class="k">Type</div><div class="v">Hybrid (listed 50/50 to 60/40 indica)</div></div>
+        <div class="row"><div class="k">Flowering</div><div class="v">50–65 days (listings vary)</div></div>
+        <div class="row"><div class="k">THC</div><div class="v">Unverified vendor estimates only</div></div>
+        <div class="row"><div class="k">Terpenes</div><div class="v">Tropical papaya, citrus, sweet</div></div>
+        <div class="row"><div class="k">Reviews</div><div class="v"><strong>Red flag:</strong> the only firsthand grow went poorly — one plant died from possible overwatering, and another "got intersex traits from low stress training during early flower… She dead now." The grower added, <strong>"Not impressed by sin city genetics."</strong> A single grower's experience, but the sole real datapoint is unfavorable.</div></div>
+      </div>
+    </details>
+
+    <details class="strain-detail">
+      <summary><span class="s-left"><span class="idx">18</span> Acapulco Gold <span class="s-breeder">— breeder unconfirmed on pack</span></span><span class="chevron">+</span></summary>
+      <div class="detail-body">
+        <div class="row"><div class="k">Genetics</div><div class="v">Traditional Mexican sativa landrace (Guerrero region, Sierra Madre del Sur)</div></div>
+        <div class="row"><div class="k">Type</div><div class="v">Sativa-dominant landrace (~80/20)</div></div>
+        <div class="row"><div class="k">Flowering</div><div class="v">60–75 days; large, tall — best suited outdoors</div></div>
+        <div class="row"><div class="k">THC</div><div class="v">Historically ~23%; modern seed-company versions typically 20–25%, varies widely by pheno</div></div>
+        <div class="row"><div class="k">Terpenes</div><div class="v">Caryophyllene-dominant (peppery), with myrcene and limonene; toffee/burnt-sugar, earthy, citrus, coffee</div></div>
+        <div class="row"><div class="k">Reviews</div><div class="v">The classic strain is beloved on Leafly as <strong>"an amazing chore day strain"</strong> — smooth, motivating, energizing. Caveat: modern seed-bank versions are widely called "a simulacrum" of the true landrace; potency and character depend heavily on genetics source and grow conditions.</div></div>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<!-- ============ CAVEATS ============ -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Methodology &amp; Caveats</h2>
+      <span class="section-tag">Read before you trust a THC number</span>
+    </div>
+    <ul class="caveat-list">
+      <li><strong>THC numbers are mostly unverified.</strong> Outside a few well-characterized genotypes, percentages come from breeder and seed-shop marketing, which routinely inflates figures. Even GG4 — one of cannabis's most tested strains — is listed anywhere from 20% (Leafly) to 32% (AllBud) depending on the source.</li>
+      <li><strong>Small-batch drops have thin data by nature.</strong> Roughly half of this collection has few or no completed firsthand grow/smoke reports. Absence of reviews isn't evidence of low quality — it just means less certainty going in.</li>
+      <li><strong>AI-generated "strain guide" content was excluded.</strong> Several seed-shop blogs publish fabricated statistics. Sentiment here comes from GrowDiaries diaries, independent smoke reports, Rollitup/THCFarmer threads, and Leafly/AllBud/Zamnesia user reviews.</li>
+      <li><strong>Phenotype variability is the rule, not the exception</strong> — especially for F1s and reversed/S1 lines. Expect to grow multiple seeds of the same strain and select for the keeper.</li>
+      <li><strong>Cull anthers immediately.</strong> Two strains in this collection (Frozen Papaya, Mind Flayer) showed intersex traits in their only documented grows. Hermie risk outweighs any terpene appeal.</li>
+      <li><strong>Buy from verified vendors.</strong> Counterfeit seed packs are a documented risk, particularly flagged here for the Thug Pug line.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="leaf">✦</div>
+    <p>Compiled from breeder pages, SeedFinder.eu, GrowDiaries, THCFarmer, Rollitup, and independent smoke reports. For personal cultivation records only — always follow your local laws.</p>
+  </div>
+</footer>
+
+</body>
+</html>
